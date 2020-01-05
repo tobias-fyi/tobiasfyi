@@ -1,0 +1,132 @@
+// Primary
+$primary: #0e668e;
+$paper: #f2f1f4;
+$light: #bbd2d9;
+$navy: #073a50;
+$red: #83192b;
+$red-dk: #5C111E;
+$maroon: #37050d;
+$dark: #09080a;
+$max-width: 1100px;
+
+// Set text color based on background
+@function set-text-color($color) {
+    @if(lightness($color) > 50) {
+        @return $dark;
+    } @else {
+        @return $light;
+    }
+}
+
+// Set background & text color
+@mixin set-background($color) {
+    background-color: $color;
+    color: set-text-color($color);
+}
+
+// Stellar Theme OG Palette
+$palette: (
+    bg:                             #935d8c,
+    fg:                             rgba(255,255,255,0.65),
+    fg-bold:                        #ffffff,
+    fg-light:                       rgba(255,255,255,0.5),
+    border:                         rgba(255,255,255,0.35),
+    border-bg:                      rgba(255,255,255,0.075),
+    border2:                        rgba(255,255,255,0.75),
+    border2-bg:                     rgba(255,255,255,0.2),
+
+    invert: (
+            bg:                     #ffffff,
+            bg-alt:                 #f7f7f7,
+            fg:                     #636363,
+            fg-bold:                #636363,
+            fg-light:               rgba(99,99,99,0.25),
+            border:                 #dddddd,
+            border-bg:              rgba(222,222,222,0.25),
+            border2:                #dddddd,
+            border2-bg:             rgba(222,222,222,0.5),
+    ),
+
+    accent:                         #8cc9f0,
+    accent1:                        #efa8b0,
+    accent2:                        #c79cc8,
+    accent3:                        #a89cc8,
+    accent4:                        #9bb2e1,
+    accent5:                        #8cc9f0,
+    bg1:                            #e37682,
+    bg2:                            #5f4d93
+);
+
+// Pirate Booty Swatches
+$Pirate-Booty-1-hex: #364F5A;
+$Pirate-Booty-2-hex: #C69A4E;
+$Pirate-Booty-3-hex: #E2A638;
+$Pirate-Booty-4-hex: #AF732F;
+$Pirate-Booty-5-hex: #5E3A1E;
+$piratebootyanal1: #753820;
+$piratebootyanal2: #6B281D;
+
+$navygain: #07394F;
+
+// Jacket Maroon Analogous
+$Jaroon-Analogous-1-hex: #8A2707;
+$Jaroon-Analogous-2-hex: #941507;
+$Jaroon-Analogous-3-hex: #7E0016;
+$Jaroon-Analogous-4-hex: #940765;
+$Jaroon-Analogous-5-hex: #7E078A;
+
+// Chest Analogous
+$Chest-Analogous-1-hex: #6B521D;
+$Chest-Analogous-2-hex: #755120;
+$Chest-Analogous-3-hex: #5E3A1E;
+$Chest-Analogous-4-hex: #753820;
+$Chest-Analogous-5-hex: #6B281D;
+
+// Chest Pastel Analogous
+$Light-Chest-Analogous-1-hex: #AB7E41;
+$Light-Chest-Analogous-2-hex: #B57545;
+$Light-Chest-Analogous-3-hex: #9E5E44;
+$Light-Chest-Analogous-4-hex: #B55445;
+$Light-Chest-Analogous-5-hex: #AB4144;
+
+// Grapes Analogous
+$Pale-Purps-Analogous-1-hex: #96545E;
+$Pale-Purps-Analogous-2-hex: #A15A88;
+$Pale-Purps-Analogous-3-hex: #85548A;
+$Pale-Purps-Analogous-4-hex: #875AA1;
+$Pale-Purps-Analogous-5-hex: #6D5496;
+
+// Space Pirate (jacket)
+$Space-Pirate-1-hex: #7E0016;
+$Space-Pirate-2-hex: #D10039;
+$Space-Pirate-3-hex: #00838E;
+$Space-Pirate-4-hex: #DFB875;
+$Space-Pirate-5-hex: #C88941;
+
+/* Color Theme Swatches in Hex */
+$Lighter-Space-Pirate-1-hex: #7D3945;
+$Lighter-Space-Pirate-2-hex: #C97188;
+$Lighter-Space-Pirate-3-hex: #6B8C8F;
+$Lighter-Space-Pirate-4-hex: #DEC08C;
+$Lighter-Space-Pirate-5-hex: #BF9A6F;
+
+//Lake Sunset
+$Lake-Sunset-1-hex: #8298A8;
+$Lake-Sunset-2-hex: #393D3C;
+$Lake-Sunset-3-hex: #C79269;
+$Lake-Sunset-4-hex: #FFA254;
+$Lake-Sunset-5-hex: #964500;
+
+// Mostly Clear Skies
+$Mostly-Clear-Skies-1-hex: #486275;
+$Mostly-Clear-Skies-2-hex: #5B798E;
+$Mostly-Clear-Skies-3-hex: #8CAFC1;
+$Mostly-Clear-Skies-4-hex: #CACAC2;
+$Mostly-Clear-Skies-5-hex: #F9DBAE;
+
+// Rose Bush
+$Rose-Bush-1-hex: #7D1930;
+$Rose-Bush-2-hex: #990040;
+$Rose-Bush-3-hex: #2E0204;
+$Rose-Bush-4-hex: #396139;
+$Rose-Bush-5-hex: #678F69;
