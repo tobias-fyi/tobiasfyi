@@ -10,6 +10,7 @@ pylint = "*"
 [packages]
 wagtail = "<2.8,>=2.7"
 Django = "<2.3,>=2.2"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.8"
