@@ -23,7 +23,7 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.search import index
 
-# from utils.blocks import CodeBlock, CardBlock, PlotBlock
+from utils.blocks import CodeBlock, CardBlock, PlotBlock
 
 
 class BlogIndexPage(Page):
@@ -44,7 +44,7 @@ class BlogIndexPage(Page):
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
             ("featured_content", blocks.PageChooserBlock()),
-            # ("cards", CardBlock()),
+            ("cards", CardBlock()),
         ],
         null=True,
     )
@@ -150,11 +150,11 @@ class BlogPage(Page):
         [
             ("richtext_section", blocks.RichTextBlock()),
             ("image", ImageChooserBlock()),
-            # ("code_block", CodeBlock()),
+            ("code_block", CodeBlock()),
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
             ("related_content", blocks.PageChooserBlock()),
-            # ("cards", CardBlock()),
+            ("cards", CardBlock()),
         ],
         null=True,
     )
