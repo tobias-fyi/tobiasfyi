@@ -47,6 +47,7 @@ class BlogIndexPage(Page):
             ("cards", CardBlock()),
         ],
         null=True,
+        blank=True,
     )
 
     def get_context(self, request):
@@ -56,10 +57,10 @@ class BlogIndexPage(Page):
         # Include only published posts, ordered in reverse chron
         context = super().get_context(request)
         # Get all blog posts
-        all_posts = self.get_children().live().public().order_by("-first_published_at")
+        posts = self.get_children().live().public().order_by("-first_published_at")
 
         # Paginate all blog posts into 4 per page
-        paginator = Paginator(all_posts, 4)
+        paginator = Paginator(posts, 4)
         # Try to get the ?page=x value
         page = request.GET.get("page")
         try:
@@ -157,6 +158,7 @@ class BlogPage(Page):
             ("cards", CardBlock()),
         ],
         null=True,
+        blank=True,
     )
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     categories = ParentalManyToManyField("blog.BlogCategory", blank=True)
