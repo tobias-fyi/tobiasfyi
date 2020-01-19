@@ -1,4 +1,4 @@
-{% load static wagtailuserbar wagtailcore_tags wagtailimages_tags nav_tags %}
+{% load static wagtailuserbar wagtailcore_tags wagtailimages_tags navs_tags %}
 
 {% get_menu "nav" as nav %}
 
@@ -51,27 +51,74 @@
         </g>
       </svg>
       <h1>tobias.fyi</h1>
-      <p>Explorations with <i>Tobias Reaper</i></p>
+      <p><small>Explorations with <i>Tobias Reaper</i></small></p>
     </header>
 
     <nav id="nav" class="nav main">
       <ul>
-        <li>
-          <a href="/" class="linked">home</a>
-        </li>
-        {% for item in nav.nav_items.all %}
-          <li>
-            <a class="linked" href="{{ item.link }}" {% if item.open_in_new_tab %}target="_blank"{% endif %}>
-              {{ item.title }}
-            </a>
-          </li>
-        {% endfor %}
+        {% if blog.paginator.num_pages > 1 %}
+          {% if blog.next_page_number <= blog.paginator.num_pages|add:"-1" %}
+            <li>
+              <a class="linked" href="?page={{ blog.paginator.num_pages }}">
+                <span>&larr;&larr;</span>
+              </a>
+            </li>
+          {% else %}
+            <li>
+              <a class="disabled"><span>&larr;&larr;</span></a>
+            </li>
+          {% endif %}
+
+          {% if blog.has_next %}
+            <li>
+              <a class="linked" href="?page={{ blog.next_page_number }}">
+                <span>&larr;</span>
+              </a>
+            </li>
+          {% else %}
+            <li>
+              <a class="disabled"><span>&larr;</span></a>
+            </li>
+          {% endif %}
+
+          {% for page_num in blog.paginator.page_range %}
+            <li>
+              <a class="linked" href="?page={{ page_num }}">
+                {{ blog.pk|stringformat:"03d" }} ~ {{ blog.title }}
+              </a>
+            </li>
+          {% endfor %}
+
+          {% if blog.has_previous %}
+            <li>
+              <a class="linked" href="?page={{ blog.previous_page_number }}">
+                <span>&rarr;</span>
+              </a>
+            </li>
+          {% else %}
+            <li>
+              <a class="disabled"><span>&rarr;</span></a>
+            </li>
+          {% endif %}
+
+          {% if blog.previous_page_number > 1 %}
+            <li>
+              <a class="linked" href="?page=1"><span>&rarr;&rarr;</span></a>
+            </li>
+          {% else %}
+            <li>
+              <a class="disabled"><span>&rarr;&rarr;</span></a>
+            </li>
+          {% endif %}
+        {% endif %}
       </ul>
     </nav>
 
     <!-- Child Page Content -->
     {% block content %}
     {% endblock content %}
+
+  </div>
 
   <!-- Footer -->
   <footer id="footer">

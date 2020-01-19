@@ -6,11 +6,13 @@ verify_ssl = true
 [dev-packages]
 black = "*"
 pylint = "*"
+ipython = "*"
 
 [packages]
 wagtail = "<2.8,>=2.7"
 Django = "<2.3,>=2.2"
 python-dotenv = "*"
+django-extensions = "*"
 
 [requires]
 python_version = "3.8"
