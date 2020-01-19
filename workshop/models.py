@@ -71,6 +71,7 @@ class ProjectPage(Page):
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
             ("related_content", blocks.PageChooserBlock()),
+            ("external_link", blocks.URLBlock()),
             ("cards", CardBlock()),
             ("plot", PlotBlock()),
         ]
