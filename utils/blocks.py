@@ -69,6 +69,12 @@ class PlotBlock(blocks.StructBlock):
         label = "Plot"
 
 
+class ProjectBlock(blocks.StructBlock):
+    """Base class for workshop project blocks."""
+
+    pass
+
+
 class RelatedContentBlock(blocks.StructBlock):
     """Block to format related content links."""
 
