@@ -51,17 +51,19 @@
         </g>
       </svg>
       <h1>tobias.fyi</h1>
-      <p><small>Explorations with <i>Tobias Reaper</i></small></p>
+      <p>Explorations with <i>Tobias Reaper</i></p>
     </header>
 
     <nav id="nav" class="nav main">
       <ul>
         <li>
-          <a href="/" class="linked">Home</a>
+          <a href="/" class="linked">home</a>
         </li>
         {% for item in nav.nav_items.all %}
           <li>
-            <a class="linked" href="{{ item.link }}" {% if item.open_in_new_tab %}target="_blank"{% endif %}>{{ item.title }}</a>
+            <a class="linked" href="{{ item.link }}" {% if item.open_in_new_tab %}target="_blank"{% endif %}>
+              {{ item.title }}
+            </a>
           </li>
         {% endfor %}
       </ul>
@@ -70,8 +72,6 @@
     <!-- Child Page Content -->
     {% block content %}
     {% endblock content %}
-
-  </div>
 
   <!-- Footer -->
   <footer id="footer">
