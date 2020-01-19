@@ -6,83 +6,6 @@
 {% block title %}Blog{% endblock title %}
 
 {% block content %}
-<div id="wrapper">
-
-	<header id="header" class="alt">
-		<svg class="logo" xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 800 800">
-			<title>19-07-05-100days-logo</title>
-			<g id="ac9c0328-58b8-475b-bbe4-6e91f854db0f" data-name="Layer 4">
-				<path
-					d="M609,353.73V279.58l-183.77,0,0-205.6H389.58q-18.72,106.17-61.17,165.16T201,321.75v32H319.91V544.2l.1,68.69V730c9.65-61.91,58.94-129,105.24-141.16l0-16.78,0-218.31ZM408.88,337.36V577.18c-21.94,9.28-44,28-63.12,53.78-3.29,4.43-6.43,9-9.41,13.69V612.89l-.1-68.71V337.36H217.35V334c54.17-17.21,96-45.84,124.31-85.23,27.76-38.57,48.42-91.79,61.49-158.36h5.75V296H592.65v41.37Z"
-					fill="#fff" />
-				<circle cx="400" cy="400" r="360" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="12" />
-				<circle cx="400" cy="400" r="384" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="20" />
-			</g>
-		</svg>
-		<h1>tobias.fyi</h1>
-		<p><small>Explorations with <i>Tobias Reaper</i></small></p>
-	</header>
-
-	<nav id="nav" class="nav main">
-		<ul>
-			{% if blog.paginator.num_pages > 1 %}
-				{% if blog.next_page_number <= blog.paginator.num_pages|add:"-1" %}
-					<li>
-						<a class="linked" href="?page={{ blog.paginator.num_pages }}">
-							<span>&larr;&larr;</span>
-						</a>
-					</li>
-				{% else %}
-					<li>
-						<a class="disabled"><span>&larr;&larr;</span></a>
-					</li>
-				{% endif %}
-
-				{% if blog.has_next %}
-					<li>
-						<a class="linked" href="?page={{ blog.next_page_number }}">
-							<span>&larr;</span>
-						</a>
-					</li>
-				{% else %}
-					<li>
-						<a class="disabled"><span>&larr;</span></a>
-					</li>
-				{% endif %}
-
-				{% for page_num in blog.paginator.page_range %}
-					<li>
-						<a class="linked" href="?page={{ page_num }}">
-							{{ blog.pk|stringformat:"03d" }} ~ {{ blog.title }}
-						</a>
-					</li>
-				{% endfor %}
-
-				{% if blog.has_previous %}
-					<li>
-						<a class="linked" href="?page={{ blog.previous_page_number }}">
-							<span>&rarr;</span>
-						</a>
-					</li>
-				{% else %}
-					<li>
-						<a class="disabled"><span>&rarr;</span></a>
-					</li>
-				{% endif %}
-
-				{% if blog.previous_page_number > 1 %}
-					<li>
-						<a class="linked" href="?page=1"><span>&rarr;&rarr;</span></a>
-					</li>
-				{% else %}
-					<li>
-						<a class="disabled"><span>&rarr;&rarr;</span></a>
-					</li>
-				{% endif %}
-			{% endif %}
-		</ul>
-	</nav>
-
 	<!-- Main Container -->
 	<div id="main">
 
@@ -113,5 +36,4 @@
 			{% endwith %}
 		{% endfor %}
 
-	</div>
 	{% endblock content %}
