@@ -1,3 +1,7 @@
+"""
+blog \\ models :: non-fiction or technical pieces
+"""
+
 from django import forms
 from django.db import models
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
@@ -201,6 +205,19 @@ class BlogPageRelatedContent(Orderable):
         BlogPage, on_delete=models.CASCADE, related_name="related_content"
     )
     name = models.CharField(max_length=255)
-    url = models.URLField(null=True)
+    content = StreamField(
+        [
+            ("link", blocks.URLBlock()),
+            ("related_content", blocks.PageChooserBlock()),
+            ("richtext_section", blocks.RichTextBlock()),
+            ("cards", CardBlock()),
+            ("image", ImageChooserBlock()),
+            ("code_block", CodeBlock()),
+            ("embed", EmbedBlock()),
+            ("html", blocks.RawHTMLBlock()),
+        ],
+        null=True,
+        blank=True,
+    )
 
-    panels = [FieldPanel("name"), FieldPanel("url")]
+    panels = [FieldPanel("name"), StreamFieldPanel("content")]
