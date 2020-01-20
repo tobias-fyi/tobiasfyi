@@ -33,7 +33,7 @@
 			<hr>
 		</div>
 		<div>
-			{% for block in page.body %}
+			{% for block in page.content %}
 				{% if block.block_type == "paragraph" %}
 					<p>{{ block.value|richtext }}</p>
 				{% elif block.block_type == "image" %}
@@ -44,6 +44,7 @@
 			{% endfor %}
 		</div>
 		<div>
+			<hr>
 			<a class="button linked active" href="{{ page.get_parent.url }}">
 				Back to List
 			</a>

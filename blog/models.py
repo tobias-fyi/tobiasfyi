@@ -27,7 +27,13 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.search import index
 
-from utils.blocks import CodeBlock, CardBlock, PlotBlock
+from utils.blocks import (
+    CodeBlock,
+    CardBlock,
+    PlotBlock,
+    LinkBlock,
+    ElementBlock,
+)
 
 
 class BlogIndexPage(Page):
@@ -48,7 +54,7 @@ class BlogIndexPage(Page):
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
             ("featured_content", blocks.PageChooserBlock()),
-            ("external_link", blocks.URLBlock()),
+            ("linkblock", LinkBlock()),
             ("cards", CardBlock()),
         ],
         null=True,
@@ -160,8 +166,9 @@ class BlogPage(Page):
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
             ("related_content", blocks.PageChooserBlock()),
-            ("external_link", blocks.URLBlock()),
+            ("link", LinkBlock()),
             ("cards", CardBlock()),
+            ("elements", ElementBlock()),  # TODO: make into static template
         ],
         null=True,
         blank=True,
@@ -210,6 +217,7 @@ class BlogPageRelatedContent(Orderable):
     content = StreamField(
         [
             ("link", blocks.URLBlock()),
+            ("linkblock", LinkBlock()),
             ("related_content", blocks.PageChooserBlock()),
             ("richtext_section", blocks.RichTextBlock()),
             ("cards", CardBlock()),

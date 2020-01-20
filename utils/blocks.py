@@ -35,7 +35,7 @@ class CardBlock(blocks.StructBlock):
                 (
                     "button_url",
                     blocks.URLBlock(
-                        required=False, help_text="Button page will be used first."
+                        required=False, help_text="Button page is used first."
                     ),
                 ),
             ]
@@ -51,15 +51,11 @@ class CardBlock(blocks.StructBlock):
 class PlotBlock(blocks.StructBlock):
     """Base class for interactive plots."""
 
-    title = blocks.CharBlock(
-        max_length=42, required=True, help_text="Short title for the plot."
-    )
+    title = blocks.CharBlock(max_length=42, required=True, help_text="Short title.")
     caption = blocks.CharBlock(
-        max_length=240, required=True, help_text="Short summary of the plot."
+        max_length=240, required=True, help_text="Short summary."
     )
-    description = blocks.RichTextBlock(
-        required=False, help_text="Long description of plot."
-    )
+    description = blocks.RichTextBlock(required=False, help_text="Long description.")
     # TODO: research best practices for integrating Plotly
     plot = blocks.RawHTMLBlock(required=True, help_text="HTML code to generate plot.")
 
@@ -69,14 +65,60 @@ class PlotBlock(blocks.StructBlock):
         label = "Plot"
 
 
-class ProjectBlock(blocks.StructBlock):
-    """Base class for workshop project blocks."""
+class LinkStructValue(blocks.StructValue):
+    """Custom logic for links."""
 
-    pass
+    def url(self):
+        link_page = self.get("link_page")
+        link_url = self.get("link_url")
+
+        if link_page:
+            return link_page.url
+        elif link_url:
+            return link_url
+
+        return None
+
+
+class LinkBlock(blocks.StructBlock):
+    """Base class for formatting featured links to external or internal pages."""
+
+    title = blocks.CharBlock(required=True)
+    link_page = blocks.PageChooserBlock(required=False)
+    link_url = blocks.URLBlock(required=False)
+
+    class Meta:
+        template = "utils/link_block.html"
+        icon = "link"
+        label = "In-line Featured Link"
+        value_class = LinkStructValue
 
 
 class RelatedContentBlock(blocks.StructBlock):
     """Block to format related content links."""
 
     pass
+
+
+class ContactBlock(blocks.StructBlock):
+    """Building block for contact information."""
+
+    text = blocks.CharBlock(required=True)
+    email = blocks.EmailBlock(required=False)
+
+    class Meta:
+        template = "utils/contact_block.html"
+        icon = "mail"
+        label = "Email"
+
+
+class ElementBlock(blocks.StructBlock):
+    """Class to check out the HTML5UP Stellar Theme Elements."""
+
+    title = blocks.TextBlock(required=False)
+
+    class Meta:
+        template = "utils/elements.html"
+        icon = "cogs"
+        label = "Stellar Elements"
 

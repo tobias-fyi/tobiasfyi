@@ -20,7 +20,13 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.search import index
 
-from utils.blocks import CodeBlock, CardBlock, PlotBlock
+from utils.blocks import (
+    CodeBlock,
+    CardBlock,
+    PlotBlock,
+    LinkBlock,
+    ElementBlock,
+)
 
 
 class ProjectIndexPage(Page):
@@ -36,6 +42,7 @@ class ProjectIndexPage(Page):
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
             ("featured_projects", blocks.PageChooserBlock()),
+            ("linkblock", LinkBlock()),
             ("cards", CardBlock()),
             ("plot", PlotBlock()),
         ],
@@ -71,7 +78,7 @@ class ProjectPage(Page):
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
             ("related_content", blocks.PageChooserBlock()),
-            ("external_link", blocks.URLBlock()),
+            ("linkblock", LinkBlock()),
             ("cards", CardBlock()),
             ("plot", PlotBlock()),
         ]
