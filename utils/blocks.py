@@ -111,14 +111,3 @@ class ContactBlock(blocks.StructBlock):
         icon = "mail"
         label = "Email"
 
-
-class ElementBlock(blocks.StructBlock):
-    """Class to check out the HTML5UP Stellar Theme Elements."""
-
-    title = blocks.TextBlock(required=False)
-
-    class Meta:
-        template = "utils/elements.html"
-        icon = "cogs"
-        label = "Stellar Elements"
-

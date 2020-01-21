@@ -32,7 +32,6 @@ from utils.blocks import (
     CardBlock,
     PlotBlock,
     LinkBlock,
-    ElementBlock,
 )
 
 
@@ -168,7 +167,6 @@ class BlogPage(Page):
             ("related_content", blocks.PageChooserBlock()),
             ("link", LinkBlock()),
             ("cards", CardBlock()),
-            ("elements", ElementBlock()),  # TODO: make into static template
         ],
         null=True,
         blank=True,
