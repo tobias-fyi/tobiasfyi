@@ -39,58 +39,32 @@
 
   <div id="wrapper">
 
-    <header id="header" class="alt">
-      <svg class="logo" xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 800 800">
-        <title>19-07-05-100days-logo</title>
-        <g id="ac9c0328-58b8-475b-bbe4-6e91f854db0f" data-name="Layer 4">
-          <path
-            d="M609,353.73V279.58l-183.77,0,0-205.6H389.58q-18.72,106.17-61.17,165.16T201,321.75v32H319.91V544.2l.1,68.69V730c9.65-61.91,58.94-129,105.24-141.16l0-16.78,0-218.31ZM408.88,337.36V577.18c-21.94,9.28-44,28-63.12,53.78-3.29,4.43-6.43,9-9.41,13.69V612.89l-.1-68.71V337.36H217.35V334c54.17-17.21,96-45.84,124.31-85.23,27.76-38.57,48.42-91.79,61.49-158.36h5.75V296H592.65v41.37Z"
-            fill="#fff" />
-          <circle cx="400" cy="400" r="360" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="12" />
-          <circle cx="400" cy="400" r="384" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="20" />
-        </g>
-      </svg>
-      <h1>tobias.fyi</h1>
-      <p>Explorations with <i>Tobias Reaper</i></p>
-    </header>
+  {% block header %}
+  {% endblock header %}
 
-    <nav id="nav" class="nav main">
-      <ul>
+  <nav id="nav" class="nav main">
+    <ul>
+      <li>
+        <a href="/" class="linked">home</a>
+      </li>
+      {% for item in nav.nav_items.all %}
         <li>
-          <a href="/" class="linked">home</a>
+          <a class="linked" href="{{ item.link }}" {% if item.open_in_new_tab %}target="_blank"{% endif %}>
+            {{ item.title }}
+          </a>
         </li>
-        {% for item in nav.nav_items.all %}
-          <li>
-            <a class="linked" href="{{ item.link }}" {% if item.open_in_new_tab %}target="_blank"{% endif %}>
-              {{ item.title }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </nav>
+      {% endfor %}
+    </ul>
+  </nav>
 
-    <!-- Child Page Content -->
-    {% block content %}
-    {% endblock content %}
+  <!-- Child Page Content -->
+  {% block content %}
+  {% endblock content %}
 
   <!-- Footer -->
   <footer id="footer">
-    <section>
-      <h2>tobias.fyi</h2>
-      <p>Content created by <i>Tobias Reaper</i>
-      <ul class="actions">
-        <li><a href="#" class="button">Learn More</a></li>
-      </ul>
-    </section>
-    <section>
-      <h2>Get In Touch!</h2>
-      <dl class="alt">
-        <dt>Email</dt>
-        <dd><a href="mailto:hi@tobias.fyi">hi@tobias.fyi</a></dd>
-      </dl>
-    </section>
     <p class="copyright">
-      <br>Designed and developed by Tobias Reaper.
+      <br>Created by <i>Tobias Reaper</i>.
       <small>
         <br>&copy; Content on this site is licensed under a 
         <br><a href="https://creativecommons.org/licenses/by/4.0/">
