@@ -18,6 +18,7 @@ from utils.blocks import (
     CardBlock,
     PlotBlock,
     LinkBlock,
+    ContactBlock,
 )
 
 
@@ -46,6 +47,7 @@ class HomePage(Page):
             ("image", ImageChooserBlock()),
             ("embed", EmbedBlock()),
             ("code", CodeBlock()),
+            ("contact", ContactBlock()),
         ],
         null=True,
     )
