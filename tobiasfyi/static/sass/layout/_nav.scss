@@ -16,16 +16,17 @@
   border-top-right-radius: _size(border-radius-main);
   cursor: default;
   text-align: center;
-
+  
   &+#main {
     padding-top: 4.25em;
     margin-bottom: 1rem;
   }
-
+  
   ul {
     margin: 0;
     padding: 0;
     list-style: none;
+    justify-content: center;
 
     li {
       @include vendor('transition', ('margin #{_duration(transition)} ease'
@@ -83,6 +84,9 @@
     z-index: _misc(z-index-base);
 
     ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
 
       li {
         margin: 0 0.175em;
@@ -96,15 +100,15 @@
 
   &.main {
     ul {
-      display: grid;
-      grid-template-columns: 7% 7% repeat(4, auto) 7% 7%;
-      grid-column-gap: 0.1rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
 
       li {
-        margin: 0 0.175em;
+        margin: 0 0.75rem;
 
         a {
-          font-size: 0.9em;
+          font-size: 1.3rem;
         }
       }
     }

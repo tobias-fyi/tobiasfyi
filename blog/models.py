@@ -1,3 +1,7 @@
+"""
+blog \\ models :: non-fiction or technical pieces
+"""
+
 from django import forms
 from django.db import models
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
@@ -23,7 +27,13 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.search import index
 
-from utils.blocks import CodeBlock, CardBlock, PlotBlock
+from utils.blocks import (
+    CodeBlock,
+    CardBlock,
+    PlotBlock,
+    LinkBlock,
+    InternalLinkBlock,
+)
 
 
 class BlogIndexPage(Page):
@@ -44,9 +54,12 @@ class BlogIndexPage(Page):
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
             ("featured_content", blocks.PageChooserBlock()),
+            ("linkblock", LinkBlock()),
+            ("internallinkblock", InternalLinkBlock()),
             ("cards", CardBlock()),
         ],
         null=True,
+        blank=True,
     )
 
     def get_context(self, request):
@@ -56,10 +69,10 @@ class BlogIndexPage(Page):
         # Include only published posts, ordered in reverse chron
         context = super().get_context(request)
         # Get all blog posts
-        all_posts = self.get_children().live().public().order_by("-first_published_at")
+        posts = self.get_children().live().public().order_by("-first_published_at")
 
         # Paginate all blog posts into 4 per page
-        paginator = Paginator(all_posts, 4)
+        paginator = Paginator(posts, 4)
         # Try to get the ?page=x value
         page = request.GET.get("page")
         try:
@@ -154,9 +167,11 @@ class BlogPage(Page):
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
             ("related_content", blocks.PageChooserBlock()),
+            ("link", LinkBlock()),
             ("cards", CardBlock()),
         ],
         null=True,
+        blank=True,
     )
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     categories = ParentalManyToManyField("blog.BlogCategory", blank=True)
@@ -199,6 +214,20 @@ class BlogPageRelatedContent(Orderable):
         BlogPage, on_delete=models.CASCADE, related_name="related_content"
     )
     name = models.CharField(max_length=255)
-    url = models.URLField(null=True)
+    content = StreamField(
+        [
+            ("link", blocks.URLBlock()),
+            ("linkblock", LinkBlock()),
+            ("related_content", blocks.PageChooserBlock()),
+            ("richtext_section", blocks.RichTextBlock()),
+            ("cards", CardBlock()),
+            ("image", ImageChooserBlock()),
+            ("code_block", CodeBlock()),
+            ("embed", EmbedBlock()),
+            ("html", blocks.RawHTMLBlock()),
+        ],
+        null=True,
+        blank=True,
+    )
 
-    panels = [FieldPanel("name"), FieldPanel("url")]
+    panels = [FieldPanel("name"), StreamFieldPanel("content")]

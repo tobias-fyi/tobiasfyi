@@ -13,6 +13,15 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 
+from utils.blocks import (
+    CodeBlock,
+    CardBlock,
+    PlotBlock,
+    LinkBlock,
+    InternalLinkBlock,
+    ContactBlock,
+)
+
 
 class HomePage(Page):
     """Home page model."""
@@ -32,9 +41,15 @@ class HomePage(Page):
     content = StreamField(
         [
             ("richtext", blocks.RichTextBlock()),
+            ("linkblock", LinkBlock()),
+            ("internallinkblock", InternalLinkBlock()),
+            ("featured", blocks.PageChooserBlock()),
+            ("html", blocks.RawHTMLBlock()),
+            ("cards", CardBlock()),
             ("image", ImageChooserBlock()),
             ("embed", EmbedBlock()),
-            ("featured", blocks.PageChooserBlock()),
+            ("code", CodeBlock()),
+            ("contact", ContactBlock()),
         ],
         null=True,
     )
@@ -44,3 +59,15 @@ class HomePage(Page):
         ImageChooserPanel("header_image"),
         StreamFieldPanel("content"),
     ]
+
+
+class FyiPage(HomePage):
+    """Basically the about page."""
+
+    template = "home/fyi_page.html"
+
+
+class ElementPage(Page):
+    """Render Stellar elements."""
+
+    template = "home/elements.html"

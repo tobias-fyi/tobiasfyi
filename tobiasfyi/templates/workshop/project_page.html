@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block title %}{{ page.title }}{% endblock title %}
+
+
+{% block header %}
+<header id="header" class="alt">
+	<h1>{{ page.title }}</h1>
+	<time class="published" datetime="{{ page.date_begin|date:'Y-m-d' }}">
+		{{ page.date_begin }}
+	</time>
+</header>
+{% endblock header %}
+
+{% block content %}
+<div id="main">
+
+	<section id="content" class="main">
+		<span class="image main">{% image page.header_image original %}</span>
+		<div class="content">
+			<header class="major">
+				{% with categories=page.categories.all %}
+					{% if categories %}
+						<ul>
+							{% for category in categories %}
+								<li style="display: inline">{{ category.name }}</li>
+							{% endfor %}
+						</ul>
+					{% endif %}
+				{% endwith %}
+			</header>
+			<hr>
+		</div>
+		<div>
+			{% for block in page.content %}
+				{% if block.block_type == "paragraph" %}
+					<p>{{ block.value|richtext }}</p>
+				{% elif block.block_type == "image" %}
+					<div class="richtext-image full-width">{% include_block block %}</div>
+				{% else %}
+					{% include_block block %}
+				{% endif %}
+			{% endfor %}
+		</div>
+		<div>
+			<hr>
+			<a class="button linked active" href="{{ page.get_parent.url }}">
+				Back to List
+			</a>
+		</div>
+	</section>
+
+</div>
+{% endblock content %}
