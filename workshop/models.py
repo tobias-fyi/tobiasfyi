@@ -25,7 +25,6 @@ from utils.blocks import (
     CardBlock,
     PlotBlock,
     LinkBlock,
-    ElementBlock,
 )
 
 

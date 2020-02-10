@@ -32,7 +32,7 @@ from utils.blocks import (
     CardBlock,
     PlotBlock,
     LinkBlock,
-    ElementBlock,
+    InternalLinkBlock,
 )
 
 
@@ -55,6 +55,7 @@ class BlogIndexPage(Page):
             ("html", blocks.RawHTMLBlock()),
             ("featured_content", blocks.PageChooserBlock()),
             ("linkblock", LinkBlock()),
+            ("internallinkblock", InternalLinkBlock()),
             ("cards", CardBlock()),
         ],
         null=True,
@@ -168,7 +169,6 @@ class BlogPage(Page):
             ("related_content", blocks.PageChooserBlock()),
             ("link", LinkBlock()),
             ("cards", CardBlock()),
-            ("elements", ElementBlock()),  # TODO: make into static template
         ],
         null=True,
         blank=True,
