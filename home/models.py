@@ -18,6 +18,7 @@ from utils.blocks import (
     CardBlock,
     PlotBlock,
     LinkBlock,
+    InternalLinkBlock,
     ContactBlock,
 )
 
@@ -41,6 +42,7 @@ class HomePage(Page):
         [
             ("richtext", blocks.RichTextBlock()),
             ("linkblock", LinkBlock()),
+            ("internallinkblock", InternalLinkBlock()),
             ("featured", blocks.PageChooserBlock()),
             ("html", blocks.RawHTMLBlock()),
             ("cards", CardBlock()),

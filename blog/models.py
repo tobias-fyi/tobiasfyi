@@ -32,6 +32,7 @@ from utils.blocks import (
     CardBlock,
     PlotBlock,
     LinkBlock,
+    InternalLinkBlock,
 )
 
 
@@ -54,6 +55,7 @@ class BlogIndexPage(Page):
             ("html", blocks.RawHTMLBlock()),
             ("featured_content", blocks.PageChooserBlock()),
             ("linkblock", LinkBlock()),
+            ("internallinkblock", InternalLinkBlock()),
             ("cards", CardBlock()),
         ],
         null=True,
