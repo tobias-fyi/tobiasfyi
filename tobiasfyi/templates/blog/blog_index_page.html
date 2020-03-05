@@ -28,24 +28,31 @@
 	{% for post in blog %}
 		{% with post=post.specific %}
 		<section id="{{ post.pk }}" class="main">
-			<div class="spotlight">
+			<div class="limelight">
+				<div class="content">
+					<svg width="64" height="320" viewBox="0 0 64 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M64 320H48.0507C37.2285 320 29.3553 317.402 24.4312 312.205C21.8436 309.2 19.8458 305.619 18.5666 301.694C17.2874 297.768 16.7552 293.584 17.0045 289.413V189.994C17.0045 181.333 15.3811 175.544 12.175 172.718C8.66207 169.795 4.36891 168.3 0 168.479V155.897C4.36891 156.076 8.66207 154.581 12.175 151.658C15.3811 148.832 17.0045 143.043 17.0045 134.382V30.587C16.7552 26.4159 17.2874 22.2323 18.5666 18.3065C19.8458 14.3807 21.8436 10.7999 24.4312 7.79497C29.4094 2.59839 37.2826 0 48.0507 0H63.8783V11.7151H53.0425C46.3868 11.7151 41.9632 13.4928 39.65 17.0484C37.2082 21.2674 36.0152 26.2449 36.241 31.2706V136.387C36.3337 140.274 35.7549 144.144 34.5365 147.783C33.5399 150.655 32.0033 153.252 30.0317 155.396C28.1771 157.345 26.0167 158.891 23.6601 159.955C21.4321 161.008 19.0816 161.699 16.6798 162.006V162.462C19.0816 162.769 21.4321 163.46 23.6601 164.513C26.0167 165.577 28.1771 167.122 30.0317 169.071C32.0033 171.215 33.5399 173.812 34.5365 176.684C35.7551 180.339 36.3339 184.224 36.241 188.125V288.638C36.0152 293.664 37.2082 298.641 39.65 302.86C41.9632 306.416 46.3868 308.194 53.0425 308.194H63.8783L64 320Z" fill="#364F5A"/>
+					</svg>
+				</div>
 				<div class="content">
 					<header class="major">
 						<h2>{{ post.title }}</h2>
-						<time class="published" datetime="{{ post.date|date:'Y-m-d' }}">
-							{{ post.date }}
-						</time>
 					</header>
+					<time class="published" datetime="{{ post.date|date:'Y-m-d' }}">
+						{{ post.date }}
+					</time>
 					<p>{{ post.intro|richtext }}</p>
 					<ul class="actions">
 						<li><a href="{% pageurl post %}" class="button">Read On</a></li>
 					</ul>
 				</div>
-				<a href="{% pageurl post %}">
-					<span class="image">
-						{% image post.header_image max-400x400 %}
-					</span>
-				</a>
+				<div>
+					<a href="{% pageurl post %}">
+						<span class="image">
+							{% image post.header_image max-400x400 %}
+						</span>
+					</a>
+				</div>
 			</div>
 		</section>
 		{% endwith %}

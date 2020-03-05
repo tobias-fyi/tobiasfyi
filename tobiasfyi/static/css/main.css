@@ -94,7 +94,7 @@ html {
 
 body {
   background-color: #073a50;
-  background-image: url("images/overlay.png"), linear-gradient(45deg, #96545E 15%, #364F5A 85%);
+  background-image: url("images/overlay.png"), linear-gradient(45deg, #7D3945 15%, #364F5A 70%);
 }
 
 body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -2832,6 +2832,103 @@ table.alt tbody tr td {
   border-color: rgba(255, 255, 255, 0.35);
 }
 
+/* Spotlight */
+.limelight {
+  margin: 0 0 2em 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 12fr auto 20fr;
+      grid-template-columns: 12fr auto 20fr;
+  justify-items: start;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+
+.limelight .content > :last-child {
+  margin-bottom: 1rem;
+}
+
+.limelight .content header.major {
+  margin: 0.75rem 0 2em 0;
+}
+
+.limelight .content .published {
+  margin: 0;
+  -webkit-text-decoration: dotted;
+          text-decoration: dotted;
+}
+
+.limelight a {
+  border-bottom-color: transparent;
+}
+
+.limelight .image {
+  display: inline-block;
+  margin-left: 4em;
+  padding: 0.65em;
+  border-radius: 100%;
+  border: solid 1px;
+}
+
+.limelight .image img {
+  display: block;
+  border-radius: 100%;
+  width: 16em;
+  height: 16em;
+}
+
+@media screen and (max-width: 980px) {
+  .limelight {
+    -moz-flex-direction: column-reverse;
+    -ms-flex-direction: column-reverse;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+            flex-direction: column-reverse;
+    text-align: center;
+  }
+  .limelight .content {
+    -moz-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    -webkit-box-flex: 0;
+            flex: 0 1 auto;
+    width: 100%;
+  }
+  .limelight .content header.major h2:after {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .limelight .content .actions {
+    -moz-justify-content: center;
+    -ms-justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: calc(100% + 1em);
+  }
+  .limelight .image {
+    -moz-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    -webkit-box-flex: 0;
+            flex: 0 1 auto;
+    margin-left: 0;
+    margin-bottom: 2em;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .limelight .image {
+    padding: 0.35em;
+  }
+  .limelight .image img {
+    width: 12em;
+  }
+}
+
+.limelight .image {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
 .linkblock {
   border-left: solid 4px;
   font-style: italic;
@@ -3462,6 +3559,10 @@ body.is-preload #header.alt .logo {
 }
 
 #main .spotlight .image {
+  border-color: #dddddd;
+}
+
+#main .limelight .image {
   border-color: #dddddd;
 }
 

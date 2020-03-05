@@ -122,3 +122,11 @@ class ContactBlock(blocks.StructBlock):
         icon = "mail"
         label = "Email"
 
+
+class ExpBlock(blocks.StructBlock):
+    """Building block for resume experiences."""
+
+    title = blocks.CharBlock(required=True)
+    date_start = blocks.CharBlock()
+    date_end = blocks.CharBlock()
+    description = blocks.RichTextBlock()

@@ -27,6 +27,7 @@
   @include color-section($p);
   @include color-table($p);
   @include color-spotlight($p);
+  @include color-limelight($p);
 }
 
 // Base
@@ -49,6 +50,7 @@
 @import 'components/features';
 @import 'components/statistics';
 @import 'components/spotlight';
+@import 'components/limelight';
 @import 'components/linkblock';
 
 // Layout
