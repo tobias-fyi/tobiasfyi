@@ -18,20 +18,6 @@
 	<section id="content" class="main">
 		<span class="image main">{% image page.header_image original %}</span>
 		<div class="content">
-			<header class="major">
-				{% with categories=page.categories.all %}
-					{% if categories %}
-						<ul>
-							{% for category in categories %}
-								<li style="display: inline">{{ category.name }}</li>
-							{% endfor %}
-						</ul>
-					{% endif %}
-				{% endwith %}
-			</header>
-			<hr>
-		</div>
-		<div>
 			{% for block in page.body %}
 				{% if block.block_type == "paragraph" %}
 					<p>{{ block.value|richtext }}</p>
