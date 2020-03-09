@@ -10,3 +10,17 @@ services:
       - 8000:8000
     env_file:
       - ./.env.dev
+    depends_on:
+      - db
+
+  db:
+    image: postgres:12.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=hi_django
+      - POSTGRES_PASSWORD=hi_django
+      - POSTGRES_DB=hi_django_dev
+
+volumes:
+  postgres_data:
