@@ -1,14 +1,12 @@
 # ====== Project-Specific ====== #
 media/
-.db_data/
 dox/
 
-# Misc
-node_modules/
-
-# Large / Creative / Visual Files or Dirs
-*.psd
-*.indd
+# === ∫ EnviroVars ∫ === #
+.env
+.env.dev
+.env.prod
+.env.prod.db
 
 # Compiled source
 *.com
