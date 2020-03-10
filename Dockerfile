@@ -10,7 +10,6 @@ RUN apt-get update && \
 # Set environment varibles
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV DJANGO_ENV dev
 
 # Set the working directory to /usr/src/app/
 RUN mkdir -p /usr/src/app
@@ -28,5 +27,11 @@ RUN pip install -r /usr/src/app/requirements.txt
 # Switch to non-root user
 USER wagtail
 
+# Copy entrypoint.sh
+COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
+
 # Copy the current directory contents into the container at /usr/src/app/
 COPY . /usr/src/app/
+
+# Run entrypoint.sh
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
