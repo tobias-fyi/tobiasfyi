@@ -1,11 +1,13 @@
 """
-workshop \\ models :: portfolio and resume
+Workshop \\ models :: Project portfolio
 """
 
 from django import forms
 from django.db import models
 
 from modelcluster.fields import ParentalManyToManyField
+from modelcluster.contrib.taggit import ClusterTaggableManager
+
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core import blocks
@@ -20,11 +22,12 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.search import index
 
+from blog.models import BlogPageTag
 from utils.blocks import (
     CodeBlock,
-    CardBlock,
     PlotBlock,
     LinkBlock,
+    InternalLinkBlock,
 )
 
 
@@ -38,12 +41,12 @@ class ProjectIndexPage(Page):
         [
             ("richtext", blocks.RichTextBlock()),
             ("image", ImageChooserBlock()),
+            ("code_block", CodeBlock()),
+            ("link_block", LinkBlock()),
+            ("internal_link_block", InternalLinkBlock()),
+            ("plot", PlotBlock()),
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
-            ("featured_projects", blocks.PageChooserBlock()),
-            ("linkblock", LinkBlock()),
-            ("cards", CardBlock()),
-            ("plot", PlotBlock()),
         ],
         null=True,
         blank=True,
@@ -60,13 +63,13 @@ class ProjectPage(Page):
 
     template = "workshop/project_page.html"
 
-    intro = RichTextField()
+    intro = RichTextField(max_length=300)
+    date_begin = models.DateField("Project start date")
+    date_end = models.DateField("Project end date", blank=True)
     header_image = models.ForeignKey(
         "wagtailimages.Image", null=True, on_delete=models.SET_NULL, related_name="+",
     )
-    date_begin = models.DateField("Project start date")
-    date_end = models.DateField("Project completion date", blank=True)
-    # TODO: stack
+    tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     categories = ParentalManyToManyField("blog.BlogCategory", blank=True)
     repo = models.URLField(blank=True)
     content = StreamField(
@@ -74,21 +77,12 @@ class ProjectPage(Page):
             ("richtext", blocks.RichTextBlock()),
             ("image", ImageChooserBlock()),
             ("code_block", CodeBlock()),
+            ("linkblock", LinkBlock()),
+            ("internal_link_block", InternalLinkBlock()),
+            ("plot", PlotBlock()),
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
-            ("related_content", blocks.PageChooserBlock()),
-            ("linkblock", LinkBlock()),
-            ("cards", CardBlock()),
-            ("plot", PlotBlock()),
         ]
-    )
-
-    feed_image = models.ForeignKey(
-        "wagtailimages.Image",
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name="+",
     )
 
     search_fields = Page.search_fields + [
@@ -104,6 +98,7 @@ class ProjectPage(Page):
                 FieldPanel("date_begin"),
                 FieldPanel("date_end"),
                 FieldPanel("categories", widget=forms.CheckboxSelectMultiple),
+                FieldPanel("tags"),
             ],
             heading="Project Metadata",
         ),
@@ -111,6 +106,4 @@ class ProjectPage(Page):
         FieldPanel("intro"),
         StreamFieldPanel("content"),
     ]
-
-    promote_panels = [ImageChooserPanel("feed_image")]
 

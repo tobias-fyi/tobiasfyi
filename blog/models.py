@@ -1,5 +1,5 @@
 """
-blog \\ models :: non-fiction or technical pieces
+Blog \\ models :: non-fiction or technical pieces
 """
 
 from django import forms
@@ -29,7 +29,6 @@ from wagtail.search import index
 
 from utils.blocks import (
     CodeBlock,
-    CardBlock,
     PlotBlock,
     LinkBlock,
     InternalLinkBlock,
@@ -40,23 +39,14 @@ class BlogIndexPage(Page):
     """Index of all individual blog pages."""
 
     intro = RichTextField(blank=True)
-    header_image = models.ForeignKey(
-        "wagtailimages.Image",
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name="+",
-    )
     content = StreamField(
         [
             ("richtext_section", blocks.RichTextBlock()),
             ("image", ImageChooserBlock()),
+            ("internallinkblock", InternalLinkBlock()),
+            ("linkblock", LinkBlock()),
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
-            ("featured_content", blocks.PageChooserBlock()),
-            ("linkblock", LinkBlock()),
-            ("internallinkblock", InternalLinkBlock()),
-            ("cards", CardBlock()),
         ],
         null=True,
         blank=True,
@@ -90,7 +80,6 @@ class BlogIndexPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("intro", classname="full"),
-        ImageChooserPanel("header_image"),
         StreamFieldPanel("content"),
     ]
 
@@ -150,7 +139,8 @@ class BlogCategory(models.Model):
 class BlogPage(Page):
     """Configuration of individual blog post pages."""
 
-    date = models.DateField("Post date")
+    intro = models.RichTextField(max_length=300)
+    date = models.DateField("Publish date")
     header_image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
@@ -158,29 +148,22 @@ class BlogPage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    intro = models.CharField(max_length=250)
+    tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
+    categories = ParentalManyToManyField("blog.BlogCategory", blank=True)
+    repo = models.URLField(blank=True)
     body = StreamField(
         [
-            ("richtext_section", blocks.RichTextBlock()),
+            ("richtext", blocks.RichTextBlock()),
             ("image", ImageChooserBlock()),
             ("code_block", CodeBlock()),
+            ("link_block", LinkBlock()),
+            ("internal_link_block", InternalLinkBlock()),
+            ("plot", PlotBlock()),
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
-            ("related_content", blocks.PageChooserBlock()),
-            ("link", LinkBlock()),
-            ("cards", CardBlock()),
         ],
         null=True,
         blank=True,
-    )
-    tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
-    categories = ParentalManyToManyField("blog.BlogCategory", blank=True)
-    feed_image = models.ForeignKey(
-        "wagtailimages.Image",
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name="+",
     )
 
     search_fields = Page.search_fields + [
@@ -204,8 +187,6 @@ class BlogPage(Page):
         InlinePanel("related_content", label="Related content"),
     ]
 
-    promote_panels = [ImageChooserPanel("feed_image")]
-
 
 class BlogPageRelatedContent(Orderable):
     """Configure the related content panel on blog edit page."""
@@ -216,15 +197,14 @@ class BlogPageRelatedContent(Orderable):
     name = models.CharField(max_length=255)
     content = StreamField(
         [
-            ("link", blocks.URLBlock()),
             ("linkblock", LinkBlock()),
             ("related_content", blocks.PageChooserBlock()),
-            ("richtext_section", blocks.RichTextBlock()),
-            ("cards", CardBlock()),
             ("image", ImageChooserBlock()),
+            ("link", blocks.URLBlock()),
             ("code_block", CodeBlock()),
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
+            ("richtext_section", blocks.RichTextBlock()),
         ],
         null=True,
         blank=True,

@@ -20,34 +20,6 @@ class CodeBlock(blocks.StructBlock):
         label = "Code Block"
 
 
-class CardBlock(blocks.StructBlock):
-    """Cards with an image, a blurb of text, and a button each."""
-
-    title = blocks.CharBlock(required=True, help_text="Title for group of cards.")
-
-    cards = blocks.ListBlock(
-        blocks.StructBlock(
-            [
-                ("image", ImageChooserBlock(required=True)),
-                ("title", blocks.CharBlock(required=True, max_length=40)),
-                ("text", blocks.TextBlock(required=True, max_length=100)),
-                ("button_page", blocks.PageChooserBlock(required=False)),
-                (
-                    "button_url",
-                    blocks.URLBlock(
-                        required=False, help_text="Button page is used first."
-                    ),
-                ),
-            ]
-        )
-    )
-
-    class Meta:
-        template = "utils/card_block.html"
-        icon = "placeholder"
-        label = "Cards"
-
-
 class PlotBlock(blocks.StructBlock):
     """Base class for interactive plots."""
 
@@ -104,29 +76,3 @@ class InternalLinkBlock(LinkBlock):
         template = "utils/internal_link_block.html"
         label = "Internal Link"
 
-
-class RelatedContentBlock(blocks.StructBlock):
-    """Block to format related content links."""
-
-    pass
-
-
-class ContactBlock(blocks.StructBlock):
-    """Building block for contact information."""
-
-    text = blocks.CharBlock(required=True)
-    email = blocks.EmailBlock(required=False)
-
-    class Meta:
-        template = "utils/contact_block.html"
-        icon = "mail"
-        label = "Email"
-
-
-class ExpBlock(blocks.StructBlock):
-    """Building block for resume experiences."""
-
-    title = blocks.CharBlock(required=True)
-    date_start = blocks.CharBlock()
-    date_end = blocks.CharBlock()
-    description = blocks.RichTextBlock()
