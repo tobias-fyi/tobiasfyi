@@ -22,10 +22,6 @@
 
   {# Global stylesheets #}
   <link rel="stylesheet" type="text/css" href="{% static 'css/tobiasfyi.css' %}">
-  <link rel="stylesheet" href="{% static '/css/main.css' %}" />
-  <noscript>
-    <link rel="stylesheet" href="{% static '/css/noscript.css' %}" />
-  </noscript>
 
   {% block extra_css %}
     {# Override this in templates to add extra stylesheets #}
@@ -34,22 +30,20 @@
   <link rel="icon" href="{% static '/images/favicon.png' %}" />
 </head>
 
-<body class="is-preload {% block body_class %}{% endblock body_class %}">
+<body class="{% block body_class %}{% endblock body_class %}">
   {% wagtailuserbar %}
-
-  <div id="wrapper">
 
   {% block header %}
   {% endblock header %}
 
-  <nav id="nav" class="nav main">
+  <nav id="nav" class="nav">
     <ul>
       <li>
-        <a href="/" class="linked">home</a>
+        <a href="/">home</a>
       </li>
       {% for item in nav.nav_items.all %}
         <li>
-          <a class="linked" href="{{ item.link }}" {% if item.open_in_new_tab %}target="_blank"{% endif %}>
+          <a href="{{ item.link }}" {% if item.open_in_new_tab %}target="_blank"{% endif %}>
             {{ item.title }}
           </a>
         </li>
@@ -63,14 +57,8 @@
 
   <!-- Footer -->
   <footer id="footer">
-    <p class="copyright">
-      <br>Created by <i>Tobias Reaper</i>.
-      <small>
-        <br>&copy; Content on this site is licensed under a 
-        <br><a href="https://creativecommons.org/licenses/by/4.0/">
-        Creative Commons Attribution 4.0 International License</a>.
-      </small>
-      <br>Design inspired by <a href="https://html5up.net">HTML5UP</a>.
+    <p >
+      Site created by <i>Tobias Reaper</i>.
     </p>
   </footer>
 
@@ -78,13 +66,6 @@
 
   {# Global javascript #}
   <script type="text/javascript" src="{% static 'js/tobiasfyi.js' %}"></script>
-  <script type="text/javascript" src="{% static '/js/jquery.min.js' %}"></script>
-  <script type="text/javascript" src="{% static '/js/jquery.scrollex.js' %}"></script>
-  <script type="text/javascript" src="{% static '/js/jquery.scrolly.js' %}"></script>
-  <script type="text/javascript" src="{% static '/js/browser.js' %}"></script>
-  <script type="text/javascript" src="{% static '/js/breakpoints.js' %}"></script>
-  <script type="text/javascript" src="{% static '/js/util.js' %}"></script>
-  <script type="text/javascript" src="{% static '/js/main.js' %}"></script>
 
   {% block extra_js %}
     {# Override this in templates to add extra javascript #}

@@ -4,7 +4,7 @@
 {% block title %}{{ page.title }}{% endblock title %}
 
 {% block header %}
-<header id="header" class="alt">
+<header>
 	<h1>{{ page.title }}</h1>
 	<time class="published" datetime="{{ page.date|date:'Y-m-d' }}">
 		{{ page.date }}
@@ -13,28 +13,23 @@
 {% endblock header %}
 
 {% block content %}
-<div id="main">
-
-	<section id="content" class="main">
-		<span class="image main">{% image page.header_image original %}</span>
-		<div class="content">
-			{% for block in page.body %}
-				{% if block.block_type == "paragraph" %}
-					<p>{{ block.value|richtext }}</p>
-				{% elif block.block_type == "image" %}
-					<div class="richtext-image full-width">{% include_block block %}</div>
-				{% else %}
-					{% include_block block %}
-				{% endif %}
-			{% endfor %}
-		</div>
-		<div>
-			<hr>
-			<a class="button linked active" href="{{ page.get_parent.url }}">
-				Back to List
-			</a>
-		</div>
-	</section>
-
+<div>
+	<div>
+		{% for block in page.body %}
+			{% if block.block_type == "paragraph" %}
+				<p>{{ block.value|richtext }}</p>
+			{% elif block.block_type == "image" %}
+				<div>{% include_block block %}</div>
+			{% else %}
+				{% include_block block %}
+			{% endif %}
+		{% endfor %}
+	</div>
+	<div>
+		<hr>
+		<a class="" href="{{ page.get_parent.url }}">
+			Back to List
+		</a>
+	</div>
 </div>
 {% endblock content %}

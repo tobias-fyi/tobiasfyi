@@ -117,6 +117,24 @@
     <!-- Child Page Content -->
     {% block content %}
     {% endblock content %}
+    
+    <!-- Display Story / Image Previews -->
+    {% for story in stories %}
+    <section id="{{ story.pk }}" class="main">
+      <div class="spotlight">
+        <div class="content">
+          <header class="major">
+            <h2>{{ story.pk|stringformat:"03d" }} ~ {{ story.title }}</h2>
+          </header>
+          <p>{{ story.body|truncatewords_html:24|safe }}</p>
+          <ul class="actions">
+            <li><a href="{% url 'story_detail' story.pk %}" class="button">Read On</a></li>
+          </ul>
+        </div>
+        <span class="image"><img src="{{ story.image.url }}" alt="{{ story.caption }}" /></span>
+      </div>
+    </section>
+    {% endfor %}
 
   </div>
 

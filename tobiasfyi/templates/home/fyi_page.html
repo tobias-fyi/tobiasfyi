@@ -6,29 +6,14 @@
 {% block title %}fyi{% endblock title %}
 
 {% block header %}
-	<header id="header" class="alt">
-		<svg class="logo" xmlns="http://www.w3.org/2000/svg" width="100%" height="100" viewBox="0 0 120.12 143.02">
-			<title>semilogo</title>
-			<g id="bb9470f1-0e3e-4057-90c6-13367f029c9f" data-name="Layer 2">
-				<g id="e89f8c4d-8559-42ea-beef-89db11a2ae62" data-name="Layer 1">
-					<path d="M0,0H35V36H0ZM0,80.62H35v36L0,143Z" fill="#fff"/>
-					<path d="M85.13,0h35V36h-35Zm0,80.62h35v36h-35Z" fill="#fff"/>
-				</g>
-			</g>
-		</svg>
-		<h1>tobias.fyi</h1>
-		<p>{{ page.intro|richtext }}</p>
-	</header>
+<header>
+	<h1>{{ page.title }}</h1>
+	<p>{{ page.intro|richtext }}</p>
+</header>
 {% endblock header %}
 
 {% block content %}
-<div id="main">
-
-  <section id="content" class="main">
-    <div class="content">
-      {% include_block page.content %}
-    </div>
-  </section>
-
+<div>
+	{% include_block page.content %}
 </div>
 {% endblock content %}
