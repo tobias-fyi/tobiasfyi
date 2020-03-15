@@ -139,7 +139,7 @@ class BlogCategory(models.Model):
 class BlogPage(Page):
     """Configuration of individual blog post pages."""
 
-    intro = models.RichTextField(max_length=300)
+    intro = RichTextField()
     date = models.DateField("Publish date")
     header_image = models.ForeignKey(
         "wagtailimages.Image",
