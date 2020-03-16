@@ -1,0 +1,10 @@
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+<div>
+  <small>{{ self.title }}</small>
+  <p>{{ self.caption }}</p>
+  <p>{{ self.description|richtext }}</p>
+  <span>
+    {% image self.image max-400x400 %}
+  </span>
+</div>
