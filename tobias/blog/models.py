@@ -30,6 +30,7 @@ from wagtail.search import index
 from utils.blocks import (
     CodeBlock,
     PlotBlock,
+    ImageBlock,
     LinkBlock,
     InternalLinkBlock,
 )
@@ -42,11 +43,12 @@ class BlogIndexPage(Page):
     content = StreamField(
         [
             ("richtext_section", blocks.RichTextBlock()),
-            ("image", ImageChooserBlock()),
+            ("image_block", ImageBlock()),
             ("internallinkblock", InternalLinkBlock()),
             ("linkblock", LinkBlock()),
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
+            ("image", ImageChooserBlock()),
         ],
         null=True,
         blank=True,
@@ -154,13 +156,14 @@ class BlogPage(Page):
     body = StreamField(
         [
             ("richtext", blocks.RichTextBlock()),
-            ("image", ImageChooserBlock()),
+            ("image_block", ImageBlock()),
             ("code_block", CodeBlock()),
             ("link_block", LinkBlock()),
             ("internal_link_block", InternalLinkBlock()),
             ("plot", PlotBlock()),
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
+            ("image", ImageChooserBlock()),
         ],
         null=True,
         blank=True,
@@ -199,11 +202,12 @@ class BlogPageRelatedContent(Orderable):
         [
             ("linkblock", LinkBlock()),
             ("related_content", blocks.PageChooserBlock()),
-            ("image", ImageChooserBlock()),
+            ("image_block", ImageBlock()),
             ("link", blocks.URLBlock()),
             ("code_block", CodeBlock()),
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
+            ("image", ImageChooserBlock()),
             ("richtext_section", blocks.RichTextBlock()),
         ],
         null=True,

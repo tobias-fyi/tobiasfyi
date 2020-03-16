@@ -16,6 +16,7 @@ from wagtail.embeds.blocks import EmbedBlock
 from utils.blocks import (
     CodeBlock,
     PlotBlock,
+    ImageBlock,
     LinkBlock,
     InternalLinkBlock,
 )
@@ -32,13 +33,14 @@ class HomePage(Page):
     content = StreamField(
         [
             ("richtext", blocks.RichTextBlock()),
-            ("image", ImageChooserBlock()),
+            ("image_block", ImageBlock()),
             ("linkblock", LinkBlock()),
             ("internallinkblock", InternalLinkBlock()),
             ("plot", PlotBlock()),
             ("code", CodeBlock()),
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
+            ("image", ImageChooserBlock()),
         ],
         null=True,
     )

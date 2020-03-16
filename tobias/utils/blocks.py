@@ -37,6 +37,22 @@ class PlotBlock(blocks.StructBlock):
         label = "Plot"
 
 
+class ImageBlock(blocks.StructBlock):
+    """Base class for images and static plots."""
+
+    title = blocks.CharBlock(max_length=42, required=True, help_text="Short title.")
+    caption = blocks.CharBlock(
+        max_length=240, required=True, help_text="Short summary."
+    )
+    description = blocks.RichTextBlock(required=False, help_text="Long description.")
+    image = ImageChooserBlock()
+
+    class Meta:
+        template = "utils/image_block.html"
+        icon = "image"
+        label = "Image block"
+
+
 class LinkStructValue(blocks.StructValue):
     """Custom logic for links."""
 

@@ -26,6 +26,7 @@ from blog.models import BlogPageTag
 from utils.blocks import (
     CodeBlock,
     PlotBlock,
+    ImageBlock,
     LinkBlock,
     InternalLinkBlock,
 )
@@ -40,13 +41,14 @@ class ProjectIndexPage(Page):
     content = StreamField(
         [
             ("richtext", blocks.RichTextBlock()),
-            ("image", ImageChooserBlock()),
+            ("image_block", ImageBlock()),
             ("code_block", CodeBlock()),
             ("link_block", LinkBlock()),
             ("internal_link_block", InternalLinkBlock()),
             ("plot", PlotBlock()),
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
+            ("image", ImageChooserBlock()),
         ],
         null=True,
         blank=True,
@@ -75,13 +77,14 @@ class ProjectPage(Page):
     content = StreamField(
         [
             ("richtext", blocks.RichTextBlock()),
-            ("image", ImageChooserBlock()),
+            ("image_block", ImageBlock()),
             ("code_block", CodeBlock()),
             ("linkblock", LinkBlock()),
             ("internal_link_block", InternalLinkBlock()),
             ("plot", PlotBlock()),
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
+            ("image", ImageChooserBlock()),
         ]
     )
 
