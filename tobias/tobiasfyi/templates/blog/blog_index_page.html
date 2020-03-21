@@ -5,28 +5,24 @@
 
 {% block title %}Blog{% endblock title %}
 
-{% block header %}
-<header>
+{% block content %}
+<header class="my-1">
 	<h1>{{ page.title }}</h1>
 	<p>{{ page.intro|richtext }}</p>
 </header>
-{% endblock header %}
 
-{% block content %}
 <div>
-
 	{% for post in blog %}
 		{% with post=post.specific %}
-			<div id="{{ post.pk }}">
-				<h2>{{ post.title }}</h2>
+			<div id="{{ post.pk }}" class="my-1">
+				<h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
 				<time class="published" datetime="{{ post.date|date:'Y-m-d' }}">
 					{{ post.date }}
 				</time>
 				<p>{{ post.intro|richtext }}</p>
-				<a href="{% pageurl post %}">Read On</a>
+				<a class="btn btn-maroon" href="{% pageurl post %}">Read On</a>
 			</div>
 		{% endwith %}
 	{% endfor %}
-
 </div>
 {% endblock content %}

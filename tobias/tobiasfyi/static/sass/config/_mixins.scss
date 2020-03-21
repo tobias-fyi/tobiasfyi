@@ -1,0 +1,40 @@
+// Mixins
+
+// Set text color based on bg color
+@function set-text-color($color) {
+  @if(lightness($color) > 50) {
+    @return $dark;
+  } @else {
+    @return $light;
+  }
+}
+
+// Set bg and text color
+@mixin set-background($color) {
+  background-color: $color;
+  color: set-text-color($color);
+}
+
+// Margin & padding
+$spaceamounts: (1,2,3,4,5);
+
+@each $space in $spaceamounts {
+  // Surround margin
+  .m-#{$space} {
+    margin: #{$space}rem;
+  }
+  // Vertical margin
+  .my-#{$space} {
+    margin: #{$space}rem 0;
+  }
+
+  // Surround padding
+  .p-#{$space} {
+    padding: #{$space}rem;
+  }
+  // Vertical padding
+  .py-#{$space} {
+    padding: #{$space}rem 0;
+  }
+
+}

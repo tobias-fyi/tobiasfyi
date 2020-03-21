@@ -1,0 +1,56 @@
+// Utility Classes
+@import 'mixins';
+
+// Backgrounds
+.bg {
+  &-maroon {
+    @include set-background($maroon);
+  }
+  &-light {
+    @include set-background($light);
+    border: #ccc 1px solid;
+  }
+  &-dark {
+    @include set-background($dark);
+  }
+  &-maroon-dark {
+    @include set-background($dark);
+  }
+}
+
+// Buttons
+.btn {
+  display: inline-block;
+  background: $light;
+  color: $dark;
+  padding: 0.4rem 1.3rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  outline: none;
+  transition: all 0.2s ease-in;
+
+  &.btn-maroon {
+    @include set-background($maroon);
+    &:hover {
+      background: lighten($maroon, 5%)
+    }
+  }
+  &.btn-dark {
+    @include set-background($dark);
+    &:hover {
+      background: lighten($dark, 5%)
+    }
+  }
+  &.btn-maroon-dark {
+    @include set-background($maroon-dark);
+    &:hover {
+      background: lighten($maroon-dark, 5%)
+    }
+  }
+
+  &:hover {
+    background: lighten($dark, 40%);
+  }
+}

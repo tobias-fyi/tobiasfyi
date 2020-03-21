@@ -33,14 +33,11 @@
 <body class="{% block body_class %}{% endblock body_class %}">
   {% wagtailuserbar %}
 
-  {% block header %}
-  {% endblock header %}
-
-  <nav id="nav" class="nav">
+  <nav class="nav bg-light">
+    <h1>
+      <a href="/">tobias<i>fyi</i></a>
+    </h1>
     <ul>
-      <li>
-        <a href="/">tobias<i>fyi</i></a>
-      </li>
       {% for item in nav.nav_items.all %}
         <li>
           <a href="{{ item.link }}" {% if item.open_in_new_tab %}target="_blank"{% endif %}>
@@ -56,9 +53,11 @@
   {% endblock content %}
 
   <!-- Footer -->
-  <footer id="footer">
-    <p >
-      Site created by <i>Tobias Reaper</i>.
+  <footer class="footer">
+    <p>
+      <pre>
+        Site created by <i>Tobias Reaper</i>.
+      </pre>
     </p>
   </footer>
 
