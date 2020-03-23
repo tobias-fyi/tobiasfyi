@@ -1,15 +1,20 @@
 // tobias.fyi main styles
 
+// ============
 // Configuration
 @import 'config/type';
-// @import 'config/normalize';
 @import 'config/vars';
 @import 'config/base';
 @import 'config/utils';
 
-// Layout
-@import 'components/main';
-
+// ============
 // Components
-@import 'components/nav';
+@import 'components/main';
+@import 'components/header';
 @import 'components/footer';
+@import 'components/article';
+
+// ============
+// Blocks
+@import 'blocks/image_block';
+@import 'blocks/plot_block';

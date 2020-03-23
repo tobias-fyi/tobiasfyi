@@ -24,8 +24,16 @@ $spaceamounts: (1,2,3,4,5);
     margin: #{$space}rem;
   }
   // Vertical margin
-  .my-#{$space} {
+  .py-#{$space} {
     margin: #{$space}rem 0;
+  }
+  // Top margin
+  .my-#{$space} {
+    margin-top: #{$space}rem;
+  }
+  // Bottom margin
+  .my-#{$space} {
+    margin-bottom: #{$space}rem;
   }
 
   // Surround padding
@@ -35,6 +43,14 @@ $spaceamounts: (1,2,3,4,5);
   // Vertical padding
   .py-#{$space} {
     padding: #{$space}rem 0;
+  }
+  // Top padding
+  .my-#{$space} {
+    padding-top: #{$space}rem;
+  }
+  // Bottom padding
+  .my-#{$space} {
+    padding-bottom: #{$space}rem;
   }
 
 }

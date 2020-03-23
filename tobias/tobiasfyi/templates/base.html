@@ -32,45 +32,45 @@
 
 <body class="{% block body_class %}{% endblock body_class %}">
   {% wagtailuserbar %}
-  
-  <div class="main">
 
-    <nav class="nav bg-light">
-      <h1>
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">
         <a href="/">tobias<i>fyi</i></a>
-      </h1>
-      <ul>
-        {% for item in nav.nav_items.all %}
-          <li>
-            <a href="{{ item.link }}" {% if item.open_in_new_tab %}target="_blank"{% endif %}>
-              {{ item.title }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </nav>
+      </div>
+      <nav class="nav bg-light">
+        <ul>
+          {% for item in nav.nav_items.all %}
+            <li>
+              <a href="{{ item.link }}" {% if item.open_in_new_tab %}target="_blank"{% endif %}>
+                {{ item.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+  </header>
 
+  <main>
     <!-- Child Page Content -->
     {% block content %}
     {% endblock content %}
+  </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <p>
-          Site created by <i>Tobias Reaper</i>.
-      </p>
-    </footer>
+  <!-- Footer -->
+  <footer class="footer">
+    <p>
+        Site created by <i>Tobias Reaper</i>.
+    </p>
+  </footer>
 
-    </div>
+  {# Global javascript #}
+  <script type="text/javascript" src="{% static 'js/tobiasfyi.js' %}"></script>
 
-    {# Global javascript #}
-    <script type="text/javascript" src="{% static 'js/tobiasfyi.js' %}"></script>
-
-    {% block extra_js %}
-      {# Override this in templates to add extra javascript #}
-    {% endblock %}
-  
-  </div>
+  {% block extra_js %}
+    {# Override this in templates to add extra javascript #}
+  {% endblock %}
 
 </body>
 

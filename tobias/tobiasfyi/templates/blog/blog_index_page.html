@@ -6,16 +6,16 @@
 {% block title %}Blog{% endblock title %}
 
 {% block content %}
-<header class="my-1">
+<div class="page-title">
 	<h1>{{ page.title }}</h1>
 	<p>{{ page.intro|richtext }}</p>
-</header>
+</div>
 
-<div>
+<div class="post-index">
 	{% for post in blog %}
 		{% with post=post.specific %}
-			<div id="{{ post.pk }}" class="my-1">
-				<h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
+			<div id="{{ post.pk }}" class="post">
+				<h2 class="post-title"><a href="{% pageurl post %}">{{ post.title }}</a></h2>
 				<time class="published" datetime="{{ post.date|date:'Y-m-d' }}">
 					{{ post.date }}
 				</time>

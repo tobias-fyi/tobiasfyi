@@ -1,0 +1,68 @@
+// ============
+// Header + Navigator
+.header {
+  top: 0;
+  width: 100%;
+  height: 60px;
+  position: static;
+  border-bottom: 1px solid $dark;
+  
+  .header-content {
+    max-width: 930px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    ul {
+      display: flex;
+      margin: 0 0.25rem;
+      font-size: 1.5rem;
+      li {
+        padding-left: 1rem;
+      }
+    }
+
+    a {
+      color: $dark;
+      &:hover {
+        color: $maroon;
+      }
+    }
+
+    .logo {
+      font-size: 1.8rem;
+    }
+
+    nav {
+      border: none;
+    }
+  }
+}
+
+// .nav {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   padding: 0.7rem 2rem;
+//   position: static;
+//   z-index: 1;
+//   width: 100%;
+//   top: 0;
+//   border-bottom: solid 1px $dark;
+
+//   ul {
+//     display: flex;
+//   }
+
+//   a {
+//     color: $dark;
+//     padding: 0.45rem;
+//     margin: 0 0.25rem;
+
+//     &:hover {
+//       color: $maroon;
+//     }
+//   }
+// }
