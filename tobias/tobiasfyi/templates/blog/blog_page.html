@@ -1,18 +1,45 @@
 {% extends 'base.html' %}
 {% load static wagtailcore_tags wagtailimages_tags %}
 
-{% block title %}{{ page.title }}{% endblock title %}
+{% block title %}{{ page.title }} - tobias.fyi{% endblock title %}
 
-{% block content %}
-<header class="article-header">
+{% block pagetitle %}
+<div class="page-title">
 	<h1>{{ page.title }}</h1>
+</div>
+{% endblock pagetitle %}
+
+{% block sidebar %}
+<section class="sidebar">
 	<time class="published" datetime="{{ page.date|date:'Y-m-d' }}">
 		{{ page.date }}
 	</time>
-</header>
-
-<article class="article-content">
-	<div>
+	{% with categories=page.categories.all %}
+		{% if categories %}
+			<h4>Topics</h4>
+			<ul>
+				{% for category in categories %}
+				<li>{{ category.name }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	{% endwith %}
+	{% with tags=page.tags.all %}
+		{% if tags %}
+			<h4>Technologies</h4>
+			<ul>
+				{% for tag in tags %}
+				<li>{{ tag.name }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	{% endwith %}
+</section>
+{% endblock sidebar %}
+	
+{% block content %}
+<article class="page-content">
+	<div class="article-text">
 		{% for block in page.body %}
 			{% if block.block_type == "paragraph" %}
 				<p>{{ block.value|richtext }}</p>
@@ -21,11 +48,10 @@
 			{% endif %}
 		{% endfor %}
 	</div>
+	<div class="article-footer">
+		<a class="btn btn-maroon" href="{{ page.get_parent.url }}">
+			Back to List
+		</a>
+	</div>
 </article>
-
-<div class="article-footer">
-	<a class="btn btn-maroon" href="{{ page.get_parent.url }}">
-		Back to List
-	</a>
-</div>
 {% endblock content %}

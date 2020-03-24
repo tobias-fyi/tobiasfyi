@@ -32,38 +32,47 @@
 
 <body class="{% block body_class %}{% endblock body_class %}">
   {% wagtailuserbar %}
+  <main class="main-container">
 
-  <header class="header">
-    <div class="header-content">
-      <div class="logo">
-        <a href="/">tobias<i>fyi</i></a>
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">
+          <a href="/">tobias<i>fyi</i></a>
+        </div>
+        <nav class="nav bg-light">
+          <ul>
+            {% for item in nav.nav_items.all %}
+              <li>
+                <a href="{{ item.link }}" {% if item.open_in_new_tab %}target="_blank"{% endif %}>
+                  {{ item.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
       </div>
-      <nav class="nav bg-light">
-        <ul>
-          {% for item in nav.nav_items.all %}
-            <li>
-              <a href="{{ item.link }}" {% if item.open_in_new_tab %}target="_blank"{% endif %}>
-                {{ item.title }}
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </nav>
-    </div>
-  </header>
+    </header>
 
-  <main>
+    <!-- Child Page Title -->
+    {% block pagetitle %}
+    {% endblock pagetitle %}
+    
+    <!-- Child Page Sidebar -->
+    {% block sidebar %}
+    {% endblock sidebar %}
+  
     <!-- Child Page Content -->
     {% block content %}
     {% endblock content %}
-  </main>
+  
+    <!-- Footer -->
+    <footer class="footer">
+      <p>
+          Site created by <i>Tobias Reaper</i>.
+      </p>
+    </footer>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>
-        Site created by <i>Tobias Reaper</i>.
-    </p>
-  </footer>
+  </main>
 
   {# Global javascript #}
   <script type="text/javascript" src="{% static 'js/tobiasfyi.js' %}"></script>

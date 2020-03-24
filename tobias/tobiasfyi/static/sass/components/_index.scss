@@ -1,3 +1,19 @@
 // ============
 // Index page
 
+.post-index {
+  display: grid;
+}
+
+.categories {
+  ul {
+    li {
+      display: inline;
+    }
+  }
+}
+
+.read-on {
+  display: flex;
+  justify-content: start;
+}
