@@ -403,20 +403,34 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
           align-items: center;
 }
 
-.footer .footer-content ul {
+.contact-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-self: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 1rem;
+}
+
+.contact-section ul.contact-icons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.footer .footer-content ul li {
+.contact-section ul.contact-icons li {
   padding: 1rem;
 }
 
-.footer .footer-content ul li svg {
+.contact-section ul.contact-icons li svg {
   fill: #131313;
 }
 
-.footer .footer-content ul li svg:hover {
+.contact-section ul.contact-icons li svg:hover {
   fill: #7D3545;
 }
