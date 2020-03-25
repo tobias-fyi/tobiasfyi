@@ -271,6 +271,14 @@ h4 {
   background: #797979;
 }
 
+main h1 a, main h2 a, main h3 a {
+  color: #131313;
+}
+
+main h1 a:hover, main h2 a:hover, main h3 a:hover {
+  color: #7D3545;
+}
+
 .main-container {
   display: -ms-grid;
   display: grid;
@@ -278,17 +286,20 @@ h4 {
       grid-template-columns: auto 160px 640px 160px auto;
   -ms-grid-rows: 60px 120px auto 60px;
       grid-template-rows: 60px 120px auto 60px;
-      grid-template-areas: ". header   header        header    ." ". .        page-title    .         ." ". sidebar  page-content  sideright ." ". .        footer        .         .";
+      grid-template-areas: "header   header   header        header     header  " ".        .        page-title    .          .       " ".        sidebar  page-content  sideright  .       " "footer   footer   footer        footer     footer  ";
 }
 
 .header {
   -ms-grid-row: 1;
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 5;
   grid-area: header;
+  border-bottom: 1px solid #131313;
 }
 
 .header .header-content {
+  max-width: 960px;
+  margin: 0 auto;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -363,20 +374,49 @@ h4 {
 
 .page-content .categories li {
   display: inline;
+}
+
+.page-content .categories li:nth-last-child(n+2) {
   border-right: 1.5px solid #131313;
 }
 
 .footer {
   -ms-grid-row: 4;
-  -ms-grid-column: 3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 5;
   grid-area: footer;
+  border-top: 1px solid #131313;
+}
+
+.footer .footer-content {
+  max-width: 960px;
+  margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  justify-self: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.footer .footer-content ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.footer .footer-content ul li {
+  padding: 1rem;
+}
+
+.footer .footer-content ul li svg {
+  fill: #131313;
+}
+
+.footer .footer-content ul li svg:hover {
+  fill: #7D3545;
 }

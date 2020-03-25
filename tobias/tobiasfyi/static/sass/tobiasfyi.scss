@@ -9,7 +9,7 @@
 
 // // ============
 // // Components
-// @import 'components/main';
+@import 'components/main';
 // @import 'components/header';
 // @import 'components/footer';
 // @import 'components/index';
@@ -29,16 +29,19 @@
   grid-template-columns: auto 160px 640px 160px auto;
   grid-template-rows: 60px 120px auto 60px;
   grid-template-areas:
-    ". header   header        header    ."
-    ". .        page-title    .         ."
-    ". sidebar  page-content  sideright ."
-    ". .        footer        .         .";
+    "header   header   header        header     header  "
+    ".        .        page-title    .          .       "
+    ".        sidebar  page-content  sideright  .       "
+    "footer   footer   footer        footer     footer  ";
 }
 
 .header {
   grid-area: header;
+  border-bottom: 1px solid $dark;
 
   .header-content {
+    max-width: 960px;
+    margin: 0 auto;
     height: 100%;
     display: flex;
     justify-content: space-between;
@@ -92,15 +95,38 @@
   .categories {
     li {
       display: inline;
-      border-right: 1.5px solid $dark;
+      &:nth-last-child(n+2) {
+        border-right: 1.5px solid $dark;
+      }
     }
   }
 }
 
 .footer {
   grid-area: footer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border-top: 1px solid $dark;
+
+  .footer-content {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+
+    ul {
+      display: flex;
+      li {
+        padding: 1rem;
+        
+        svg {
+          fill: $dark;
+          &:hover {
+            fill: $maroon;
+          }
+        }
+      }
+    }
+  }
 }
 
