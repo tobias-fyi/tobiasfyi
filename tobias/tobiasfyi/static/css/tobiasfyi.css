@@ -372,12 +372,8 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
   padding: 0 40px;
 }
 
-.page-content .categories li {
+.page-content .categories li, .page-content .tags li {
   display: inline;
-}
-
-.page-content .categories li:nth-last-child(n+2) {
-  border-right: 1.5px solid #131313;
 }
 
 .footer {
@@ -386,6 +382,7 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
   -ms-grid-column-span: 5;
   grid-area: footer;
   border-top: 1px solid #131313;
+  margin-top: 2rem;
 }
 
 .footer .footer-content {
@@ -401,6 +398,24 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.footer .footer-content ul.contact-icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.footer .footer-content ul.contact-icons li {
+  padding: 1rem;
+}
+
+.footer .footer-content ul.contact-icons li svg {
+  fill: #131313;
+}
+
+.footer .footer-content ul.contact-icons li svg:hover {
+  fill: #7D3545;
 }
 
 .contact-section {
@@ -433,4 +448,12 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
 
 .contact-section ul.contact-icons li svg:hover {
   fill: #7D3545;
+}
+
+.code-block-figure {
+  margin: 1rem 0;
+}
+
+.code-block-figure .hljs-ln-code {
+  padding-left: 0.7rem;
 }

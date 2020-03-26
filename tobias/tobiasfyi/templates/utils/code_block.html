@@ -1,7 +1,9 @@
 {% load static wagtailcore_tags %}
 
-<div>
-  <small>{{ self.title }}</small>
-  <pre><code>{{ self.code }}</code></pre>
-  <p>{{ self.caption }}</p>
-</div>
+<figure class="code-block-figure">
+  {% comment %} <small>{{ self.title }}</small> {% endcomment %}
+  <figcaption><small>{{ self.caption }}</small></figcaption>
+  <pre class="code-block-code">
+    <code>{{ self.code }}</code>
+  </pre>
+</figure>

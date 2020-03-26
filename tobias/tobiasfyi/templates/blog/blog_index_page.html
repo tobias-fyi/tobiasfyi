@@ -25,16 +25,35 @@
 							{% if categories %}
 								<ul>
 									{% for category in categories %}
-									<li>{{ category.name }}</li>
+										{% if forloop.last %}
+										<li>{{ category.name }}</li>
+										{% else %}
+										<li>{{ category.name }} |</li>
+										{% endif %}
+									{% endfor %}
+								</ul>
+							{% endif %}
+						{% endwith %}
+				</div>
+				<div class="tags">
+						{% with tags=post.tags.all %}
+							{% if tags %}
+								<ul>
+									{% for tag in tags %}
+										{% if forloop.last %}
+										<li>{{ tag.name }}</li>
+										{% else %}
+										<li>{{ tag.name }} |</li>
+										{% endif %}
 									{% endfor %}
 								</ul>
 							{% endif %}
 						{% endwith %}
 				</div>
 				<p>{{ post.intro|richtext }}</p>
-				<div class="read-on">
+				{% comment %} <div class="read-on">
 					<a class="btn btn-maroon" href="{% pageurl post %}">Read On</a>
-				</div>
+				</div> {% endcomment %}
 			</div>
 		{% endwith %}
 	{% endfor %}
