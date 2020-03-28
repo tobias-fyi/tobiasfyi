@@ -20,7 +20,7 @@
 				<time class="published" datetime="{{ post.date|date:'Y-m-d' }}">
 					{{ post.date }}
 				</time>
-				<div class="categories">
+				<div class="tags">
 						{% with categories=post.categories.all %}
 							{% if categories %}
 								<ul>
@@ -34,8 +34,6 @@
 								</ul>
 							{% endif %}
 						{% endwith %}
-				</div>
-				<div class="tags">
 						{% with tags=post.tags.all %}
 							{% if tags %}
 								<ul>

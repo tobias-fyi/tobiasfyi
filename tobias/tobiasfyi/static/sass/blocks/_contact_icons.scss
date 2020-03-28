@@ -1,0 +1,23 @@
+// ============
+// Contact icons (RawHTMLBlock)
+.contact-section {
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  margin-top: 1rem;
+
+  ul.contact-icons {
+    display: flex;
+    li {
+      padding: 1rem;
+      
+      svg {
+        fill: $dark;
+        &:hover {
+          fill: $maroon;
+        }
+      }
+    }
+  }
+}

@@ -16,22 +16,34 @@
 	</time>
 	{% with categories=page.categories.all %}
 		{% if categories %}
-			<h4>Topics</h4>
-			<ul>
-				{% for category in categories %}
-				<li>{{ category.name }}</li>
-				{% endfor %}
-			</ul>
+			<div class="article-tags">
+				<h4>Topics</h4>
+				<ul>
+					{% for category in categories %}
+						{% if forloop.last %}
+						<li>{{ category.name }}</li>
+						{% else %}
+						<li>{{ category.name }} |</li>
+						{% endif %}
+					{% endfor %}
+				</ul>
+			</div>
 		{% endif %}
 	{% endwith %}
 	{% with tags=page.tags.all %}
 		{% if tags %}
-			<h4>Technologies</h4>
-			<ul>
-				{% for tag in tags %}
-				<li>{{ tag.name }}</li>
-				{% endfor %}
-			</ul>
+			<div class="article-tags">
+				<h4>Technologies</h4>
+				<ul>
+					{% for tag in tags %}
+						{% if forloop.last %}
+						<li>{{ tag.name }}</li>
+						{% else %}
+						<li>{{ tag.name }} |</li>
+						{% endif %}
+					{% endfor %}
+				</ul>
+			</div>
 		{% endif %}
 	{% endwith %}
 </section>

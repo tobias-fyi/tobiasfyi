@@ -20,6 +20,9 @@
 // @import 'blocks/image_block';
 // @import 'blocks/plot_block';
 
+//
+// ============ Large display layout ============
+// 
 
 // ============
 // Main container grid
@@ -27,13 +30,17 @@
 .main-container {
   display: grid;
   grid-template-columns: auto 160px 640px 160px auto;
-  grid-template-rows: 60px 120px auto 60px;
+  grid-template-rows: 60px 120px auto auto 60px;
   grid-template-areas:
-    "header   header   header        header     header  "
-    ".        .        page-title    .          .       "
-    ".        sidebar  page-content  sideright  .       "
-    "footer   footer   footer        footer     footer  ";
+    "header   header   header         header     header  "
+    ".        .        page-title     .          .       "
+    ".        .        blank          .          .       "
+    ".        sidebar  page-content   .          .       "
+    "footer   footer   footer         footer     footer  ";
 }
+
+// ============
+// Site header
 
 .header {
   grid-area: header;
@@ -57,6 +64,7 @@
 
     a {
       color: $dark;
+
       &:hover {
         color: $maroon;
       }
@@ -83,6 +91,9 @@
   border-bottom: 2px solid $maroon;
 }
 
+// ============
+// Topics + tags
+
 .sidebar {
   grid-area: sidebar;
   margin-top: 1rem;
@@ -91,17 +102,36 @@
 .page-content {
   grid-area: page-content;
   padding: 0 40px;
+  display: grid;
+  
+  .intro {
+    display: flex;
+  }
+
+  .post {
+    margin-bottom: 1rem;
+  }
 
   .categories, .tags {
+    margin: 0.5rem 0;
+    border-left: 2px solid $maroon;
+    padding-left: 0.5rem;
+
     li {
       display: inline;
-      // &:nth-last-child(n+2) {
-      //   padding-right: 0.2rem;
-      //   border-right: 1.5px solid $dark;
-      // }
     }
   }
 }
+
+.article-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+// ============
+// Site Footer
 
 .footer {
   grid-area: footer;
@@ -132,7 +162,6 @@
   }
 }
 
-
 // ============
 // Contact icons (RawHTMLBlock)
 .contact-section {
@@ -159,7 +188,6 @@
 
 // ============
 // Code Block
-
 .code-block-figure {
   margin: 1rem 0;
   
@@ -168,3 +196,131 @@
   }
 }
 
+// ============
+// Fyi Page
+
+.intro {
+  display: flex;
+  justify-content: center;
+}
+
+
+//
+// ============ Mobile layout ============
+// 
+
+@media (max-width: $small) {
+  
+  // ============
+  // Main container grid
+  .main-container {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 60px auto auto auto 60px;
+    grid-template-areas:
+    "header         "
+    "page-title     "
+    "subtitle       "
+    "page-content   "
+    "footer         ";
+  }
+  
+  // ============
+  // Site header
+  .header {
+    grid-area: header;
+    border-bottom: 1px solid $dark;
+    
+    .header-content {
+      padding: 0 1rem;
+      margin: 0 auto;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      ul {
+        display: flex;
+        font-size: 1.2rem;
+        li {
+          padding-left: 1rem;
+        }
+      }
+      
+      a {
+        color: $dark;
+        
+        &:hover {
+          color: $maroon;
+        }
+      }
+      
+      .logo {
+        font-size: 1.5rem;
+        margin-left: 0;
+      }
+      
+      nav {
+        border: none;
+      }
+    }
+  }
+
+  // === Page/post title
+  .page-title {
+    grid-area: page-title;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem 1rem 1rem;
+    margin: 0 1rem;
+    border-bottom: 2px solid $maroon;
+  }
+
+  // === Main page content
+  .page-content {
+    grid-area: page-content;
+    padding: 0 1rem;
+    display: grid;
+    .intro {
+      display: flex;
+    }
+    .post {
+      margin-bottom: 1rem;
+    }
+    .categories, .tags {
+      margin: 0.5rem 0;
+      border-left: 2px solid $maroon;
+      padding-left: 0.5rem;
+      li {
+        display: inline;
+      }
+    }
+  }
+
+  .sidebar {
+    grid-area: subtitle;
+    padding: 0 1rem 1rem 1rem;
+    margin: 1rem 1rem 0 1rem;
+    border-bottom: 2px solid $maroon;
+    
+    li {
+      display: inline;
+    }
+  }
+
+  // === Code Block
+  figure {
+    width: 100%;
+  }
+
+  .code-block-figure {
+    margin: 1rem 0;
+    
+    .hljs-ln-code {
+      padding-left: 0.7rem;
+    }
+  }
+
+}

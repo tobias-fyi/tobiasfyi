@@ -27,7 +27,7 @@
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.2rem;
   margin-right: 0.5rem;
   outline: none;
   transition: all 0.2s ease-in;
@@ -36,23 +36,23 @@
   &.btn-maroon {
     @include set-background($maroon);
     &:hover {
-      background: lighten($maroon, 5%)
+      background: lighten($maroon, 5%);
     }
   }
   &.btn-dark {
     @include set-background($dark);
     &:hover {
-      background: lighten($dark, 5%)
+      background: lighten($dark, 5%);
     }
   }
   &.btn-maroon-dark {
     @include set-background($maroon-dark);
     &:hover {
-      background: lighten($maroon-dark, 5%)
+      background: lighten($maroon-dark, 5%);
     }
   }
 
   &:hover {
-    background: lighten($dark, 40%);
+    background: lighten($dark, 40%);;
   }
 }

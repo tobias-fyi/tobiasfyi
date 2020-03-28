@@ -1,15 +1,31 @@
 // ============
-// Footer
+// Site Footer
 
 .footer {
-  right: 0;
-  left: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.2rem 2rem;
-  position: static;
-  z-index: 2;
-  border-top: solid 1px $dark;
+  grid-area: footer;
+  border-top: 1px solid $dark;
+  margin-top: 2rem;
+
+  .footer-content {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    
+      ul.contact-icons {
+        display: flex;
+        li {
+          padding: 1rem;
+          
+          svg {
+            fill: $dark;
+            &:hover {
+              fill: $maroon;
+            }
+          }
+        }
+      }
+  }
 }
