@@ -517,12 +517,34 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
 }
 
 .code-block-figure {
-  margin: 1rem 0;
   max-width: 560px;
+  margin: 0.5rem 0;
+  padding: 0;
+}
+
+.code-block-figure .snippet-title {
+  padding: 0.8rem 0.7rem;
+  margin-left: 1.6rem;
+  margin-bottom: 0;
+}
+
+.code-block-figure .code-block-code code {
+  padding-top: 0;
+  margin-top: 0;
 }
 
 .code-block-figure .hljs-ln-code {
   padding-left: 0.7rem;
+}
+
+.code-block-figure .hljs-ln-numbers {
+  padding-right: 0.5rem;
+  border-right: 2px solid #7D3545;
+}
+
+.code-block-figure figcaption {
+  font-size: 12px;
+  margin-left: 1.6rem;
 }
 
 @media (max-width: 960px) {

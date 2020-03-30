@@ -215,12 +215,38 @@
 
 // === Code Block
 .code-block-figure {
-  margin: 1rem 0;
   max-width: $text-width;
+  margin: 0.5rem 0;
+  padding: 0;
   
-  // Line numbers spacing
+  .snippet-title {
+    padding: 0.8rem 0.7rem;
+    margin-left: 1.6rem;
+    margin-bottom: 0;
+    // border-left: 2px solid $maroon;
+  }
+
+  .code-block-code {
+    code {
+      padding-top: 0;
+      margin-top: 0;
+    }
+  }
+
+  // Code block
   .hljs-ln-code {
     padding-left: 0.7rem;
+  }
+
+  // Line numbers
+  .hljs-ln-numbers {
+    padding-right: 0.5rem;
+    border-right: 2px solid $maroon;
+  }
+
+  figcaption {
+    font-size: 12px;
+    margin-left: 1.6rem;
   }
 }
 
