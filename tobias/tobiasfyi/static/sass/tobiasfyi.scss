@@ -225,32 +225,46 @@
     margin-bottom: 0;
     // border-left: 2px solid $maroon;
   }
-
+  // Code area
   .code-block-code {
     code {
       padding-top: 0;
       margin-top: 0;
     }
   }
-
-  // Code block
+  // Actual block of code
   .hljs-ln-code {
     padding-left: 0.7rem;
   }
-
   // Line numbers
   .hljs-ln-numbers {
     padding-right: 0.5rem;
     border-right: 2px solid $maroon;
   }
-
-  figcaption {
-    font-size: 12px;
-    margin-left: 1.6rem;
-  }
 }
 
 // === ImageBlock
+.image-block {
+  margin: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  span {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    img {
+      padding: 0;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  p {
+    margin-top: 0;
+  }
+}
 
 // === InternalLinkBlock
 
@@ -537,6 +551,8 @@
       .image-block {
         width: 100%;
         span {
+          padding: 0;
+          width: 100%;
           img {
             width: 100%;
             height: auto;

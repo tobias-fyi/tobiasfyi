@@ -1,10 +1,8 @@
 {% load static wagtailcore_tags wagtailimages_tags %}
 
-<div class="image-block">
-  <small>{{ self.title }}</small>
-  <p>{{ self.caption }}</p>
-  <p>{{ self.description|richtext }}</p>
-  <span>
-    {% image self.image max-400x400 %}
-  </span>
-</div>
+<figure class="image-block">
+  {% comment %} <small>{{ self.title }}</small>
+  <p>{{ self.description|richtext }}</p> {% endcomment %}
+  <span>{% image self.image max-800x800 %}</span>
+  <p><small>{{ self.caption }}</small></p>
+</figure>
