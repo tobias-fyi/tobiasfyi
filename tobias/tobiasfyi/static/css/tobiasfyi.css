@@ -572,6 +572,14 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
   margin-top: 0;
 }
 
+.link-block {
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-left: 2px solid #7D3545;
+  font-size: 24px;
+  font-style: italic;
+}
+
 @media (max-width: 960px) {
   .main-container {
     display: -ms-grid;

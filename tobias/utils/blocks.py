@@ -85,8 +85,8 @@ class LinkBlock(blocks.StructBlock):
 class InternalLinkBlock(LinkBlock):
     """Block for internal links, formatted like an item on an index page."""
 
-    description = blocks.RichTextBlock(required=True)
-    image = ImageChooserBlock()
+    description = blocks.RichTextBlock(required=False)
+    image = ImageChooserBlock(required=False)
 
     class Meta:
         template = "utils/internal_link_block.html"

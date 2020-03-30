@@ -267,6 +267,13 @@
 }
 
 // === InternalLinkBlock
+.link-block {
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-left: 2px solid $maroon;
+  font-size: 24px;
+  font-style: italic;
+}
 
 // === LinkBlock
 

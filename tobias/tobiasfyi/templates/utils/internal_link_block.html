@@ -1,18 +1,8 @@
-{% load static wagtailcore_tags wagtailimages_tags %}
+{% load static wagtailcore_tags %}
 
-<section class="main internallinkblock">
-  <div>
-      <header>
-        <h2>{{ self.title }}</h2>
-      </header>
-      <p>{{ self.description|richtext }}</p>
-      <ul>
-        <li><a href="{{ self.url }}" class="button">Read On</a></li>
-      </ul>
-    <a href="{{ self.url }}">
-      <span class="image">
-        {% image self.image max-400x400 %}
-      </span>
-    </a>
-  </div>
-</section>
+<div class="link-block">
+  <a href="{{ self.url }}" class="button">{{ self.title }}</a>
+  {% if self.description %}
+    <p>{{ self.description|richtext }}</p>
+  {% endif %}
+</div>
