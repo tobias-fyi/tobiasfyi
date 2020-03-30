@@ -85,7 +85,7 @@
   text-align: center;
   justify-content: center;
   align-items: center;
-  padding: 0 40px;
+  padding: 0 2rem;
   border-bottom: 2px solid $maroon;
 }
 
@@ -99,7 +99,6 @@
 // ====== Page main content
 .page-content {
   grid-area: page-content;
-  // padding: 0 40px;
   max-width: $text-width;
   margin: 0 auto;
   display: grid;
@@ -115,6 +114,15 @@
     padding-left: 0.5rem;
     li {
       display: inline;
+    }
+  }
+
+  .article-text {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      margin-bottom: 0.5rem;
     }
   }
   
@@ -157,8 +165,14 @@
   }
 }
 
-// ============
-// Contact icons (RawHTMLBlock)
+// ====== Fyi Page
+.intro {
+  display: flex;
+  justify-content: center;
+}
+
+// ====== Contact icons
+// (RawHTMLBlock)
 .contact-section {
   display: flex;
   justify-content: center;
@@ -181,28 +195,33 @@
   }
 }
 
-// ============
-// Code Block
+
+// ====== StreamField Blocks ======
+
+// === Code Block
 .code-block-figure {
   margin: 1rem 0;
+  max-width: $text-width;
   
+  // Line numbers spacing
   .hljs-ln-code {
     padding-left: 0.7rem;
   }
 }
 
-// ============
-// Fyi Page
-.intro {
-  display: flex;
-  justify-content: center;
-}
+// === ImageBlock
 
+// === InternalLinkBlock
+
+// === LinkBlock
+
+// === PlotBlock
+
+// === BlockQuoteBlock
 
 //
 // ============ Medium layout ============
 //
-
 @media (max-width: $medium) {
   
   // ====== Main container grid
@@ -315,6 +334,7 @@
       grid-template-areas:
       "date   date"
       "topics tech";
+      justify-items: center;
 
       .publish-date {
         grid-area: date;
@@ -337,7 +357,7 @@
 
   // === Code Block
   code {
-    width: $text-width;
+    max-width: $text-width;
   }
 }
 
@@ -425,6 +445,8 @@
       grid-template-areas:
       "date   date"
       "topics tech";
+      grid-template-columns: 1fr 1fr;
+      justify-items: center;
 
       .publish-date {
         grid-area: date;

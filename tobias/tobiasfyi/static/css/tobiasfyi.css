@@ -354,7 +354,7 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0 40px;
+  padding: 0 2rem;
   border-bottom: 2px solid #7D3545;
 }
 
@@ -393,6 +393,20 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
 
 .page-content .categories li, .page-content .tags li {
   display: inline;
+}
+
+.page-content .article-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.page-content .article-text p {
+  margin-bottom: 0.5rem;
 }
 
 .page-content .article-footer {
@@ -450,6 +464,15 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
   fill: #7D3545;
 }
 
+.intro {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .contact-section {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -484,19 +507,11 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
 
 .code-block-figure {
   margin: 1rem 0;
+  max-width: 560px;
 }
 
 .code-block-figure .hljs-ln-code {
   padding-left: 0.7rem;
-}
-
-.intro {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
 @media (max-width: 960px) {
@@ -612,6 +627,7 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
     display: -ms-grid;
     display: grid;
         grid-template-areas: "date   date" "topics tech";
+    justify-items: center;
   }
   .sidebar .sidebar-content .publish-date {
     -ms-grid-row: 1;
@@ -642,7 +658,7 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
     grid-area: tech;
   }
   code {
-    width: 560px;
+    max-width: 560px;
   }
 }
 
@@ -729,6 +745,9 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
     display: -ms-grid;
     display: grid;
         grid-template-areas: "date   date" "topics tech";
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    justify-items: center;
   }
   .sidebar .sidebar-content .publish-date {
     -ms-grid-row: 1;
