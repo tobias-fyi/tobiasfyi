@@ -307,12 +307,31 @@
     margin: 0 auto;
     border-bottom: 2px solid $maroon;
     width: $column-width;
+
     .sidebar-content {
       width: $text-width;
       margin: 0 auto;
-    }
-    li {
-      display: inline;
+      display: grid;
+      grid-template-areas:
+      "date   date"
+      "topics tech";
+
+      .publish-date {
+        grid-area: date;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        time {
+          font-size: 1.2rem;
+        }
+      }
+
+      .topics {
+        grid-area: topics;
+      }
+      .tech {
+        grid-area: tech;
+      }
     }
   }
 
@@ -402,10 +421,24 @@
     .sidebar-content {
       margin: 0 auto;
       width: 100%;
-    }
+      display: grid;
+      grid-template-areas:
+      "date   date"
+      "topics tech";
 
-    li {
-      display: inline;
+      .publish-date {
+        grid-area: date;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .topics {
+        grid-area: topics;
+      }
+      .tech {
+        grid-area: tech;
+      }
     }
   }
 

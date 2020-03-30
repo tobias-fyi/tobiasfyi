@@ -609,9 +609,37 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
   .sidebar .sidebar-content {
     width: 560px;
     margin: 0 auto;
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: "date   date" "topics tech";
   }
-  .sidebar li {
-    display: inline;
+  .sidebar .sidebar-content .publish-date {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: date;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .sidebar .sidebar-content .publish-date time {
+    font-size: 1.2rem;
+  }
+  .sidebar .sidebar-content .topics {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    grid-area: topics;
+  }
+  .sidebar .sidebar-content .tech {
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
+    grid-area: tech;
   }
   code {
     width: 560px;
@@ -698,9 +726,34 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
   .sidebar .sidebar-content {
     margin: 0 auto;
     width: 100%;
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: "date   date" "topics tech";
   }
-  .sidebar li {
-    display: inline;
+  .sidebar .sidebar-content .publish-date {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: date;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .sidebar .sidebar-content .topics {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    grid-area: topics;
+  }
+  .sidebar .sidebar-content .tech {
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
+    grid-area: tech;
   }
   .page-content {
     -ms-grid-row: 4;

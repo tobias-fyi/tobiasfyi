@@ -12,19 +12,22 @@
 {% block sidebar %}
 <section class="sidebar">
 	<div class="sidebar-content">
-		<time class="published" datetime="{{ page.date|date:'Y-m-d' }}">
-			{{ page.date }}
-		</time>
+		<div class="publish-date">
+			<time class="published" datetime="{{ page.date|date:'Y-m-d' }}">
+				{{ page.date }}
+			</time>
+		</div>
 		{% with categories=page.categories.all %}
 			{% if categories %}
-				<div class="article-tags">
+				<div class="article-tags topics">
 					<h4>Topics</h4>
 					<ul>
 						{% for category in categories %}
 							{% if forloop.last %}
 							<li>{{ category.name }}</li>
 							{% else %}
-							<li>{{ category.name }} |</li>
+							{% comment %} <li>{{ category.name }} |</li> {% endcomment %}
+							<li>{{ category.name }}</li>
 							{% endif %}
 						{% endfor %}
 					</ul>
@@ -33,14 +36,15 @@
 		{% endwith %}
 		{% with tags=page.tags.all %}
 			{% if tags %}
-				<div class="article-tags">
+				<div class="article-tags tech">
 					<h4>Technologies</h4>
 					<ul>
 						{% for tag in tags %}
 							{% if forloop.last %}
 							<li>{{ tag.name }}</li>
 							{% else %}
-							<li>{{ tag.name }} |</li>
+							{% comment %} <li>{{ tag.name }} |</li> {% endcomment %}
+							<li>{{ tag.name }}</li>
 							{% endif %}
 						{% endfor %}
 					</ul>
