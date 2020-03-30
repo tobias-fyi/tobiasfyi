@@ -161,6 +161,7 @@ class BlogPage(Page):
             ("link_block", LinkBlock()),
             ("internal_link_block", InternalLinkBlock()),
             ("plot", PlotBlock()),
+            ("blockquote", blocks.BlockQuoteBlock()),
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
             ("image", ImageChooserBlock()),

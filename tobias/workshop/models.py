@@ -82,6 +82,7 @@ class ProjectPage(Page):
             ("linkblock", LinkBlock()),
             ("internal_link_block", InternalLinkBlock()),
             ("plot", PlotBlock()),
+            ("blockquote", blocks.BlockQuoteBlock()),
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
             ("image", ImageChooserBlock()),
@@ -109,4 +110,3 @@ class ProjectPage(Page):
         FieldPanel("intro"),
         StreamFieldPanel("content"),
     ]
-

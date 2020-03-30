@@ -91,4 +91,3 @@ class InternalLinkBlock(LinkBlock):
     class Meta:
         template = "utils/internal_link_block.html"
         label = "Internal Link"
-
