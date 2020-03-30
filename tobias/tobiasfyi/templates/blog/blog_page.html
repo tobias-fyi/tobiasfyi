@@ -11,41 +11,43 @@
 
 {% block sidebar %}
 <section class="sidebar">
-	<time class="published" datetime="{{ page.date|date:'Y-m-d' }}">
-		{{ page.date }}
-	</time>
-	{% with categories=page.categories.all %}
-		{% if categories %}
-			<div class="article-tags">
-				<h4>Topics</h4>
-				<ul>
-					{% for category in categories %}
-						{% if forloop.last %}
-						<li>{{ category.name }}</li>
-						{% else %}
-						<li>{{ category.name }} |</li>
-						{% endif %}
-					{% endfor %}
-				</ul>
-			</div>
-		{% endif %}
-	{% endwith %}
-	{% with tags=page.tags.all %}
-		{% if tags %}
-			<div class="article-tags">
-				<h4>Technologies</h4>
-				<ul>
-					{% for tag in tags %}
-						{% if forloop.last %}
-						<li>{{ tag.name }}</li>
-						{% else %}
-						<li>{{ tag.name }} |</li>
-						{% endif %}
-					{% endfor %}
-				</ul>
-			</div>
-		{% endif %}
-	{% endwith %}
+	<div class="sidebar-content">
+		<time class="published" datetime="{{ page.date|date:'Y-m-d' }}">
+			{{ page.date }}
+		</time>
+		{% with categories=page.categories.all %}
+			{% if categories %}
+				<div class="article-tags">
+					<h4>Topics</h4>
+					<ul>
+						{% for category in categories %}
+							{% if forloop.last %}
+							<li>{{ category.name }}</li>
+							{% else %}
+							<li>{{ category.name }} |</li>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+		{% endwith %}
+		{% with tags=page.tags.all %}
+			{% if tags %}
+				<div class="article-tags">
+					<h4>Technologies</h4>
+					<ul>
+						{% for tag in tags %}
+							{% if forloop.last %}
+							<li>{{ tag.name }}</li>
+							{% else %}
+							<li>{{ tag.name }} |</li>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+		{% endwith %}
+	</div>
 </section>
 {% endblock sidebar %}
 	
