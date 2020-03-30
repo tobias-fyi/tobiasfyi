@@ -386,9 +386,9 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
 }
 
 .page-content .categories, .page-content .tags {
+  padding: 0.25rem 1rem;
   margin: 0.5rem 0;
   border-left: 2px solid #7D3545;
-  padding-left: 0.5rem;
 }
 
 .page-content .categories li, .page-content .tags li {
@@ -407,6 +407,17 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
 
 .page-content .article-text p {
   margin-bottom: 0.5rem;
+}
+
+.page-content .article-text .quote-block {
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-left: 2px solid #7D3545;
+}
+
+.page-content .article-text .quote-block blockquote {
+  font-style: italic;
+  font-size: 24px;
 }
 
 .page-content .article-footer {

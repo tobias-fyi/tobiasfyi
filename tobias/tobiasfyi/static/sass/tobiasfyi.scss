@@ -102,16 +102,20 @@
   max-width: $text-width;
   margin: 0 auto;
   display: grid;
+
   .intro {
     display: flex;
   }
+
   .post {
     margin-bottom: 1rem;
   }
+
   .categories, .tags {
+    padding: 0.25rem 1rem;
     margin: 0.5rem 0;
     border-left: 2px solid $maroon;
-    padding-left: 0.5rem;
+
     li {
       display: inline;
     }
@@ -123,6 +127,17 @@
 
     p {
       margin-bottom: 0.5rem;
+    }
+
+    .quote-block {
+      padding: 1rem;
+      margin: 0.5rem 0;
+      border-left: 2px solid $maroon;
+
+      blockquote {
+        font-style: italic;
+        font-size: 24px;
+      }
     }
   }
   
@@ -216,8 +231,6 @@
 // === LinkBlock
 
 // === PlotBlock
-
-// === BlockQuoteBlock
 
 //
 // ============ Medium layout ============

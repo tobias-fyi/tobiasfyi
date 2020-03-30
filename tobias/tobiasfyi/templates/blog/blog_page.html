@@ -23,12 +23,7 @@
 					<h4>Topics</h4>
 					<ul>
 						{% for category in categories %}
-							{% if forloop.last %}
 							<li>{{ category.name }}</li>
-							{% else %}
-							{% comment %} <li>{{ category.name }} |</li> {% endcomment %}
-							<li>{{ category.name }}</li>
-							{% endif %}
 						{% endfor %}
 					</ul>
 				</div>
@@ -40,12 +35,7 @@
 					<h4>Technologies</h4>
 					<ul>
 						{% for tag in tags %}
-							{% if forloop.last %}
 							<li>{{ tag.name }}</li>
-							{% else %}
-							{% comment %} <li>{{ tag.name }} |</li> {% endcomment %}
-							<li>{{ tag.name }}</li>
-							{% endif %}
 						{% endfor %}
 					</ul>
 				</div>
@@ -61,6 +51,10 @@
 		{% for block in page.body %}
 			{% if block.block_type == "paragraph" %}
 				<p>{{ block.value|richtext }}</p>
+			{% elif block.block_type == "blockquote" %}
+				<div class="quote-block">
+					<blockquote>{{ block.value }}</blockquote>
+				</div>
 			{% else %}
 				{% include_block block %}
 			{% endif %}
