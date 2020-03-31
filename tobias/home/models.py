@@ -14,6 +14,8 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 
 from utils.blocks import (
+    TitleBlock,
+    SectionHeaderBlock,
     CodeBlock,
     PlotBlock,
     ImageBlock,
@@ -33,6 +35,8 @@ class HomePage(Page):
     content = StreamField(
         [
             ("richtext", blocks.RichTextBlock()),
+            ("title_block", TitleBlock()),
+            ("section_header", SectionHeaderBlock()),
             ("image_block", ImageBlock()),
             ("linkblock", LinkBlock()),
             ("internallinkblock", InternalLinkBlock()),
@@ -55,4 +59,3 @@ class FyiPage(HomePage):
     """Basically the about page."""
 
     template = "home/fyi_page.html"
-

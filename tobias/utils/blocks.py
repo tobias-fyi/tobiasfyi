@@ -4,6 +4,30 @@ from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
 
 
+class TitleBlock(blocks.StructBlock):
+    """Block for styling headers similar to page-title component."""
+
+    title = blocks.CharBlock(required=True, help_text="Title content")
+    permalink = blocks.CharBlock(required=False, help_text="HTML class for permalink")
+
+    class Meta:
+        template = "utils/title_block.html"
+        icon = "bold"
+        label = "Title"
+
+
+class SectionHeaderBlock(blocks.StructBlock):
+    """Block for styling headers similar to page-title component."""
+
+    header = blocks.CharBlock(required=True, help_text="Header content")
+    permalink = blocks.CharBlock(required=False, help_text="HTML class for permalink")
+
+    class Meta:
+        template = "utils/section_header_block.html"
+        icon = "link"
+        label = "Section Header"
+
+
 class CodeBlock(blocks.StructBlock):
     """Block of text to be rendered and highlighted as code."""
 

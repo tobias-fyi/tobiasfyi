@@ -27,6 +27,8 @@ from wagtail.embeds.blocks import EmbedBlock
 from wagtail.search import index
 
 from utils.blocks import (
+    TitleBlock,
+    SectionHeaderBlock,
     CodeBlock,
     PlotBlock,
     ImageBlock,
@@ -42,6 +44,8 @@ class BlogIndexPage(Page):
     content = StreamField(
         [
             ("richtext_section", blocks.RichTextBlock()),
+            ("title_block", TitleBlock()),
+            ("section_header", SectionHeaderBlock()),
             ("image_block", ImageBlock()),
             ("internallinkblock", InternalLinkBlock()),
             ("linkblock", LinkBlock()),
@@ -137,6 +141,8 @@ class BlogPage(Page):
     body = StreamField(
         [
             ("richtext", blocks.RichTextBlock()),
+            ("title_block", TitleBlock()),
+            ("section_header", SectionHeaderBlock()),
             ("image_block", ImageBlock()),
             ("code_block", CodeBlock()),
             ("link_block", LinkBlock()),

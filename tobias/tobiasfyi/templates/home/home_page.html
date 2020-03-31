@@ -11,9 +11,9 @@
 
 {% block content %}
 <article class="page-content">
-  <div class="intro">
-		<p>{{ page.intro|richtext }}</p>
-	</div>
+	{% if page.intro %}
+		<div class="intro"><p>{{ page.intro|richtext }}</p></div>
+	{% endif %}
 	<div class="article-text">
 		{% for block in page.content %}
 			{% if block.block_type == "paragraph" %}
