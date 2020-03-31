@@ -28,6 +28,29 @@ class SectionHeaderBlock(blocks.StructBlock):
         label = "Section Header"
 
 
+class FeaturedSectionBlock(blocks.StructBlock):
+    """Block for displaying a list of featured content from a page's children."""
+
+    header = blocks.CharBlock(
+        required=False,
+        max_length=255,
+        help_text="Title to display above the featured section",
+    )
+    permalink = blocks.CharBlock(required=False, help_text="HTML class for permalink")
+    # Each list their children items that we access via the children function
+    # that we define on the individual Page models e.g. BlogIndexPage
+    featured_section = blocks.PageChooserBlock(
+        required=False,
+        help_text="First featured section for the homepage. Will display up to "
+        "three child items.",
+    )
+
+    class Meta:
+        template = "utils/featured_section_block.html"
+        icon = "link"
+        label = "Featured Section"
+
+
 class CodeBlock(blocks.StructBlock):
     """Block of text to be rendered and highlighted as code."""
 

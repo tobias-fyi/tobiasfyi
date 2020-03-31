@@ -298,7 +298,7 @@
 }
 
 // === SectionHeaderBlock ===
-.title-block {
+.section-header-block {
   display: flex;
   text-align: center;
   justify-content: center;
@@ -315,6 +315,52 @@
       color: $dark;
       &:hover {
         color: $maroon;
+      }
+    }
+  }
+}
+
+// === FeaturedSectionBlock ===
+.featured-section-block {
+  display: flex;
+  flex-direction: column;
+  
+  h2 {
+    font-size: 32px;
+    margin-top: 2rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  a {
+    color: $dark;
+    &:hover {
+      color: $maroon;
+    }
+  }
+
+  .featured-section-title {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    border-bottom: 2px solid $maroon;
+  }
+
+  .featured-section {
+    padding: 0 2rem;
+    .featured-childpage {
+      margin-bottom: 1rem;
+    }
+  }
+  
+  .featured-section-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a {
+      color: $light;
+      &:hover {
+        color: $light;
       }
     }
   }

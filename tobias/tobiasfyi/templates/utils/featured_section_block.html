@@ -1,0 +1,22 @@
+{% load static wagtailcore_tags %}
+
+<section class="featured-section-block">
+  <div class="featured-section-title">
+    <a class="icon icon-link" href="{{ self.featured_section.url }}">
+      <h2>{{ self.header }}</h2>
+    </a>
+  </div>
+  <div class="featured-section">
+    {% for childpage in self.featured_section.specific.children|slice:"3" %}
+      <div class="featured-childpage">
+        <a href="{{ childpage.url }}"><h3>{{ childpage.title }}</h3></a>
+        <p>{{ childpage.intro|richtext }}</p>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="featured-section-footer">
+    <a href="{{ self.featured_section.url }}" class="btn btn-maroon">
+      Read more in {{ self.header }}
+    </a>
+  </div>
+</section>

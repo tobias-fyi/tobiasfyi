@@ -57,6 +57,10 @@ class BlogIndexPage(Page):
         blank=True,
     )
 
+    def children(self):
+        """Allow access to the children of the page."""
+        return self.get_children().specific().live()
+
     def get_context(self, request):
         """Add custom content and/or config to the context.
         Order the child pages by reverse published date"""
