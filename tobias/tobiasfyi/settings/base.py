@@ -1,5 +1,5 @@
 """
-Django settings for the tobiasfyi project.
+Django settings for the tobias.fyi project.
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -20,7 +20,6 @@ INSTALLED_APPS = [
     "search",
     "blog",
     "navigator",
-    "workshop",
     "wagtail.contrib.styleguide",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
