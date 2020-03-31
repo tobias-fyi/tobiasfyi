@@ -13,8 +13,8 @@
 <section class="sidebar">
 	<div class="sidebar-content">
 		<div class="publish-date">
-			<time class="published" datetime="{{ page.date|date:'Y-m-d' }}">
-				{{ page.date }}
+			<time class="published" datetime="{{ page.date_published|date:'Y-m-d' }}">
+				{{ page.date_published }}
 			</time>
 		</div>
 		{% with categories=page.categories.all %}

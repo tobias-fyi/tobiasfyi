@@ -13,12 +13,12 @@
 
 {% block content %}
 <div class="page-content index">
-	{% for post in blog %}
+	{% for post in posts %}
 		{% with post=post.specific %}
 			<div id="{{ post.pk }}" class="post">
 				<h2 class="post-title"><a href="{% pageurl post %}">{{ post.title }}</a></h2>
-				<time class="published" datetime="{{ post.date|date:'Y-m-d' }}">
-					{{ post.date }}
+				<time class="published" datetime="{{ post.date_published|date:'Y-m-d' }}">
+					{{ post.date_published }}
 				</time>
 				<div class="tags">
 						{% with categories=post.categories.all %}

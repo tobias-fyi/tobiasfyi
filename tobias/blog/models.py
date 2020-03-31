@@ -4,7 +4,6 @@ Blog \\ models :: non-fiction or technical pieces
 
 from django import forms
 from django.db import models
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from modelcluster.contrib.taggit import ClusterTaggableManager
@@ -57,36 +56,21 @@ class BlogIndexPage(Page):
     def get_context(self, request):
         """Add custom content and/or config to the context.
         Order the child pages by reverse published date"""
-
         # Include only published posts, ordered in reverse chron
-        context = super().get_context(request)
+        context = super(BlogIndexPage, self).get_context(request)
         # Get all blog posts
-        posts = self.get_children().live().public().order_by("-first_published_at")
-
-        # Paginate all blog posts into 4 per page
-        paginator = Paginator(posts, 4)
-        # Try to get the ?page=x value
-        page = request.GET.get("page")
-        try:
-            # If the page exists and ?page=x is an integer
-            blog = paginator.page(page)
-        except PageNotAnInteger:
-            # If ?page=x is not an integer, return the first page
-            blog = paginator.page(1)
-        except EmptyPage:
-            # If ?page=x is out of range, return the last page
-            blog = paginator.page(paginator.num_pages)
-
-        context["blog"] = blog
+        context["posts"] = (
+            BlogPage.objects.descendant_of(self)
+            .live()
+            .public()
+            .order_by("-date_published")
+        )
         return context
 
     content_panels = Page.content_panels + [
         FieldPanel("intro", classname="full"),
         StreamFieldPanel("content"),
     ]
-
-
-# === Tags and Categories Configuration === #
 
 
 class BlogPageTag(TaggedItemBase):
@@ -135,14 +119,11 @@ class BlogCategory(models.Model):
         verbose_name_plural = "Blog Categories"
 
 
-# === Individual Blog Pages === #
-
-
 class BlogPage(Page):
     """Configuration of individual blog post pages."""
 
     intro = RichTextField()
-    date = models.DateField("Publish date")
+    date_published = models.DateField("Publish date")
     header_image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
@@ -173,13 +154,13 @@ class BlogPage(Page):
     search_fields = Page.search_fields + [
         index.SearchField("intro"),
         index.SearchField("body"),
-        index.FilterField("date"),
+        index.FilterField("date_published"),
     ]
 
     content_panels = Page.content_panels + [
         MultiFieldPanel(
             [
-                FieldPanel("date"),
+                FieldPanel("date_published"),
                 FieldPanel("categories", widget=forms.CheckboxSelectMultiple),
                 FieldPanel("tags"),
             ],
