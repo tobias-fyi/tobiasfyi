@@ -7,7 +7,7 @@
     </a>
   </div>
   <div class="featured-section">
-    {% for childpage in self.featured_section.specific.children|slice:"3" %}
+    {% for childpage in self.featured_section.specific.children|slice:":3" %}
       <div class="featured-childpage">
         <a href="{{ childpage.url }}"><h3>{{ childpage.title }}</h3></a>
         <p>{{ childpage.intro|richtext }}</p>

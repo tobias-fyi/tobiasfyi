@@ -61,7 +61,13 @@ class BlogIndexPage(Page):
 
     def children(self):
         """Allow access to the children of the page."""
-        return self.get_children().specific().live()
+        return (
+            BlogPage.objects.descendant_of(self)
+            .specific()
+            .live()
+            .public()
+            .order_by("-date_published")
+        )
 
     def get_context(self, request):
         """Add custom content and/or config to the context.
