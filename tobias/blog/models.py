@@ -34,6 +34,7 @@ from utils.blocks import (
     ImageBlock,
     LinkBlock,
     InternalLinkBlock,
+    ButtonBlock,
 )
 
 
@@ -49,6 +50,7 @@ class BlogIndexPage(Page):
             ("image_block", ImageBlock()),
             ("internallinkblock", InternalLinkBlock()),
             ("linkblock", LinkBlock()),
+            ("button", ButtonBlock()),
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
             ("image", ImageChooserBlock()),
@@ -151,6 +153,7 @@ class BlogPage(Page):
             ("code_block", CodeBlock()),
             ("link_block", LinkBlock()),
             ("internal_link_block", InternalLinkBlock()),
+            ("button", ButtonBlock()),
             ("plot", PlotBlock()),
             ("blockquote", blocks.BlockQuoteBlock()),
             ("embed", EmbedBlock()),

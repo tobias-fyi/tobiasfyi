@@ -5,14 +5,17 @@
 
 {% block pagetitle %}
 <div class="page-title">
-  <h1>Tobias E. A. Reaper</h1>
+  {% comment %} <h1>Tobias E. A. Reaper</h1> {% endcomment %}
+  <h1>tobias.<i>fyi</i></h1>
 </div>
 {% endblock pagetitle %}
 
 {% block content %}
 <article class="page-content">
 	{% if page.intro %}
-		<div class="intro"><p>{{ page.intro|richtext }}</p></div>
+		<div class="intro">
+			<h2>{{ page.intro|richtext }}</h2>
+		</div>
 	{% endif %}
 	<div class="article-text">
 		{% for block in page.content %}

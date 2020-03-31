@@ -22,6 +22,7 @@ from utils.blocks import (
     ImageBlock,
     LinkBlock,
     InternalLinkBlock,
+    ButtonBlock,
 )
 
 
@@ -29,7 +30,6 @@ class HomePage(Page):
     """Home page model."""
 
     template = "home/home_page.html"
-    max_count = 1
 
     intro = RichTextField(blank=True)
 
@@ -42,6 +42,7 @@ class HomePage(Page):
             ("image_block", ImageBlock()),
             ("linkblock", LinkBlock()),
             ("internallinkblock", InternalLinkBlock()),
+            ("button", ButtonBlock()),
             ("plot", PlotBlock()),
             ("code", CodeBlock()),
             ("embed", EmbedBlock()),

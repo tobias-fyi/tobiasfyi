@@ -138,3 +138,11 @@ class InternalLinkBlock(LinkBlock):
     class Meta:
         template = "utils/internal_link_block.html"
         label = "Internal Link"
+
+
+class ButtonBlock(LinkBlock):
+    """Block containing a simple button that leads to internal or external page."""
+
+    class Meta:
+        template = "utils/button_block.html"
+        label = "Button"

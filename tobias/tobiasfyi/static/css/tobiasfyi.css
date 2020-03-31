@@ -701,6 +701,17 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
   color: #F6F6F6;
 }
 
+.button-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
 @media (max-width: 960px) {
   .main-container {
     display: -ms-grid;
