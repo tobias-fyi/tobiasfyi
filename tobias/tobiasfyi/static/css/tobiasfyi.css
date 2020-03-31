@@ -529,7 +529,6 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
 }
 
 .code-block-figure .code-block-code code {
-  padding-top: 0;
   margin-top: 0;
 }
 

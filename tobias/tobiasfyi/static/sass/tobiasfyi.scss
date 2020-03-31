@@ -217,7 +217,6 @@
   max-width: $text-width;
   margin: 0.5rem 0;
   padding: 0;
-  
   .snippet-title {
     padding: 0.8rem 0.7rem;
     margin-left: 1.6rem;
@@ -227,7 +226,7 @@
   // Code area
   .code-block-code {
     code {
-      padding-top: 0;
+      // padding-top: 0;
       margin-top: 0;
     }
   }
@@ -371,7 +370,7 @@
   display: flex;
   justify-content: center;
   align-content: center;
-  
+
 }
 
 // TODO:
