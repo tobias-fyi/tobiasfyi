@@ -1,0 +1,120 @@
+{% load static wagtailuserbar wagtailcore_tags wagtailimages_tags nav_tags %}
+
+{% get_menu "nav" as nav %}
+
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>
+    {% block title %}
+      {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
+    {% endblock %}
+    {% block title_suffix %}
+      {% with self.get_site.site_name as site_name %}
+        {% if site_name %}| {{ site_name }}{% endif %}
+      {% endwith %}
+    {% endblock %}
+  </title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+  {# Global stylesheets #}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/tobiasfyi.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/a11y-light.css' %}">
+
+  {% block extra_css %}
+    {# Override this in templates to add extra stylesheets #}
+  {% endblock %}
+
+  <link rel="icon" href="{% static '/images/favicon.png' %}" />
+</head>
+
+<body class="{% block body_class %}{% endblock body_class %}">
+  {% wagtailuserbar %}
+  <main class="main-container">
+
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">
+          <a href="/">tobias<i>fyi</i></a>
+        </div>
+        <nav class="nav bg-light">
+          <ul>
+            {% for item in nav.nav_items.all %}
+              <li>
+                <a href="{{ item.link }}" {% if item.open_in_new_tab %}target="_blank"{% endif %}>
+                  {{ item.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      </div>
+    </header>
+    
+    <!-- Child Page Title -->
+    {% block pagetitle %}
+    {% endblock pagetitle %}
+    
+    <!-- Child Page Sidebar -->
+    {% block sidebar %}
+    {% endblock sidebar %}
+  
+    <!-- Child Page Content -->
+    {% block content %}
+    {% endblock content %}
+    
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <ul class="contact-icons">
+          <li>
+            <a href="mailto:hi@tobias.fyi">
+              <svg width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30 21.3333V5.33333C30 5.33333 16.35 16.6222 15.0225 17.208C13.7175 16.6489 0 5.33333 0 5.33333V21.3333C0 23.5556 0.3975 24 2.25 24H27.75C29.6467 24 30 23.6098 30 21.3333ZM29.9783 2.19644C29.9783 0.577778 29.58 0 27.75 0H2.25C0.3675 0 0 0.693334 0 2.31111L0.0225 2.56C0.0225 2.56 13.5743 13.6178 15.0225 14.2222C16.5525 13.52 30 2.31111 30 2.31111L29.9783 2.19644Z"/>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/tobias-fyi/">
+              <svg width="21" height="24" viewBox="0 0 21 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.06838 24C6.35636 24 6.57475 23.9904 6.71875 23.9712C6.88767 23.937 7.03998 23.8465 7.15073 23.7144C7.29472 23.5632 7.36672 23.3448 7.36672 23.0568L7.35712 21.7201C7.34992 20.8681 7.34752 20.1914 7.34752 19.6946L6.89634 19.7738C6.53529 19.8306 6.16968 19.8531 5.80439 19.841C5.34543 19.8329 4.88792 19.7871 4.43645 19.7042C3.95733 19.6149 3.50646 19.4125 3.1213 19.1138C2.71755 18.8084 2.41623 18.3874 2.25734 17.9067L2.06055 17.4531C1.89502 17.0959 1.68714 16.7599 1.44138 16.4523C1.22072 16.137 0.926688 15.88 0.584614 15.7036L0.44782 15.6076C0.353618 15.5382 0.268196 15.4576 0.193431 15.3676C0.12087 15.2858 0.0610052 15.1936 0.015839 15.094C-0.0225594 15.0028 0.00863917 14.926 0.111835 14.8684C0.292957 14.7956 0.488337 14.7652 0.68301 14.7796L1.07659 14.8396C1.34058 14.89 1.66457 15.0484 2.05095 15.31C2.43493 15.574 2.75412 15.9124 3.00371 16.3323C3.3061 16.8699 3.66848 17.2803 4.09566 17.5611C4.47273 17.827 4.9207 17.9741 5.382 17.9835C5.81399 17.9835 6.18837 17.9523 6.50276 17.8875C6.80877 17.824 7.10608 17.7241 7.38832 17.5899C7.50591 16.7139 7.8251 16.0371 8.34828 15.5668C7.66907 15.4996 6.99596 15.3808 6.33476 15.2116C5.68918 15.0336 5.06839 14.7757 4.48684 14.4436C3.87783 14.1132 3.33966 13.6664 2.90291 13.1285C2.48533 12.6029 2.14215 11.9165 1.87096 11.0646C1.5882 10.1075 1.45305 9.11291 1.47018 8.1151C1.47018 6.53116 1.98855 5.18002 3.02291 4.06647C2.53813 2.87372 2.58373 1.53698 3.1597 0.0562477C3.54129 -0.063747 4.10526 0.0250483 4.85163 0.320235C5.598 0.615422 6.14757 0.867411 6.49316 1.0786C6.84114 1.28739 7.11713 1.46259 7.32832 1.60658C8.55749 1.26521 9.82767 1.09403 11.1034 1.0978C12.3993 1.0978 13.6592 1.26579 14.8784 1.60898L15.6224 1.1362C16.1359 0.824214 16.7383 0.533826 17.4319 0.272238C18.1278 0.00824904 18.6582 -0.063747 19.0254 0.0562477C19.6158 1.53698 19.6686 2.87372 19.1814 4.06407C20.2182 5.18002 20.7365 6.52876 20.7365 8.1151C20.7365 9.22865 20.6021 10.215 20.3334 11.0742C20.0646 11.9333 19.7166 12.6197 19.2918 13.1381C18.8479 13.6707 18.3072 14.1145 17.6983 14.446C17.1168 14.7782 16.496 15.0361 15.8503 15.214C15.1883 15.3826 14.5144 15.5005 13.8344 15.5668C14.516 16.1547 14.8568 17.0859 14.8568 18.3578V23.0544C14.8568 23.2776 14.8904 23.4576 14.9552 23.5968C14.9857 23.6631 15.0292 23.7226 15.0833 23.7717C15.1373 23.8207 15.2007 23.8584 15.2696 23.8824C15.4136 23.9328 15.5432 23.9664 15.6536 23.9784C15.7664 23.9928 15.9247 24 16.1335 24H6.07077H6.06838Z"/>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/tobias-ea-reaper/">
+              <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.7887 24V7.80724H0.322503V24H5.7887ZM3.05631 5.59507C4.96247 5.59507 6.14896 4.35165 6.14896 2.7978C6.11345 1.2089 4.96254 0 3.09248 0C1.22271 0 0 1.20893 0 2.7978C0 4.35172 1.1862 5.59507 3.02062 5.59507H3.05614H3.05631ZM8.81422 24H14.2804V14.9572C14.2804 14.4732 14.3159 13.9898 14.4603 13.6438C14.8554 12.6769 15.7549 11.6754 17.2648 11.6754C19.2428 11.6754 20.0341 13.1603 20.0341 15.3371V23.9999H25.5V14.7151C25.5 9.74133 22.8033 7.42708 19.2068 7.42708C16.258 7.42708 14.9633 9.05001 14.2441 10.1554H14.2805V7.8069H8.81435C8.88608 9.32634 8.81435 23.9997 8.81435 23.9997L8.81422 24Z"/>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://medium.com/@tobiasfyi">
+              <svg width="31" height="24" viewBox="0 0 31 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M27.7591 2.82029L30.1669 0.50671V0H21.8278L15.8848 14.8635L9.12471 0H0.381015V0.50671L3.19345 3.90835C3.46841 4.15974 3.60982 4.52897 3.57447 4.8982V18.2651C3.66088 18.7483 3.50769 19.2393 3.16989 19.5889L0 23.4501V23.9489H8.97938V23.4422L5.81342 19.5928C5.64379 19.4206 5.5162 19.2115 5.44057 18.9819C5.36495 18.7523 5.34333 18.5084 5.37741 18.2691V6.70507L13.2609 23.9568H14.1761L20.9558 6.70507V20.4491C20.9558 20.8105 20.9558 20.8851 20.7201 21.1247L18.2809 23.4933V24H30.1119V23.4933L27.7591 21.1797C27.5548 21.0226 27.4488 20.7594 27.492 20.5041V3.49591C27.4716 3.36968 27.4857 3.24031 27.5327 3.12141C27.5797 3.00251 27.6579 2.89849 27.7591 2.82029Z"/>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+
+  </main>
+
+  {# Global javascript #}
+  <script type="text/javascript" src="{% static 'js/tobiasfyi.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/highlight/highlight.pack.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/highlight/highlightjs-line-numbers.js' %}"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>hljs.initLineNumbersOnLoad();</script>
+
+  {% block extra_js %}
+    {# Override this in templates to add extra javascript #}
+  {% endblock %}
+
+</body>
+
+</html>

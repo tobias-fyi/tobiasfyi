@@ -1,0 +1,679 @@
+// tobias.fyi main styles
+
+// ============
+// Configuration
+@import 'config/type';
+@import 'config/vars';
+@import 'config/base';
+@import 'config/utils';
+
+// // ============
+// // Components
+@import 'components/main';
+// @import 'components/header';
+// @import 'components/footer';
+// @import 'components/index';
+// @import 'components/article';
+
+// // ============
+// // Blocks
+// @import 'blocks/image_block';
+// @import 'blocks/plot_block';
+
+//
+// ============ Large display layout ============
+// 
+
+// ============
+// Main container grid
+.main-container {
+  display: grid;
+  grid-template-columns: auto 160px $column-width 160px auto;
+  grid-template-rows: 60px 120px auto auto 60px;
+  grid-template-areas:
+    "header   header   header         header     header  "
+    ".        .        page-title     .          .       "
+    ".        .        blank          .          .       "
+    ".        sidebar  page-content   .          .       "
+    "footer   footer   footer         footer     footer  ";
+}
+
+// ============
+// Site header
+.header {
+  grid-area: header;
+  border-bottom: 1px solid $dark;
+
+  .header-content {
+    max-width: $medium;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    ul {
+      display: flex;
+      font-size: 1.5rem;
+      li {
+        padding-left: 1rem;
+      }
+    }
+
+    a {
+      color: $dark;
+
+      &:hover {
+        color: $maroon;
+      }
+    }
+
+    .logo {
+      font-size: 2rem;
+      margin-left: 0;
+    }
+
+    nav {
+      border: none;
+    }
+  }
+}
+
+.page-title {
+  grid-area: page-title;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
+  border-bottom: 2px solid $maroon;
+}
+
+// ============
+// Topics + tags
+.sidebar {
+  grid-area: sidebar;
+  margin-top: 1rem;
+}
+
+// ====== Page main content
+.page-content {
+  grid-area: page-content;
+  max-width: $text-width;
+  margin: 0 auto;
+  display: grid;
+
+  .intro {
+    display: flex;
+  }
+
+  .post {
+    margin-bottom: 1rem;
+  }
+
+  .categories, .tags {
+    padding: 0.25rem 1rem;
+    margin: 0.5rem 0;
+    border-left: 2px solid $maroon;
+
+    li {
+      display: inline;
+    }
+  }
+
+  .article-text {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      margin-bottom: 0.5rem;
+    }
+
+    .quote-block {
+      padding: 1rem;
+      margin: 0.5rem 0;
+      border-left: 2px solid $maroon;
+
+      blockquote {
+        font-style: italic;
+        font-size: 24px;
+      }
+    }
+  }
+  
+  .article-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+  }
+}
+
+// ============
+// Site Footer
+.footer {
+  grid-area: footer;
+  border-top: 1px solid $dark;
+  margin-top: 2rem;
+
+  .footer-content {
+    max-width: $medium;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    align-items: center;
+    
+      ul.contact-icons {
+        display: flex;
+        li {
+          padding: 1rem;
+          
+          svg {
+            fill: $dark;
+            &:hover {
+              fill: $maroon;
+            }
+          }
+        }
+      }
+  }
+}
+
+// ====== Fyi Page
+.intro {
+  display: flex;
+  justify-content: center;
+}
+
+// ====== StreamField Blocks ======
+
+// ====== Contact icons
+// (RawHTMLBlock)
+.contact-section {
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  margin-top: 1rem;
+
+  ul.contact-icons {
+    display: flex;
+    li {
+      padding: 1rem;
+      
+      svg {
+        fill: $dark;
+        &:hover {
+          fill: $maroon;
+        }
+      }
+    }
+  }
+}
+
+// === Code Block
+.code-block-figure {
+  max-width: $text-width;
+  margin: 0.5rem 0;
+  padding: 0;
+  .snippet-title {
+    padding: 0.8rem 0.7rem;
+    margin-left: 1.6rem;
+    margin-bottom: 0;
+    // border-left: 2px solid $maroon;
+  }
+  // Code area
+  .code-block-code {
+    code {
+      // padding-top: 0;
+      margin-top: 0;
+    }
+  }
+  // Actual block of code
+  .hljs-ln-code {
+    padding-left: 0.7rem;
+  }
+  // Line numbers
+  .hljs-ln-numbers {
+    padding-right: 0.5rem;
+    border-right: 2px solid $maroon;
+  }
+}
+
+// === ImageBlock
+.image-block {
+  margin: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  span {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    img {
+      padding: 0;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  p {
+    margin-top: 0;
+  }
+}
+
+// === (Internal)LinkBlock
+.link-block {
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-left: 2px solid $maroon;
+  font-size: 24px;
+  font-style: italic;
+}
+
+// === TitleBlock ===
+.title-block {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 0 1rem;
+  border-bottom: 2px solid $maroon;
+
+  a {
+    h2 {
+      font-size: 32px;
+      margin-top: 2rem;
+      padding-bottom: 0.5rem;
+      color: $dark;
+      &:hover {
+        color: $maroon;
+      }
+    }
+  }
+}
+
+// === SectionHeaderBlock ===
+.section-header-block {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 0 1rem;
+  border-bottom: 2px solid $maroon;
+
+  a {
+    h2 {
+      font-size: 32px;
+      margin-top: 2rem;
+      padding-bottom: 0.5rem;
+      color: $dark;
+      &:hover {
+        color: $maroon;
+      }
+    }
+  }
+}
+
+// === FeaturedSectionBlock ===
+.featured-section-block {
+  display: flex;
+  flex-direction: column;
+  
+  h2 {
+    font-size: 32px;
+    margin-top: 2rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  a {
+    color: $dark;
+    &:hover {
+      color: $maroon;
+    }
+  }
+
+  .featured-section-title {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    border-bottom: 2px solid $maroon;
+  }
+
+  .featured-section {
+    padding: 0 2rem;
+    .featured-childpage {
+      margin-bottom: 1rem;
+    }
+  }
+  
+  .featured-section-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a {
+      color: $light;
+      &:hover {
+        color: $light;
+      }
+    }
+  }
+}
+
+// === ButtonBlock ===
+.button-block {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+}
+
+// TODO:
+// === PlotBlock
+
+//
+// ============ Medium layout ============
+//
+@media (max-width: $medium) {
+  
+  // ====== Main container grid
+  .main-container {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 60px auto auto auto 60px;
+    grid-template-areas:
+    "header         "
+    "page-title     "
+    "subtitle       "
+    "page-content   "
+    "footer         ";
+  }
+  
+  // === Site header
+  .header {
+    grid-area: header;
+    border-bottom: 1px solid $dark;
+    
+    .header-content {
+      padding: 0 0;
+      max-width: $column-width;
+      margin: 0 auto;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      
+      ul {
+        display: flex;
+        font-size: 1.2rem;
+        li {
+          padding-left: 1rem;
+        }
+      }
+      
+      a {
+        color: $dark;
+        
+        &:hover {
+          color: $maroon;
+        }
+      }
+      
+      .logo {
+        font-size: 1.5rem;
+        margin-left: 0;
+      }
+      
+      nav {
+        border: none;
+      }
+    }
+  }
+
+  // === Page/post title
+  .page-title {
+    grid-area: page-title;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    padding: 0 1rem 1rem 1rem;
+    margin: 0 auto;
+    width: $column-width;
+    border-bottom: 2px solid $maroon;
+  }
+  
+  // === Main page content
+  .page-content {
+    grid-area: page-content;
+    width: $text-width;
+    margin: 0 auto;
+    display: grid;
+
+    .intro {
+      display: flex;
+    }
+
+    .post {
+      margin-bottom: 1rem;
+    }
+
+    .categories, .tags {
+      margin: 0.5rem auto;
+      padding-left: 0.5rem;
+      border-left: 2px solid $maroon;
+      li {
+        display: inline;
+      }
+    }
+
+    .article-text {
+      width: $text-width;
+    }
+  }
+  
+  .sidebar {
+    grid-area: subtitle;
+    padding: 1rem;
+    margin: 0 auto;
+    border-bottom: 2px solid $maroon;
+    width: $column-width;
+
+    .sidebar-content {
+      width: $text-width;
+      margin: 0 auto;
+      display: grid;
+      grid-template-areas:
+      "date   date"
+      "topics tech";
+      justify-items: center;
+
+      .publish-date {
+        grid-area: date;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        time {
+          font-size: 1.2rem;
+        }
+      }
+
+      .topics {
+        grid-area: topics;
+      }
+      .tech {
+        grid-area: tech;
+      }
+    }
+  }
+
+  // === Code Block
+  code {
+    max-width: $text-width;
+  }
+}
+
+
+//
+// ============ Mobile layout ============
+// 
+@media (max-width: $small) {
+  
+  // === Main container grid
+  .main-container {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(5, auto);
+    grid-template-areas:
+    "header         "
+    "page-title     "
+    "subtitle       "
+    "page-content   "
+    "footer         ";
+  }
+  
+  // === Site header
+  .header {
+    grid-area: header;
+    border-bottom: 1px solid $dark;
+    
+    .header-content {
+      padding: 0.2rem 1rem;
+      margin: 0 auto;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      
+      ul {
+        display: flex;
+        font-size: 1.2rem;
+        li {
+          padding-left: 1rem;
+        }
+      }
+      
+      a {
+        color: $dark;
+        
+        &:hover {
+          color: $maroon;
+        }
+      }
+      
+      .logo {
+        font-size: 1.5rem;
+        margin-left: 0;
+      }
+      
+      nav {
+        border: none;
+      }
+    }
+  }
+
+  // === Page/post title
+  .page-title {
+    grid-area: page-title;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    padding: 0 1rem 1rem 1rem;
+    width: 90%;
+    border-bottom: 2px solid $maroon;
+  }
+
+  .sidebar {
+    grid-area: subtitle;
+    padding: 1rem;
+    width: 90%;
+    border-bottom: 2px solid $maroon;
+
+    .sidebar-content {
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-areas:
+      "date   date"
+      "topics tech";
+      grid-template-columns: 1fr 1fr;
+      justify-items: center;
+
+      .publish-date {
+        grid-area: date;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .topics {
+        grid-area: topics;
+      }
+      .tech {
+        grid-area: tech;
+      }
+    }
+  }
+
+  // === Main page content
+  .page-content {
+    grid-area: page-content;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    
+    .intro {
+      display: flex;
+    }
+    
+    .post {
+      margin-bottom: 1rem;
+    }
+    
+    .categories, .tags {
+      margin: 0.5rem 0;
+      border-left: 2px solid $maroon;
+      padding-left: 0.5rem;
+      li {
+        display: inline;
+      }
+    }
+
+    // Main article text
+    .article-text {
+      width: 100%;
+      padding: 0 1rem;
+      display: flex;
+      flex-direction: column;
+
+      .image-block {
+        width: 100%;
+        span {
+          padding: 0;
+          width: 100%;
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+  
+      // === Code Block
+      figure.code-block-figure {
+        width: 100%;
+        pre {
+          width: 100%;
+          code {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

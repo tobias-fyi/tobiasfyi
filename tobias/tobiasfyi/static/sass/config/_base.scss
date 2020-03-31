@@ -1,0 +1,43 @@
+// Base stylings
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Crimson Text', serif;
+  background-color: $light;
+  color: $dark;
+  font-size: 16px;
+}
+
+pre {
+  font-family: 'Ligconsolata-Regular', 'Inconsolata', monospace;
+}
+
+a {
+  text-decoration: none;
+  color: $maroon;
+}
+
+ul {
+  list-style: none;
+}
+
+h1 {
+  margin: 1.5rem 0 0.5rem 0;
+}
+
+h2 {
+  margin: 1rem 0 0.3rem 0;
+}
+
+h3 {
+  margin: 0.8rem 0 0.2rem 0;
+}
+
+h4 {
+  margin: 0.6rem 0 0.1rem 0;
+}

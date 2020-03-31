@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block pagetitle %}
+<div class="page-title">
+  <h1>Tobias E. A. <i>Reaper</i></h1>
+  {% comment %} <h1>tobias.<i>fyi</i></h1> {% endcomment %}
+</div>
+{% endblock pagetitle %}
+
+{% block content %}
+<article class="page-content">
+	{% if page.intro %}
+		<div class="intro">
+			<h2>{{ page.intro|richtext }}</h2>
+		</div>
+	{% endif %}
+	<div class="article-text">
+		{% for block in page.content %}
+			{% if block.block_type == "paragraph" %}
+				<p>{{ block.value|richtext }}</p>
+			{% elif block.block_type == "html" %}
+				<div class="contact-section">{{ block.value }}</div>
+			{% else %}
+				{% include_block block %}
+			{% endif %}
+		{% endfor %}
+	</div>
+</article>
+{% endblock content %}

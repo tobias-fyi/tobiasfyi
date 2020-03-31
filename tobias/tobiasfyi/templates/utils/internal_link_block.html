@@ -1,0 +1,8 @@
+{% load static wagtailcore_tags %}
+
+<div class="link-block">
+  <a href="{{ self.url }}" class="button">{{ self.title }}</a>
+  {% if self.description %}
+    <p>{{ self.description|richtext }}</p>
+  {% endif %}
+</div>

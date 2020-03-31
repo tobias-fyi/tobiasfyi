@@ -1,0 +1,41 @@
+// ============
+// Site header + nav
+
+.header {
+  grid-area: header;
+  border-bottom: 1px solid $dark;
+
+  .header-content {
+    max-width: 960px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    ul {
+      display: flex;
+      font-size: 1.5rem;
+      li {
+        padding-left: 1rem;
+      }
+    }
+
+    a {
+      color: $dark;
+
+      &:hover {
+        color: $maroon;
+      }
+    }
+
+    .logo {
+      font-size: 2rem;
+      margin-left: 0;
+    }
+
+    nav {
+      border: none;
+    }
+  }
+}

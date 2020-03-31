@@ -1,0 +1,5 @@
+dox/
+Pipfile
+Pipefile.lock
+*.sqlite3
+.vscode/
