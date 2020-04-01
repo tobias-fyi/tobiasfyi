@@ -1,0 +1,79 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "family": "tobiasfyi-task",
+    "volumes": [
+        {
+            "name": "static_volume",
+            "host": {
+                "sourcePath": "static_volume"
+            }
+        },
+        {
+            "name": "media_volume",
+            "host": {
+                "sourcePath": "media_volume"
+            }
+        }
+    ],
+    "containerDefinitions": [
+        {
+            "name": "web",
+            "image": "895184738619.dkr.ecr.us-east-2.amazonaws.com/tobias_fyi_web:latest",
+            "essential": true,
+            "memory": 512,
+            "portMappings": [
+                {
+                    "containerPort": 8000,
+                    "protocol": "tcp",
+                    "hostPort": 8000,
+                }
+            ],
+            "command": [
+                "gunicorn",
+                "tobiasfyi.wsgi:application",
+                "--bind",
+                "0.0.0.0:8000"
+            ],
+            "mountPoints": [
+                {
+                    "containerPath": "/home/app/web/staticfiles",
+                    "sourceVolume": "static_volume"
+                },
+                {
+                    "containerPath": "/home/app/web/media",
+                    "sourceVolume": "media_volume"
+                }
+            ]
+        },
+        {
+            "name": "nginx",
+            "image": "895184738619.dkr.ecr.us-east-2.amazonaws.com/tobias_fyi_nginx:latest",
+            "essential": true,
+            "memory": 512,
+            "portMappings": [
+                {
+                    "hostPort": 1337,
+                    "containerPort": 80
+                }
+            ],
+            "mountPoints": [
+                {
+                    "containerPath": "/home/app/web/staticfiles",
+                    "sourceVolume": "static_volume"
+                },
+                {
+                    "containerPath": "/home/app/web/media",
+                    "sourceVolume": "media_volume"
+                },
+                {
+                    "sourceVolume": "nginx-proxy-conf",
+                    "containerPath": "/etc/nginx/conf.d"
+                },
+                {
+                    "sourceVolume": "awseb-logs-nginx-proxy",
+                    "containerPath": "/var/log/nginx"
+                }
+            ]
+        }
+    ]
+}
