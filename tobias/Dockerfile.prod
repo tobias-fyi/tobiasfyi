@@ -8,7 +8,6 @@ FROM python:3.8.0-slim-buster as builder
 LABEL maintainer="tobyreaper@gmail.com"
 
 # Set the working directory to /usr/src/app/
-RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Set environment varibles
