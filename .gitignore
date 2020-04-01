@@ -1,9 +1,16 @@
 # ====== Project-Specific ====== #
 media/
 dox/
-tobiasfyi_poststellar/
+Pipfile
+Pipfile.lock
 
-# === ∫ EnviroVars ∫ === #
+# === AWS === #
+.ebextensions/
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+# === EnviroVars === #
 .env
 .env.dev
 .env.prod
@@ -202,3 +209,8 @@ dmypy.json
 .history
 
 # End of https://www.gitignore.io/api/osx,python,visualstudiocode
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

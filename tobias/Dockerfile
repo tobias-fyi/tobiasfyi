@@ -1,37 +1,72 @@
+# ====== # ====== #
+# === BUILDER === #
+# ====== # ====== #
+
 # Use an official Python runtime as a parent image
-FROM python:3.8.0-slim-buster
+FROM python:3.8.0-slim-buster as builder
+
 LABEL maintainer="tobyreaper@gmail.com"
 
-# Install dependencies
-RUN apt-get update && \
-    apt-get upgrade -y gcc libpq-dev && \
-    apt-get clean
+# Set the working directory to /usr/src/app/
+WORKDIR /usr/src/app
 
 # Set environment varibles
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# Set the working directory to /usr/src/app/
-# RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+# Install psycopg2 dependencies
+RUN apt-get update && \
+    apt-get upgrade -y gcc libpq-dev && \
+    apt-get clean
 
-# Add user
-RUN addgroup --system wagtail && adduser --system --no-create-home --group wagtail
-RUN chown -R wagtail:wagtail /usr/src/app && chmod -R 755 /usr/src/app
+# Install Python dependencies
+COPY ./requirements.txt .
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
 
-COPY ./requirements.txt /usr/src/app/requirements.txt
+
+# ====== # ====== #
+# ===  FINAL  === #
+# ====== # ====== #
+
+# Pull base image
+FROM python:3.8.0-slim-buster
+
+# Create directory for app user
+RUN mkdir -p /home/app
+
+# Create the app user
+RUN addgroup --system wagtail && \
+    adduser --system --no-create-home --group wagtail
+
+# Create the appropriate directories
+ENV HOME=/home/app
+ENV APP_HOME=/home/app/web
+RUN mkdir $APP_HOME
+RUN mkdir $APP_HOME/staticfiles
+RUN mkdir $APP_HOME/media
+WORKDIR $APP_HOME
+
+# Install dependencies
+RUN apt-get update && \
+    apt-get upgrade -y gcc libpq-dev && \
+    apt-get clean
+COPY --from=builder /usr/src/app/wheels /wheels
+COPY --from=builder /usr/src/app/requirements.txt .
 RUN pip install --upgrade pip
-# Install any needed packages specified in requirements.txt
-RUN pip install -r /usr/src/app/requirements.txt
+RUN pip install --no-cache /wheels/*
 
-# Switch to non-root user
+# Copy production entrypoint
+COPY ./entrypoint.prod.sh $APP_HOME
+
+# Copy project
+COPY . $APP_HOME
+
+# chown all the files to the app user
+RUN chown -R wagtail:wagtail $APP_HOME && chmod -R 755 $APP_HOME
+
+# Change to the non-root user
 USER wagtail
 
-# Copy entrypoint.sh
-COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
-
-# Copy the current directory contents into the container at /usr/src/app/
-COPY . /usr/src/app/
-
-# Run entrypoint.sh
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+# Run the gunicorn server
+EXPOSE 8000
+CMD gunicorn tobiasfyi.wsgi:application --bind 0.0.0.0:8000 --workers 3

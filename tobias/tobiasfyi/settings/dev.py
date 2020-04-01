@@ -13,7 +13,8 @@ DEBUG = os.environ.get("DEBUG") == "True"
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+# ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = ["tobias-test.us-east-2.elasticbeanstalk.com"]
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 

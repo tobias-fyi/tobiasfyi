@@ -67,5 +67,6 @@ RUN chown -R wagtail:wagtail $APP_HOME && chmod -R 755 $APP_HOME
 # Change to the non-root user
 USER wagtail
 
-# Run entrypoint script
-ENTRYPOINT ["/home/app/web/entrypoint.prod.sh"]
+# Run the gunicorn server
+EXPOSE 8000
+CMD gunicorn tobiasfyi.wsgi:application --bind 0.0.0.0:8000 --workers 3
