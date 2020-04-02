@@ -64,6 +64,10 @@ COPY . $APP_HOME
 # chown all the files to the app user
 RUN chown -R wagtail:wagtail $APP_HOME && chmod -R 755 $APP_HOME
 
+# Migrate db and collect static
+RUN python manage.py migrate
+RUN python manage.py collectstatic --no-input --clear
+
 # Change to the non-root user
 USER wagtail
 

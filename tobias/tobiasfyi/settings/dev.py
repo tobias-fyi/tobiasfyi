@@ -7,13 +7,14 @@ import os
 from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG") == "True"
+DEBUG = os.environ["DEBUG"] == "True"
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = os.environ["DJANGO_ALLOWED_HOSTS"].split(" ")
+# ALLOWED_HOSTS = ["tobias-dev.us-east-2.elasticbeanstalk.com"]
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
