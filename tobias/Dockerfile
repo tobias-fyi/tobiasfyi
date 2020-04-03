@@ -69,4 +69,7 @@ USER wagtail
 
 # Run the gunicorn server
 EXPOSE 8000
-CMD gunicorn tobiasfyi.wsgi:application --bind 0.0.0.0:8000
+# CMD gunicorn --bind 0.0.0.0:8000 tobiasfyi.wsgi:application
+
+# Run entrypoint script
+ENTRYPOINT ["/home/app/web/entrypoint.prod.sh"]

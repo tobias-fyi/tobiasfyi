@@ -12,9 +12,7 @@ Pipfile.lock
 
 # === EnviroVars === #
 .env
-.env.dev
-.env.prod
-.env.prod.db
+db.env
 
 # Compiled source
 *.com
