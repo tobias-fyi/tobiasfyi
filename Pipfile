@@ -18,6 +18,7 @@ ipython = "*"
 container-transform = "*"
 awscli = "*"
 boto3 = "*"
+django-health-check = "*"
 
 [requires]
 python_version = "3.8"
