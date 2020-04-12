@@ -19,6 +19,8 @@ container-transform = "*"
 awscli = "*"
 boto3 = "*"
 django-health-check = "*"
+django-storages = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.8"

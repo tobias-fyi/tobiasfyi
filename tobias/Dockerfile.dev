@@ -27,6 +27,9 @@ RUN pip install --upgrade pip
 COPY ./requirements.txt $HOME/requirements.txt
 RUN pip install -r requirements.txt
 
+# Copy entrypoint
+COPY ./entrypoint.dev.sh /$HOME/entrypoint.dev.sh
+
 # Copy project
 COPY . $HOME
 
@@ -36,5 +39,5 @@ RUN chown -R wagtail:wagtail $HOME && chmod -R 755 $HOME
 # Change to the non-root user
 USER wagtail
 
-# Run the gunicorn server
-CMD gunicorn tobiasfyi.wsgi:application --bind 0.0.0.0:$PORT
+# Run entrypoint.dev.sh
+ENTRYPOINT [ "/usr/src/app/entrypoint.dev.sh" ]

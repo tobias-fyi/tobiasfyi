@@ -3,6 +3,7 @@ media/
 dox/
 Pipfile
 Pipfile.lock
+env/
 
 # === AWS === #
 .ebextensions/
@@ -12,7 +13,8 @@ Pipfile.lock
 
 # === EnviroVars === #
 .env
-db.env
+.env.db
+.env.dev
 
 # Compiled source
 *.com
