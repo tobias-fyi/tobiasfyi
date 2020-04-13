@@ -5,6 +5,8 @@ Django settings for the tobias.fyi project.
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+import dj_database_url
+
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
@@ -93,6 +95,9 @@ DATABASES = {
     }
 }
 
+DATABASE_URL = os.environ.get("DATABASE_URL")
+dj_db = dj_database_url.config(default=DATABASE_URL, conn_max_age=500, ssl_require=True)
+DATABASES["default"].update(dj_db)
 
 # === Password validation === #
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
