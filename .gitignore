@@ -13,8 +13,9 @@ env/
 
 # === EnviroVars === #
 .env
-.env.db
 .env.dev
+.env.db
+.env.db.dev
 
 # Compiled source
 *.com
