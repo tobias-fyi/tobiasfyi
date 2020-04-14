@@ -30,6 +30,9 @@ RUN pip install -r requirements.txt
 # Copy project
 COPY . $HOME
 
+# Collect static files
+RUN python manage.py collectstatic --noinput
+
 # chown all the files to the app user
 RUN chown -R wagtail:wagtail $HOME && chmod -R 755 $HOME
 
