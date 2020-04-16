@@ -10,7 +10,7 @@ from .base import *
 DEBUG = int(os.environ.get("DEBUG"), 0)
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY", "supersecretkeydontletitoutplz")
+SECRET_KEY = os.environ.get("SECRET_KEY", "supersecretkeydontreaditplz")
 
 # SECURITY WARNING: define the correct hosts in production!
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost 127.0.0.1").split(" ")

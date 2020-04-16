@@ -60,6 +60,7 @@ MIDDLEWARE = [
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
+
 ROOT_URLCONF = "tobiasfyi.urls"
 
 TEMPLATES = [
@@ -125,44 +126,51 @@ USE_TZ = True
 # === Static files (CSS, JavaScript, Images) === #
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATICFILES_FINDERS = [
-    "django.contrib.staticfiles.finders.FileSystemFinder",
-    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-]
+# STATICFILES_FINDERS = [
+#     "django.contrib.staticfiles.finders.FileSystemFinder",
+#     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+# ]
 
 # ManifestStaticFilesStorage is recommended in production, to prevent outdated
 # Javascript / CSS assets being served from cache (e.g. after a Wagtail upgrade).
 # See https://docs.djangoproject.com/en/2.2/ref/contrib/staticfiles/#manifeststaticfilesstorage
 # STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 
-# USE_S3 = os.getenv("USE_S3") == "True"
+USE_S3 = os.getenv("USE_S3") == "True"
 
-# if USE_S3:  # AWS settings
-#     AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
-#     AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
-#     AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
-#     AWS_DEFAULT_ACL = "public-read"
-#     AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-#     AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
-#     # S3 static settings
-#     STATIC_LOCATION = "static"
-#     STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/"
-#     STATICFILES_STORAGE = "tobiasfyi.storage_backends.StaticStorage"
-#     # S3 public media settings
-#     PUBLIC_MEDIA_LOCATION = "media"
-#     MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
-#     DEFAULT_FILE_STORAGE = "tobiasfyi.storage_backends.PublicMediaStorage"
-# else:
-STATIC_URL = "/staticfiles/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-MEDIA_URL = "/mediafiles/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
+if USE_S3:  # AWS settings
+    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+    AWS_DEFAULT_ACL = "public-read"
+    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
+    # S3 static settings
+    STATIC_LOCATION = "static"
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/"
+    STATICFILES_STORAGE = "tobiasfyi.storage_backends.StaticStorage"
+    # S3 public media settings
+    PUBLIC_MEDIA_LOCATION = "media"
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
+    DEFAULT_FILE_STORAGE = "tobiasfyi.storage_backends.PublicMediaStorage"
+else:
+    STATIC_URL = "/staticfiles/"
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    MEDIA_URL = "/mediafiles/"
+    MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 
-STATICFILES_DIRS = [
-    os.path.join(PROJECT_DIR, "static"),
+STATICFILES_DIRS = [os.path.join(PROJECT_DIR, "static")]
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+COMPRESS_OFFLINE = True
+COMPRESS_CSS_FILTERS = [
+    "compressor.filters.css_default.CssAbsoluteFilter",
+    "compressor.filters.cssmin.CSSMinFilter",
 ]
+COMPRESS_CSS_HASHING_METHOD = "content"
 
 # === Wagtail settings === #
 
