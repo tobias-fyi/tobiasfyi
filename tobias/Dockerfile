@@ -1,6 +1,5 @@
 # Pull base image
 FROM python:3.8.0-slim-buster
-
 LABEL maintainer="tobyreaper@gmail.com"
 
 # Set the working directory to /usr/src/app/
@@ -11,7 +10,7 @@ WORKDIR $HOME
 # Set environment varibles
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV DEBUG 0
+ENV DEBUG False
 
 # Create the app user
 RUN addgroup --system wagtail && \
