@@ -1,5 +1,5 @@
 """
-Blog \\ models :: non-fiction or technical pieces
+Blog models :: non-fiction and technical writing
 """
 
 from django import forms

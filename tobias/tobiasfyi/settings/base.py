@@ -1,18 +1,13 @@
 """
-Django settings for the tobias.fyi project.
+tobias.fyi :: Base Django settings
 """
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
 import dj_database_url
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
-
-
-# === Settings Out of the Box === #
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 
 # === Application definition === #
@@ -83,8 +78,6 @@ WSGI_APPLICATION = "tobiasfyi.wsgi.application"
 
 
 # === Database === #
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
 DATABASES = {
     "default": {
         "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
@@ -101,8 +94,6 @@ dj_db = dj_database_url.config(default=DATABASE_URL, conn_max_age=500, ssl_requi
 DATABASES["default"].update(dj_db)
 
 # === Password validation === #
-# https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -114,8 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # === Internationalization === #
-# https://docs.djangoproject.com/en/2.2/topics/i18n/
-
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "America/Denver"
 USE_I18N = True
@@ -124,17 +113,10 @@ USE_TZ = True
 
 
 # === Static files (CSS, JavaScript, Images) === #
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
-
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
-
-# ManifestStaticFilesStorage is recommended in production, to prevent outdated
-# Javascript / CSS assets being served from cache (e.g. after a Wagtail upgrade).
-# See https://docs.djangoproject.com/en/2.2/ref/contrib/staticfiles/#manifeststaticfilesstorage
-# STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 
 USE_S3 = os.getenv("USE_S3") == "True"
 
@@ -162,10 +144,9 @@ else:
 
 STATICFILES_DIRS = [os.path.join(PROJECT_DIR, "static")]
 
-# === Wagtail settings === #
 
+# === Wagtail settings === #
 WAGTAIL_SITE_NAME = "tobiasfyi"
 
-# Base URL to use when referring to full URLs within the Wagtail admin backend -
-# e.g. in notification emails. Don't include '/admin' or a trailing slash
+# Base URL to use when referring to full URLs within the Wagtail admin backend
 BASE_URL = "http://tobias.fyi"

@@ -10,7 +10,6 @@ WORKDIR $HOME
 # Set environment varibles
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV DEBUG False
 
 # Create the app user
 RUN addgroup --system wagtail && \
@@ -39,4 +38,5 @@ RUN chown -R wagtail:wagtail $HOME && chmod -R 755 $HOME
 USER wagtail
 
 # Run the gunicorn server
+# Bind to $PORT envirovar used by Heroku
 CMD gunicorn tobiasfyi.wsgi:application --bind 0.0.0.0:$PORT

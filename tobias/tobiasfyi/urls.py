@@ -10,10 +10,12 @@ from search import views as search_views
 
 urlpatterns = [
     # Health check endpoints
-    # url(r"^ht/", include("health_check.urls")),
-    # url(r"^ping/", include("home.urls")),
+    url(r"^ht/", include("health_check.urls")),
+    url(r"^ping/", include("home.urls")),
+    # Admin back ends
     url(r"^django-admin/", admin.site.urls),
     url(r"^mgmt/", include(wagtailadmin_urls)),
+    # Other
     url(r"^documents/", include(wagtaildocs_urls)),
     url(r"^search/$", search_views.search, name="search"),
 ]
@@ -28,11 +30,8 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns = urlpatterns + [
-    # For anything not caught by a more specific rule above, hand over to
-    # Wagtail's page serving mechanism. This should be the last pattern in
-    # the list:
+    # For anything not caught by a more specific rule above,
+    # hand over to Wagtail's page serving mechanism.
+    # This should be the last pattern in the list
     url(r"", include(wagtail_urls)),
-    # Alternatively, if you want Wagtail pages to be served from a subpath
-    # of your site, rather than the site root:
-    #    url(r"^pages/", include(wagtail_urls)),
 ]
