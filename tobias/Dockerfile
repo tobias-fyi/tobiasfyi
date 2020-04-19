@@ -1,18 +1,20 @@
-# ====== # ====== #
-# === BUILDER === #
-# ====== # ====== #
-
-# Use an official Python runtime as a parent image
-FROM python:3.8.0-slim-buster as builder
-
+# Pull base image
+FROM python:3.8.0-slim-buster
 LABEL maintainer="tobyreaper@gmail.com"
 
 # Set the working directory to /usr/src/app/
-WORKDIR /usr/src/app
+ENV HOME=/usr/src/app
+RUN mkdir -p $HOME
+WORKDIR $HOME
 
 # Set environment varibles
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV DEBUG False
+
+# Create the app user
+RUN addgroup --system wagtail && \
+    adduser --system --no-create-home --group wagtail
 
 # Install psycopg2 dependencies
 RUN apt-get update && \
@@ -20,56 +22,21 @@ RUN apt-get update && \
     apt-get clean
 
 # Install Python dependencies
-COPY ./requirements.txt .
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
-
-
-# ====== # ====== #
-# ===  FINAL  === #
-# ====== # ====== #
-
-# Pull base image
-FROM python:3.8.0-slim-buster
-
-# Create directory for app user
-RUN mkdir -p /home/app
-
-# Create the app user
-RUN addgroup --system wagtail && \
-    adduser --system --no-create-home --group wagtail
-
-# Create the appropriate directories
-ENV HOME=/home/app
-ENV APP_HOME=/home/app/web
-RUN mkdir $APP_HOME
-RUN mkdir $APP_HOME/staticfiles
-RUN mkdir $APP_HOME/media
-WORKDIR $APP_HOME
-
-# Install dependencies
-RUN apt-get update && \
-    apt-get upgrade -y gcc libpq-dev && \
-    apt-get clean
-COPY --from=builder /usr/src/app/wheels /wheels
-COPY --from=builder /usr/src/app/requirements.txt .
 RUN pip install --upgrade pip
-RUN pip install --no-cache /wheels/*
-
-# Copy production entrypoint
-COPY ./entrypoint.prod.sh $APP_HOME
+COPY ./requirements.txt $HOME/requirements.txt
+RUN pip install -r requirements.txt
 
 # Copy project
-COPY . $APP_HOME
+COPY . $HOME
+
+# Collect static files
+RUN python manage.py collectstatic --noinput
 
 # chown all the files to the app user
-RUN chown -R wagtail:wagtail $APP_HOME && chmod -R 755 $APP_HOME
+RUN chown -R wagtail:wagtail $HOME && chmod -R 755 $HOME
 
 # Change to the non-root user
 USER wagtail
 
 # Run the gunicorn server
-EXPOSE 8000
-# CMD gunicorn --bind 0.0.0.0:8000 tobiasfyi.wsgi:application
-
-# Run entrypoint script
-ENTRYPOINT ["/home/app/web/entrypoint.prod.sh"]
+CMD gunicorn tobiasfyi.wsgi:application --bind 0.0.0.0:$PORT

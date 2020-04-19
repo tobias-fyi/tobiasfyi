@@ -1,4 +1,8 @@
+__pycache__
+*.pyc
+env/
 dox/
 *.sqlite3
 .vscode/
-media/
+Pipfile
+Pipfile.lock

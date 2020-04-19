@@ -19,6 +19,10 @@ container-transform = "*"
 awscli = "*"
 boto3 = "*"
 django-health-check = "*"
+django-storages = "*"
+whitenoise = "*"
+dj-database-url = "*"
+django-debug-toolbar = "*"
 
 [requires]
 python_version = "3.8"
