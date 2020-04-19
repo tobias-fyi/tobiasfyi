@@ -1,37 +1,42 @@
-# Use an official Python runtime as a parent image
+# Pull base image
 FROM python:3.8.0-slim-buster
 LABEL maintainer="tobyreaper@gmail.com"
 
-# Install dependencies
-RUN apt-get update && \
-    apt-get upgrade -y gcc libpq-dev && \
-    apt-get clean
+# Set the working directory to /usr/src/app/
+ENV HOME=/usr/src/app
+RUN mkdir -p $HOME
+WORKDIR $HOME
 
 # Set environment varibles
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV DEBUG False
 
-# Set the working directory to /usr/src/app/
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+# Create the app user
+RUN addgroup --system wagtail && \
+    adduser --system --no-create-home --group wagtail
 
-# Add user
-RUN addgroup --system wagtail && adduser --system --no-create-home --group wagtail
-RUN chown -R wagtail:wagtail /usr/src/app && chmod -R 755 /usr/src/app
+# Install psycopg2 dependencies
+RUN apt-get update && \
+    apt-get upgrade -y gcc libpq-dev && \
+    apt-get clean
 
-COPY ./requirements.txt /usr/src/app/requirements.txt
+# Install Python dependencies
 RUN pip install --upgrade pip
-# Install any needed packages specified in requirements.txt
-RUN pip install -r /usr/src/app/requirements.txt
+COPY ./requirements.txt $HOME/requirements.txt
+RUN pip install -r requirements.txt
 
-# Switch to non-root user
+# Copy project
+COPY . $HOME
+
+# Collect static files
+RUN python manage.py collectstatic --noinput
+
+# chown all the files to the app user
+RUN chown -R wagtail:wagtail $HOME && chmod -R 755 $HOME
+
+# Change to the non-root user
 USER wagtail
 
-# Copy entrypoint.sh
-COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
-
-# Copy the current directory contents into the container at /usr/src/app/
-COPY . /usr/src/app/
-
-# Run entrypoint.sh
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+# Run the gunicorn server
+CMD gunicorn tobiasfyi.wsgi:application --bind 0.0.0.0:$PORT
