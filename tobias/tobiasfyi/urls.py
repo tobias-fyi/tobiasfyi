@@ -10,8 +10,8 @@ from search import views as search_views
 
 urlpatterns = [
     # Health check endpoints
-    url(r"^ht/", include("health_check.urls")),
-    url(r"^ping/", include("home.urls")),
+    url(r"^ht", include("health_check.urls")),
+    url(r"^ping", include("home.urls")),
     # Admin back ends
     url(r"^django-admin/", admin.site.urls),
     url(r"^mgmt/", include(wagtailadmin_urls)),

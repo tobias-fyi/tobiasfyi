@@ -2,9 +2,7 @@ version: "3.7"
 
 services:
   web:
-    build:
-      context: ./tobias
-      dockerfile: Dockerfile
+    image: 895184738619.dkr.ecr.us-east-2.amazonaws.com/tobiasfyi-web:prod
     command: gunicorn tobiasfyi.wsgi:application --bind 0.0.0.0:8000 --workers 3
     volumes:
       - static_volume:/home/app/web/static
@@ -12,35 +10,17 @@ services:
     expose:
       - 8000
     env_file: .env
-    depends_on:
-      - db
-    networks:
-      - backend_net
-
-  db:
-    image: postgres:12.0-alpine
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    env_file: .env.db.dev
-    networks:
-      - backend_net
 
   nginx:
-    build: ./nginx
+    image: 895184738619.dkr.ecr.us-east-2.amazonaws.com/tobiasfyi-nginx:prod
     volumes:
       - static_volume:/home/app/web/static
       - media_volume:/home/app/web/media
     ports:
-      - 1337:80
+      - 8080:80
     depends_on:
       - web
-    networks:
-      - backend_net
 
 volumes:
-  postgres_data:
   static_volume:
   media_volume:
-
-networks:
-  backend_net:
