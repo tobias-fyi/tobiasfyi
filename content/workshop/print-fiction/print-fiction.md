@@ -38,6 +38,15 @@ print(fiction)
 * Feature engineering
 * Decision trees
 
+> Potential related blog posts
+
+* Scrape book dataset from GoodReads using Scrapy
+* Data cleaning and preparation using Pandas
+* Train a random forest model using scikit-learn
+* Train gradient-boosted ensemble models with XGBoost
+* Deploy a predictive model using Plotly Dash
+* The bias-variance tradeoff
+
 ### Overview
 
 print(fiction) is a project I built with Plotly Dash and deployed to Heroku. I used
@@ -110,6 +119,21 @@ Here are the ones I engineered:
 * Author number of names
 * Author uses middle initial
 * Ratio between 1 - 5 stars
+
+Out of those new features, all but two had a positive permutation importance and were
+thus used in the training of the model.
+
+## The Model
+
+Before I came to the idea of using fiction / nonfiction as my target for this project,
+I'd been playing around with predicting the average rating for the book.
+
+At first things were looking good, as even with a simple linear regression I was
+getting fairly high R^2 score. It was when I ran a gradient-boosted regression that I
+began to get really suspicious of the results, as my R^2 was above 0.95.
+
+That score led me to believe that there was some leakage between the target and the
+features. 
 
 
 
