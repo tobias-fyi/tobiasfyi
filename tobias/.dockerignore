@@ -1,8 +1,7 @@
 __pycache__
 *.pyc
-env/
 dox/
-certs/
+cert/
 *.sqlite3
 .vscode/
 Pipfile

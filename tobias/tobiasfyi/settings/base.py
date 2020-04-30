@@ -166,4 +166,4 @@ STATICFILES_DIRS = [os.path.join(PROJECT_DIR, "static")]
 WAGTAIL_SITE_NAME = "tobiasfyi"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend
-BASE_URL = "http://tobias.fyi"
+BASE_URL = os.environ.get("WAGTAIL_BASE_URL", "http://tobias.fyi")

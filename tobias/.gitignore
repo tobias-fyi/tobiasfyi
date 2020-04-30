@@ -3,6 +3,7 @@ media/
 dox/
 Pipfile
 Pipfile.lock
+certs/
 
 # === AWS === #
 .ebextensions/
