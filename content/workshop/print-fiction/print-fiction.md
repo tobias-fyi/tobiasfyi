@@ -37,6 +37,8 @@ print(fiction)
 * Predictive modeling
 * Feature engineering
 * Decision trees
+* Random Forest
+* Gradient-boosting
 
 > Potential related blog posts
 
@@ -47,11 +49,64 @@ print(fiction)
 * Deploy a predictive model using Plotly Dash
 * The bias-variance tradeoff
 
-### Overview
+## TLDR
 
-print(fiction) is a project I built with Plotly Dash and deployed to Heroku. I used
-Scrapy to scrape the metadata for over 20,000 books from GoodReads, Pandas to manage and
-clean it up, then scikit-learn and XGBoost to train a predictive model with it.
+print(fiction) is a solo project I worked on to explore the data on and around
+fictional stories.
+
+I used Scrapy to scrape metadata for over 20,000 books from GoodReads and used it to
+train a gradient-boosted random forest classifier. The final version of the model
+classified books as either fiction or nonfiction with 88% accuracy.
+
+The dataset is available below:
+
+There is a web app front end that combines an article and a dashboard that can be used to
+play around with the model parameters. I built the front end with Plotly Dash and
+deployed it to Heroku.
+
+[LinkBlock]
+
+## Intro
+
+This project is part of an on-going series of exploratory articles and projects called
+Sci-Fi IRL through which I am exploring the relationship between science-fiction and the
+real world. It is my belief that the stories we read, write, and believe in,
+particularly about our future, have an effect on how that future ultimately turns out.
+
+Our human minds are geared toward thinking about what could go wrong. It follows that
+the majority of stories in popular and niche culture are written about things going
+wrong.
+
+In the case of science-fiction, the vast majority of stories written and consumed are
+dystopian in nature, showing what could go wrong if our technology advances down certain
+avenues. Both from the creator's and consumer's perspectives, it "tells a good story" to
+imagine what could go wrong.
+
+But does this affect our outlook on what these technologies can do for us?
+
+While it is always good to consider the possible ramifications of technological
+advances, I believe that too many dystopian stories are causing us to fall short of our
+potential. If instead of dystopian the majority of science-fiction was utopian in
+nature, exploring the possible ways that things could go _right_ for us—the ways that
+technology can lead to an overall better society—it would, in a very real sense, point
+us a little bit more in that direction.
+
+If that's a bit too lofty for you, another way to think about this is to imagine what
+your life could be like 100 years from now (i.e. if you'd been born 60 years from now).
+Depending on how things go, you could be poisoned with radiation, recovering from
+nuclear holocaust. Or, you could be out exploring the stars with a lifespan in the
+centuries.
+
+This is the area I'm exploring with this series. I want to find the data and conduct the
+analyses that begins to show us how our collective narrative (aliased by popular
+science-fiction) can bring about changes in our technological progress.
+
+[How after I came to the target, everything else fell into place]
+
+### Data
+
+I knew before starting the project that I wanted to do something with books. I also knew
+that I wanted to gather my own dataset by scraping some sort of data from the web.
 
 After some failed attempts at coming up with something interesting, such as predicting
 the average rating, I found the following question to explore: given all the metadata
@@ -123,7 +178,13 @@ Here are the ones I engineered:
 Out of those new features, all but two had a positive permutation importance and were
 thus used in the training of the model.
 
+### Exploratory Data Analysis
+
+[More plots and such here]
+
 ## The Model
+
+[Maybe don't talk about switching targets?]
 
 Before I came to the idea of using fiction / nonfiction as my target for this project,
 I'd been playing around with predicting the average rating for the book.
@@ -135,6 +196,16 @@ began to get really suspicious of the results, as my R^2 was above 0.95.
 That score led me to believe that there was some leakage between the target and the
 features. 
 
+In hindsight it was obvious which features were leaky, but the process of uncovering it
+led me back down the path of thinking I could do better; I could set the problem up in a
+way that was more interesting.
+
+
+
+The purpose of creating the dataset was to build a predictive model that would hopefully
+help answer an interesting question. Throughout the course of the project, I trained a
+series of random forest classifiers with Scikit-learn, ultimately getting the best
+performance from a gradient-boosted random forest, built and trained using XGBoost. 
 
 
 

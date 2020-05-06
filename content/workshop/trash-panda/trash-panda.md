@@ -179,19 +179,54 @@ post on the topic.
 [LinkBlock]
 [Automated BG Removal With Python, OpenCV, and Mask R-CNN]()
 
+I tested out a few different methods of image background removal, or foreground
+extraction, depending on how you look at it. I ended up building a short image
+processing pipeline that utilized a pre-trained image segmentation model (similar to
+object detection) to find the object(s) in the image.
 
+Part of the output of the image segmentation model is a series of coordinates that
+describe an outline of the object(s) in the image. I then used that as a binary mask to
+define the area of the image that should be kept, making the rest of it transparent.
 
+Unfortunately, I did not have much time to spend on improving the performance of the
+image segmentation model, and as a result there was still a fair amount of manual
+labeling to be done after the pipeline. For example, I could have trained the image
+segmentation model using around 50 images of each class. This would've made the output
+mask much more accurate and reduced the time spent fixing the labels afterwards.
 
+As it was, using only the pretrained weights, there were some object classes that it
+performed very well on, while for others it did not.
 
+### Running the Pipeline
 
+As with building the pipeline, we split up the classes evenly amongst the four of us and
+got to work gathering and labeling the images.
 
+[Talk a bit about the challenges faced during this part?]
 
+## The Model
 
+### Architecture
 
+The neural network architecture we used to train the main object detection system used
+in the app (and still is being used, in case you want to try it out) is called YOLOv3:
+You Only Look Once, version 3.
 
+YOLOv3 is a state-of-the-art, real-time, single-shot object detection system.
 
+[Use some verbiage from Shark Tank demo?]
 
+### Training
 
+The model was trained on a XXX sagemaker instance over the course of roughly 60 hours.
+
+[Talk about accuracy and other metrics]
+
+### Deployment
+
+The trained model was deployed as a Flask API to AWS Elastic Beanstalk. Once a user
+takes a photo in the app, it is sent to the detection API. The trained model runs
+inference on the image, and sends back the class of item with the highest probability.
 
 
 
