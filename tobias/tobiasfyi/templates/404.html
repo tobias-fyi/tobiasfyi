@@ -1,9 +1,17 @@
 {% extends "base.html" %}
 
+{% load static wagtailcore_tags %}
+
 {% block body_class %}template-404{% endblock %}
 
-{% block content %}
-    <h1>Page not found</h1>
+{% block pagetitle %}
+<div class="page-title">
+    <h1>404: Page not found</h1>
+</div>
+{% endblock pagetitle %}
 
-    <h2>Sorry, this page could not be found.</h2>
+{% block content %}
+<article class="page-content">
+  <h2>Sorry, this page could not be found.</h2>
+</article>
 {% endblock %}
