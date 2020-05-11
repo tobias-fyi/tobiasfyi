@@ -152,10 +152,9 @@ if USE_S3:  # AWS settings
 else:
     STATIC_URL = "/static/"
     STATIC_ROOT = os.path.join(BASE_DIR, "static")
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-    # STATICFILES_STORAGE = (
-    #     "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-    # )
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+    # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    # STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
     MEDIA_URL = "/media/"
     MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
