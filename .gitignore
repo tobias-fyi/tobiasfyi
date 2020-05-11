@@ -4,6 +4,7 @@ dox/
 Pipfile
 Pipfile.lock
 env/
+certs/
 
 # === AWS === #
 .ebextensions/

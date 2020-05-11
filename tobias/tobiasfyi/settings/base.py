@@ -78,16 +78,30 @@ WSGI_APPLICATION = "tobiasfyi.wsgi.application"
 
 
 # === Database === #
-DATABASES = {
-    "default": {
-        "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
-        "NAME": os.environ.get("SQL_DATABASE", os.path.join(BASE_DIR, "db.sqlite3")),
-        "USER": os.environ.get("SQL_USER", "postgres"),
-        "PASSWORD": os.environ.get("SQL_PASSWORD", "postgres"),
-        "HOST": os.environ.get("SQL_HOST", "localhost"),
-        "PORT": os.environ.get("SQL_PORT", "5432"),
+if "RDS_HOSTNAME" in os.environ:
+    DATABASES = {
+        "default": {
+            "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
+            "NAME": os.environ.get("RDS_DB_NAME", os.path.join(BASE_DIR, "db.sqlite3")),
+            "USER": os.environ.get("RDS_USERNAME", "postgres"),
+            "PASSWORD": os.environ.get("RDS_PASSWORD", "postgres"),
+            "HOST": os.environ.get("RDS_HOSTNAME", "localhost"),
+            "PORT": os.environ.get("RDS_PORT", "5432"),
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
+            "NAME": os.environ.get(
+                "SQL_DATABASE", os.path.join(BASE_DIR, "db.sqlite3")
+            ),
+            "USER": os.environ.get("SQL_USER", "postgres"),
+            "PASSWORD": os.environ.get("SQL_PASSWORD", "postgres"),
+            "HOST": os.environ.get("SQL_HOST", "localhost"),
+            "PORT": os.environ.get("SQL_PORT", "5432"),
+        }
+    }
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
 dj_db = dj_database_url.config(default=DATABASE_URL, conn_max_age=500, ssl_require=True)
@@ -138,7 +152,9 @@ if USE_S3:  # AWS settings
 else:
     STATIC_URL = "/static/"
     STATIC_ROOT = os.path.join(BASE_DIR, "static")
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+    # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    # STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
     MEDIA_URL = "/media/"
     MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
@@ -149,4 +165,4 @@ STATICFILES_DIRS = [os.path.join(PROJECT_DIR, "static")]
 WAGTAIL_SITE_NAME = "tobiasfyi"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend
-BASE_URL = "http://tobias.fyi"
+BASE_URL = os.environ.get("WAGTAIL_BASE_URL", "http://tobias.fyi")
