@@ -56,13 +56,14 @@ fictional stories.
 
 I used Scrapy to scrape metadata for over 20,000 books from GoodReads and used it to
 train a gradient-boosted random forest classifier. The final version of the model
-classified books as either fiction or nonfiction with 88% accuracy.
+classified books as either fiction or nonfiction with [88%](to verify) accuracy.
 
-The dataset is available below:
+I built an interactive dashboard using Plotly Dash that can be used to tinker with the
+model parameters and view the resulting prediction in real time.
 
-There is a web app front end that combines an article and a dashboard that can be used to
-play around with the model parameters. I built the front end with Plotly Dash and
-deployed it to Heroku.
+The dataset is freely available for download from GitHub or Kaggle.
+
+TODO: upload to kaggle.
 
 [LinkBlock]
 
@@ -114,6 +115,9 @@ about a book, is it possible to predict if it is fiction or non-fiction?
 
 The metadata I gathered from GoodReads included:
 
+* title
+* genre
+* author
 * num_reviews: number of text reviews
 * avg_rating : average rating (1 - 5 stars)
 * num_pages  : number of pages in book
@@ -178,14 +182,19 @@ Here are the ones I engineered:
 Out of those new features, all but two had a positive permutation importance and were
 thus used in the training of the model.
 
+[Talk about permutation importance in modeling section]
+
 ### Exploratory Data Analysis
+
+* Distributions
+* Data types
+* Leaky features / target
 
 [More plots and such here]
 
 ## The Model
 
-[Maybe don't talk about switching targets?]
-
+As I discussed above, ...
 Before I came to the idea of using fiction / nonfiction as my target for this project,
 I'd been playing around with predicting the average rating for the book.
 

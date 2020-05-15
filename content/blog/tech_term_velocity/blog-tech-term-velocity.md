@@ -167,7 +167,7 @@ However, I do find the below graph of r/philosophy to be interesting. First of a
 
 ### Term Velocity: AI
 
-r/philosophy is also showing up strong for "AI". And as I'd expect, the discussions look to have been heating up over the last few years as the general public becomes more knowledgable about the ways that big tech is using AI to their advantage, sometimes with questionabble ethics.
+r/philosophy is also showing up strong for "AI". And as I'd expect, the discussions look to have been heating up over the last few years as the general public becomes more knowledgeable about the ways that big tech is using AI to their advantage, sometimes with questionable ethics.
 
 !["AI" in r/philosophy]({static}/images/ai-philosophy.png)
 
@@ -202,3 +202,4 @@ That spike is also visible in r/worldnews and (somewhat interestingly) r/scifi. 
 As I stated above, the visualizations of the data do not seem to indicate any sort of time-based relationship in the velocity of technical terminology between different subreddits. There are individual examples where one could make an argument for my hypothesis, but it would be a stretch to say the evidence is significant.
 
 However, it is interesting to look at how different online communities have used different terms over time and the tools I built for myself to gather and display this data were a blast to work on. For that reason (and because I believe there are real, interesting relationships somewhere along this line of inquiry), I may decide to refine my data gathering and analysis process with this data set in order to uncover other relationships.
+
