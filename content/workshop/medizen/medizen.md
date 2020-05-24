@@ -60,15 +60,29 @@ similar characteristics to the input. In order to convert the input, which was t
 into something that could be understood by the model, we used one of the vectorizers
 built into scikit-learn: TFIDFVectorizer.
 
-[Use the text I wrote in the notebooks]
+The TF-IDF Vectorizer is trained on a corpus of text to find the unique characteristics
+of the input text. [link to vectorizers blog post]
 
-[Also look at my presentation notebook for more inspiration]
+[needs rewrite]
+Once the text is vectorized, a Nearest Neighbors model was trained on the corpus. This
+calculates distances between data points / observations. This becomes the basis for a
+recommendation system by allowing a vectorized input to be processed, the nearest
+neighbors to that input returned as the most similar to the input.
 
+[link to nearest neighbors blog post]
 
+[look at my presentation notebook for more inspiration]
 
+## Deployment
 
+The recommendation API was built using Flask and deployed to Heroku. Both the vectorizer
+(the "dictionary") and the nearest neighbors model were serialized in order to be used
+in the Flask API.
 
-
+The API took in a long string of all of the characteristics, which was run through the
+serialized vectorizer to turn that string into a vector. Once in the vector, it could
+easily be compared to the dataset. The nearest neighbor model returned the k-nearest
+neighbors to the input vector.
 
 
 
