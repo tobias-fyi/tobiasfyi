@@ -228,7 +228,13 @@ The trained model was deployed as a Flask API to AWS Elastic Beanstalk. Once a u
 takes a photo in the app, it is sent to the detection API. The trained model runs
 inference on the image, and sends back the class of item with the highest probability.
 
+## Post-Mortem
 
+### Improvements
+
+* Could have used image classification instead of object detection
+  * Easier to get and label much more data
+  * Could've used more training images/classes
 
 
 
