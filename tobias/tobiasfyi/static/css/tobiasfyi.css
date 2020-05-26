@@ -409,6 +409,15 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
   margin-bottom: 0.5rem;
 }
 
+.page-content .article-text ul {
+  list-style: disc outside none;
+  margin-bottom: 0.5rem;
+}
+
+.page-content .article-text ol {
+  margin-bottom: 0.5rem;
+}
+
 .page-content .article-text .quote-block {
   padding: 1rem;
   margin: 0.5rem 0;
@@ -621,6 +630,7 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
   -ms-flex-line-pack: center;
       align-content: center;
   padding: 0 1rem;
+  margin-bottom: 0.5rem;
   border-bottom: 2px solid #7D3545;
 }
 

@@ -129,6 +129,15 @@
       margin-bottom: 0.5rem;
     }
 
+    ul {
+      list-style: disc outside none;
+      margin-bottom: 0.5rem;
+    }
+
+    ol {
+      margin-bottom: 0.5rem;
+    }
+
     .quote-block {
       padding: 1rem;
       margin: 0.5rem 0;
@@ -304,6 +313,7 @@
   align-items: center;
   align-content: center;
   padding: 0 1rem;
+  margin-bottom: 0.5rem;
   border-bottom: 2px solid $maroon;
 
   a {
