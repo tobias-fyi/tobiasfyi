@@ -28,12 +28,6 @@
 * Recommendation system + API
 * Natural Language Processing
 
-> Related blog posts
-
-* Build and deploy a recommendation API with Flask
-* Basic Vectorization Methods
-* Training a recommendation model with K-Nearest Neighbors
-
 ### Summary
 
 MediZen is an app for cannabis patients to get strain recommendations based on their
@@ -53,9 +47,6 @@ k-nearest neighbor model. Both of these were built and trained using Scikit-lear
 
 The dataset that was used to train the model and vectorizer can be found on Kaggle:
 [Cannabis Strains](https://www.kaggle.com/kingburrito666/cannabis-strains).
-
-The cannabis strains dataset that we used was not a particularly large dataset, but
-suitable enough for our purposes.
 
 ## Build
 
