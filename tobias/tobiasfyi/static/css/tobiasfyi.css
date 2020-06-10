@@ -403,6 +403,7 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  padding-top: 0.5rem;
 }
 
 .page-content .article-text p {
@@ -412,10 +413,23 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
 .page-content .article-text ul {
   list-style: disc outside none;
   margin-bottom: 0.5rem;
+  margin-left: 1rem;
+}
+
+.page-content .article-text ul ul {
+  list-style: circle outside none;
+  margin-bottom: 0;
+  margin-left: 1.5rem;
 }
 
 .page-content .article-text ol {
   margin-bottom: 0.5rem;
+  margin-left: 1rem;
+}
+
+.page-content .article-text ol ol {
+  margin-bottom: 0;
+  margin-left: 1.5rem;
 }
 
 .page-content .article-text .quote-block {

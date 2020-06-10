@@ -124,6 +124,7 @@
   .article-text {
     display: flex;
     flex-direction: column;
+    padding-top: 0.5rem;
 
     p {
       margin-bottom: 0.5rem;
@@ -132,10 +133,21 @@
     ul {
       list-style: disc outside none;
       margin-bottom: 0.5rem;
+      margin-left: 1rem;
+      ul {
+        list-style: circle outside none;
+        margin-bottom: 0;
+        margin-left: 1.5rem;
+      }
     }
 
     ol {
       margin-bottom: 0.5rem;
+      margin-left: 1rem;
+      ol {
+        margin-bottom: 0;
+        margin-left: 1.5rem;
+      }
     }
 
     .quote-block {
