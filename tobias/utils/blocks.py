@@ -54,7 +54,7 @@ class FeaturedSectionBlock(blocks.StructBlock):
 class CodeBlock(blocks.StructBlock):
     """Block of text to be rendered and highlighted as code."""
 
-    title = blocks.CharBlock(required=False, help_text="Name of code block.")
+    title = blocks.CharBlock(required=True, help_text="Name of code block.")
     code = blocks.TextBlock(required=True, help_text="Text to be rendered as code.")
     language = blocks.CharBlock(required=True, help_text="Programming language.")
     caption = blocks.RichTextBlock(
@@ -87,11 +87,9 @@ class PlotBlock(blocks.StructBlock):
 class ImageBlock(blocks.StructBlock):
     """Base class for images and static plots."""
 
-    title = blocks.CharBlock(max_length=42, required=False, help_text="Short title.")
-    caption = blocks.CharBlock(
-        max_length=240, required=True, help_text="Short summary."
-    )
-    description = blocks.RichTextBlock(required=False, help_text="Long description.")
+    title = blocks.CharBlock(max_length=42, required=True)
+    caption = blocks.CharBlock(max_length=240, required=True)
+    description = blocks.RichTextBlock(required=False)
     image = ImageChooserBlock()
 
     class Meta:

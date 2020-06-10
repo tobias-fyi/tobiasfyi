@@ -47,10 +47,14 @@
 <article class="page-content">
 	<div class="article-text">
 		{% for block in page.body %}
-			{% if block.block_type == "paragraph" %}
+			{% if block.block_type == "richtext" %}
 				<p>{{ block.value|richtext }}</p>
 			{% elif block.block_type == "blockquote" %}
 				<div class="quote-block">
+					<blockquote>{{ block.value }}</blockquote>
+				</div>
+			{% elif block.block_type == "blockquote_small" %}
+				<div class="small-quote-block">
 					<blockquote>{{ block.value }}</blockquote>
 				</div>
 			{% else %}

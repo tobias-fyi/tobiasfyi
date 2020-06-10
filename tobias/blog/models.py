@@ -162,6 +162,7 @@ class BlogPage(Page):
             ("button", ButtonBlock()),
             ("plot", PlotBlock()),
             ("blockquote", blocks.BlockQuoteBlock()),
+            ("blockquote_small", blocks.BlockQuoteBlock()),
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
             ("image", ImageChooserBlock()),
