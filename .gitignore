@@ -4,7 +4,7 @@ dox/
 Pipfile
 Pipfile.lock
 env/
-certs/
+backup_volumes/
 
 # === AWS === #
 .ebextensions/
