@@ -54,12 +54,9 @@ class FeaturedSectionBlock(blocks.StructBlock):
 class CodeBlock(blocks.StructBlock):
     """Block of text to be rendered and highlighted as code."""
 
-    title = blocks.CharBlock(required=True, help_text="Name of code block.")
-    code = blocks.TextBlock(required=True, help_text="Text to be rendered as code.")
-    language = blocks.CharBlock(required=True, help_text="Programming language.")
-    caption = blocks.RichTextBlock(
-        required=False, help_text="Brief description of code snippet."
-    )
+    language = blocks.CharBlock(required=False)
+    caption = blocks.RichTextBlock(required=False)
+    code = blocks.TextBlock(required=True)
 
     class Meta:
         template = "utils/code_block.html"
@@ -70,13 +67,10 @@ class CodeBlock(blocks.StructBlock):
 class PlotBlock(blocks.StructBlock):
     """Base class for interactive plots."""
 
-    title = blocks.CharBlock(max_length=42, required=True, help_text="Short title.")
-    caption = blocks.CharBlock(
-        max_length=240, required=True, help_text="Short summary."
-    )
-    description = blocks.RichTextBlock(required=False, help_text="Long description.")
+    caption = blocks.CharBlock(max_length=240, required=False)
+    description = blocks.RichTextBlock(required=False)
     # TODO: research best practices for integrating Plotly
-    plot = blocks.RawHTMLBlock(required=True, help_text="HTML code to generate plot.")
+    plot = blocks.RawHTMLBlock(required=True, help_text="HTML to generate plot.")
 
     class Meta:
         template = "utils/plot_block.html"
@@ -87,9 +81,7 @@ class PlotBlock(blocks.StructBlock):
 class ImageBlock(blocks.StructBlock):
     """Base class for images and static plots."""
 
-    title = blocks.CharBlock(max_length=42, required=True)
     caption = blocks.CharBlock(max_length=240, required=True)
-    description = blocks.RichTextBlock(required=False)
     image = ImageChooserBlock()
 
     class Meta:

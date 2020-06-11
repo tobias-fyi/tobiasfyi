@@ -133,20 +133,20 @@
     ul {
       list-style: disc outside none;
       margin-bottom: 0.5rem;
-      margin-left: 1rem;
+      margin-left: 2rem;
       ul {
         list-style: circle outside none;
         margin-bottom: 0;
-        margin-left: 1.5rem;
+        margin-left: 1rem;
       }
     }
 
     ol {
       margin-bottom: 0.5rem;
-      margin-left: 1rem;
+      margin-left: 2rem;
       ol {
         margin-bottom: 0;
-        margin-left: 1.5rem;
+        margin-left: 1rem;
       }
     }
 
@@ -268,16 +268,14 @@
   max-width: $text-width;
   margin: 0.5rem 0;
   padding: 0;
-  .snippet-title {
-    padding: 0.8rem 0.7rem;
-    margin-left: 1.6rem;
-    margin-bottom: 0;
-    // border-left: 2px solid $maroon;
+  .snippet-caption {
+    padding: 0.5rem 0.7rem;
+    font-style: italic;
+    text-align: center;
   }
   // Code area
   .code-block-code {
     code {
-      // padding-top: 0;
       margin-top: 0;
     }
   }
@@ -310,8 +308,9 @@
     }
   }
 
-  p {
+  figcaption {
     margin-top: 0;
+    font-style: italic;
   }
 }
 

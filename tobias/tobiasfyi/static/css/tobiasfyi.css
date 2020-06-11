@@ -413,23 +413,23 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
 .page-content .article-text ul {
   list-style: disc outside none;
   margin-bottom: 0.5rem;
-  margin-left: 1rem;
+  margin-left: 2rem;
 }
 
 .page-content .article-text ul ul {
   list-style: circle outside none;
   margin-bottom: 0;
-  margin-left: 1.5rem;
+  margin-left: 1rem;
 }
 
 .page-content .article-text ol {
   margin-bottom: 0.5rem;
-  margin-left: 1rem;
+  margin-left: 2rem;
 }
 
 .page-content .article-text ol ol {
   margin-bottom: 0;
-  margin-left: 1.5rem;
+  margin-left: 1rem;
 }
 
 .page-content .article-text .quote-block {
@@ -575,10 +575,10 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
   padding: 0;
 }
 
-.code-block-figure .snippet-title {
-  padding: 0.8rem 0.7rem;
-  margin-left: 1.6rem;
-  margin-bottom: 0;
+.code-block-figure .snippet-caption {
+  padding: 0.5rem 0.7rem;
+  font-style: italic;
+  text-align: center;
 }
 
 .code-block-figure .code-block-code code {
@@ -620,8 +620,9 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
   height: auto;
 }
 
-.image-block p {
+.image-block figcaption {
   margin-top: 0;
+  font-style: italic;
 }
 
 .link-block {
