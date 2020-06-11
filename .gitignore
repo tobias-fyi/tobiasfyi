@@ -5,6 +5,10 @@ Pipfile
 Pipfile.lock
 env/
 backup_volumes/
+volumes/
+
+# Local / test database data
+db_data/
 
 # === AWS === #
 .ebextensions/
