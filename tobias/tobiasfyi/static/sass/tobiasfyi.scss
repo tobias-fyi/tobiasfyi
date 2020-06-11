@@ -171,6 +171,25 @@
         font-size: 16px;
       }
     }
+
+    .table-block, .dataframe {
+      table {
+        table-layout: fixed;
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+        th, td {
+          border: 1px solid $dark;
+          padding: 0.1rem;
+        }
+        caption {
+          padding: 0.2rem;
+          font-style: italic;
+          caption-side: bottom;
+          text-align: center;
+        }
+      }
+    }
   }
   
   .article-footer {

@@ -454,6 +454,25 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
   font-size: 16px;
 }
 
+.page-content .article-text .table-block table, .page-content .article-text .dataframe table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.page-content .article-text .table-block table th, .page-content .article-text .table-block table td, .page-content .article-text .dataframe table th, .page-content .article-text .dataframe table td {
+  border: 1px solid #131313;
+  padding: 0.1rem;
+}
+
+.page-content .article-text .table-block table caption, .page-content .article-text .dataframe table caption {
+  padding: 0.2rem;
+  font-style: italic;
+  caption-side: bottom;
+  text-align: center;
+}
+
 .page-content .article-footer {
   display: -webkit-box;
   display: -ms-flexbox;

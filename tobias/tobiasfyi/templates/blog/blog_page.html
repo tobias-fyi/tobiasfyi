@@ -57,6 +57,10 @@
 				<div class="small-quote-block">
 					<blockquote>{{ block.value }}</blockquote>
 				</div>
+			{% elif block.block_type == "table" %}
+				<div class="table-block">{% include_block block %}</div>
+			{% elif block.block_type == "dataframe" %}
+				<div class="dataframe">{{ block.value }}</div>
 			{% else %}
 				{% include_block block %}
 			{% endif %}
