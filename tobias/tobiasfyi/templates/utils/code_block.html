@@ -1,9 +1,8 @@
 {% load static wagtailcore_tags %}
 
 <figure class="code-block-figure">
-  <pre class="snippet-title">{{ self.title }}</pre>
   <pre class="code-block-code"><code class="{{ self.language }}">{{ self.code }}</code></pre>
-  {% comment %} {% if self.caption %}
-    <figcaption><small>{{ self.caption }}</small></figcaption>
-  {% endif %} {% endcomment %}
+  <figcaption class="snippet-caption">
+    {{ self.caption }}
+  </figcaption>
 </figure>

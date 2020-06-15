@@ -15,6 +15,7 @@ from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core import blocks
+from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.admin.edit_handlers import (
     FieldPanel,
     InlinePanel,
@@ -161,7 +162,10 @@ class BlogPage(Page):
             ("internal_link_block", InternalLinkBlock()),
             ("button", ButtonBlock()),
             ("plot", PlotBlock()),
+            ("table", TableBlock()),
+            ("dataframe", blocks.RawHTMLBlock()),
             ("blockquote", blocks.BlockQuoteBlock()),
+            ("blockquote_small", blocks.BlockQuoteBlock()),
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
             ("image", ImageChooserBlock()),

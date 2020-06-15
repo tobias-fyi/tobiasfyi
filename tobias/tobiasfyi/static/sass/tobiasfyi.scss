@@ -124,9 +124,30 @@
   .article-text {
     display: flex;
     flex-direction: column;
+    padding-top: 0.5rem;
 
     p {
       margin-bottom: 0.5rem;
+    }
+
+    ul {
+      list-style: disc outside none;
+      margin-bottom: 0.5rem;
+      margin-left: 2rem;
+      ul {
+        list-style: circle outside none;
+        margin-bottom: 0;
+        margin-left: 1rem;
+      }
+    }
+
+    ol {
+      margin-bottom: 0.5rem;
+      margin-left: 2rem;
+      ol {
+        margin-bottom: 0;
+        margin-left: 1rem;
+      }
     }
 
     .quote-block {
@@ -137,6 +158,36 @@
       blockquote {
         font-style: italic;
         font-size: 24px;
+      }
+    }
+
+    .small-quote-block {
+      padding: 1rem;
+      margin: 0.5rem 0;
+      border-left: 2px solid $maroon;
+
+      blockquote {
+        font-style: italic;
+        font-size: 16px;
+      }
+    }
+
+    .table-block, .dataframe {
+      table {
+        table-layout: fixed;
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+        th, td {
+          border: 1px solid $dark;
+          padding: 0.1rem;
+        }
+        caption {
+          padding: 0.2rem;
+          font-style: italic;
+          caption-side: bottom;
+          text-align: center;
+        }
       }
     }
   }
@@ -198,7 +249,10 @@
   margin-top: 1rem;
 
   ul.contact-icons {
+    list-style: none;
     display: flex;
+    margin-bottom: 0;
+    margin-left: 0;
     li {
       padding: 1rem;
       
@@ -217,16 +271,14 @@
   max-width: $text-width;
   margin: 0.5rem 0;
   padding: 0;
-  .snippet-title {
-    padding: 0.8rem 0.7rem;
-    margin-left: 1.6rem;
-    margin-bottom: 0;
-    // border-left: 2px solid $maroon;
+  .snippet-caption {
+    padding: 0.5rem 0.7rem;
+    font-style: italic;
+    text-align: center;
   }
   // Code area
   .code-block-code {
     code {
-      // padding-top: 0;
       margin-top: 0;
     }
   }
@@ -259,8 +311,9 @@
     }
   }
 
-  p {
+  figcaption {
     margin-top: 0;
+    font-style: italic;
   }
 }
 
@@ -304,6 +357,7 @@
   align-items: center;
   align-content: center;
   padding: 0 1rem;
+  margin-bottom: 0.5rem;
   border-bottom: 2px solid $maroon;
 
   a {
@@ -648,7 +702,7 @@
     // Main article text
     .article-text {
       width: 100%;
-      padding: 0 1rem;
+      padding: 0.5rem 1rem;
       display: flex;
       flex-direction: column;
 

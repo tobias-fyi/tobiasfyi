@@ -4,7 +4,11 @@ dox/
 Pipfile
 Pipfile.lock
 env/
-certs/
+backup_volumes/
+volumes/
+
+# Local / test database data
+db_data/
 
 # === AWS === #
 .ebextensions/
@@ -200,7 +204,7 @@ dmypy.json
 .venv/
 
 ### VisualStudioCode ###
-.vscode/*
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
