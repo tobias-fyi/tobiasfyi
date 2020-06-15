@@ -6,3 +6,5 @@ cert/
 .vscode/
 Pipfile
 Pipfile.lock
+volumes/
+backup_volumes/

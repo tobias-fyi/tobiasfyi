@@ -403,10 +403,33 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  padding-top: 0.5rem;
 }
 
 .page-content .article-text p {
   margin-bottom: 0.5rem;
+}
+
+.page-content .article-text ul {
+  list-style: disc outside none;
+  margin-bottom: 0.5rem;
+  margin-left: 2rem;
+}
+
+.page-content .article-text ul ul {
+  list-style: circle outside none;
+  margin-bottom: 0;
+  margin-left: 1rem;
+}
+
+.page-content .article-text ol {
+  margin-bottom: 0.5rem;
+  margin-left: 2rem;
+}
+
+.page-content .article-text ol ol {
+  margin-bottom: 0;
+  margin-left: 1rem;
 }
 
 .page-content .article-text .quote-block {
@@ -418,6 +441,36 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
 .page-content .article-text .quote-block blockquote {
   font-style: italic;
   font-size: 24px;
+}
+
+.page-content .article-text .small-quote-block {
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-left: 2px solid #7D3545;
+}
+
+.page-content .article-text .small-quote-block blockquote {
+  font-style: italic;
+  font-size: 16px;
+}
+
+.page-content .article-text .table-block table, .page-content .article-text .dataframe table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.page-content .article-text .table-block table th, .page-content .article-text .table-block table td, .page-content .article-text .dataframe table th, .page-content .article-text .dataframe table td {
+  border: 1px solid #131313;
+  padding: 0.1rem;
+}
+
+.page-content .article-text .table-block table caption, .page-content .article-text .dataframe table caption {
+  padding: 0.2rem;
+  font-style: italic;
+  caption-side: bottom;
+  text-align: center;
 }
 
 .page-content .article-footer {
@@ -499,9 +552,12 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
 }
 
 .contact-section ul.contact-icons {
+  list-style: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-bottom: 0;
+  margin-left: 0;
 }
 
 .contact-section ul.contact-icons li {
@@ -522,10 +578,10 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
   padding: 0;
 }
 
-.code-block-figure .snippet-title {
-  padding: 0.8rem 0.7rem;
-  margin-left: 1.6rem;
-  margin-bottom: 0;
+.code-block-figure .snippet-caption {
+  padding: 0.5rem 0.7rem;
+  font-style: italic;
+  text-align: center;
 }
 
 .code-block-figure .code-block-code code {
@@ -567,8 +623,9 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
   height: auto;
 }
 
-.image-block p {
+.image-block figcaption {
   margin-top: 0;
+  font-style: italic;
 }
 
 .link-block {
@@ -621,6 +678,7 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
   -ms-flex-line-pack: center;
       align-content: center;
   padding: 0 1rem;
+  margin-bottom: 0.5rem;
   border-bottom: 2px solid #7D3545;
 }
 
@@ -1002,7 +1060,7 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
   }
   .page-content .article-text {
     width: 100%;
-    padding: 0 1rem;
+    padding: 0.5rem 1rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
