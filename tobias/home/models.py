@@ -50,8 +50,9 @@ class HomePage(Page):
             ("dataframe", blocks.RawHTMLBlock()),
             ("blockquote", blocks.BlockQuoteBlock()),
             ("blockquote_small", blocks.BlockQuoteBlock()),
-            ("embed", EmbedBlock()),
+            ("contact_section", blocks.RawHTMLBlock()),
             ("html", blocks.RawHTMLBlock()),
+            ("embed", EmbedBlock()),
         ],
         null=True,
     )

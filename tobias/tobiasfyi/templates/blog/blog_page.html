@@ -61,6 +61,8 @@
 				<div class="table-block">{% include_block block %}</div>
 			{% elif block.block_type == "dataframe" %}
 				<div class="dataframe">{{ block.value }}</div>
+			{% elif block.block_type == "contact_section" %}
+				<div class="contact-section">{{ block.value }}</div>
 			{% else %}
 				{% include_block block %}
 			{% endif %}
