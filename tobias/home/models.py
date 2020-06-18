@@ -12,6 +12,7 @@ from wagtail.admin.edit_handlers import (
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
+from wagtail.contrib.table_block.blocks import TableBlock
 
 from utils.blocks import (
     TitleBlock,
@@ -36,18 +37,21 @@ class HomePage(Page):
     content = StreamField(
         [
             ("richtext", blocks.RichTextBlock()),
-            ("title_block", TitleBlock()),
+            ("title", TitleBlock()),
             ("section_header", SectionHeaderBlock()),
             ("featured_section", FeaturedSectionBlock()),
-            ("image_block", ImageBlock()),
-            ("linkblock", LinkBlock()),
-            ("internallinkblock", InternalLinkBlock()),
+            ("image", ImageBlock()),
+            ("code", CodeBlock()),
+            ("link", LinkBlock()),
+            ("internal_link", InternalLinkBlock()),
             ("button", ButtonBlock()),
             ("plot", PlotBlock()),
-            ("code", CodeBlock()),
+            ("table", TableBlock()),
+            ("dataframe", blocks.RawHTMLBlock()),
+            ("blockquote", blocks.BlockQuoteBlock()),
+            ("blockquote_small", blocks.BlockQuoteBlock()),
             ("embed", EmbedBlock()),
             ("html", blocks.RawHTMLBlock()),
-            ("image", ImageChooserBlock()),
         ],
         null=True,
     )
