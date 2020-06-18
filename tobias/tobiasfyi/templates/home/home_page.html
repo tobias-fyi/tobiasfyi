@@ -18,7 +18,7 @@
 	{% endif %}
 	<div class="article-text">
 		{% for block in page.content %}
-			{% if block.block_type == "paragraph" %}
+			{% if block.block_type == "richtext" %}
 				<p>{{ block.value|richtext }}</p>
 			{% elif block.block_type == "blockquote" %}
 				<div class="quote-block">
@@ -32,7 +32,7 @@
 				<div class="table-block">{% include_block block %}</div>
 			{% elif block.block_type == "dataframe" %}
 				<div class="dataframe">{{ block.value }}</div>
-			{% elif block.block_type == "contact_section" %}
+			{% elif block.block_type == "html" %}
 				<div class="contact-section">{{ block.value }}</div>
 			{% else %}
 				{% include_block block %}
