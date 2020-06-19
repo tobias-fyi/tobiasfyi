@@ -3,6 +3,15 @@
 
 {% block body_class %}template-homepage{% endblock %}
 
+{% block opengraph %}
+	<meta property="og:title" content="Tobias Reaper | tobias.fyi" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://tobias.fyi" />
+	{% image page.header_image width-400 as img %}
+	<meta property="og:image" content="https://tobias.fyi{{ img.url }}" />
+	<meta property="og:description" content="{{ page.intro }}" />
+{% endblock opengraph %}
+
 {% block pagetitle %}
 <div class="page-title">
   <h1>Tobias E. A. Reaper</h1>
@@ -11,11 +20,6 @@
 
 {% block content %}
 <article class="page-content">
-	{% if page.intro %}
-		<div class="intro">
-			<h2>{{ page.intro|richtext }}</h2>
-		</div>
-	{% endif %}
 	<div class="article-text">
 		{% for block in page.content %}
 			{% if block.block_type == "richtext" %}

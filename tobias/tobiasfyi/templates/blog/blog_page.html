@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 {% load static wagtailcore_tags wagtailimages_tags %}
 
+{% block opengraph %}
+	<meta property="og:title" content="{{ page.title }}" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="https://tobias.fyi{% pageurl page %}" />
+	{% image page.header_image width-400 as img %}
+	<meta property="og:image" content="https://tobias.fyi{{ img.url }}" />
+	<meta property="og:description" content="{{ page.intro }}" />
+{% endblock opengraph %}
+
 {% block pagetitle %}
 <div class="page-title">
 	<h1>{{ page.title }}</h1>
