@@ -7,7 +7,7 @@
 	<meta property="og:title" content="{{ page.title }}" />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://tobias.fyi{% pageurl page %}" />
-	{% image page.header_image width-400 as img %}
+	{% image page.header_image original as img %}
 	<meta property="og:image" content="https://tobias.fyi{{ img.url }}" />
 	<meta property="og:description" content="{{ page.intro }}" />
 {% endblock opengraph %}

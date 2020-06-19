@@ -7,7 +7,7 @@
 	<meta property="og:title" content="Tobias Reaper | tobias.fyi" />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://tobias.fyi" />
-	{% image page.header_image width-400 as img %}
+	{% image page.header_image original as img %}
 	<meta property="og:image" content="https://tobias.fyi{{ img.url }}" />
 	<meta property="og:description" content="{{ page.intro }}" />
 {% endblock opengraph %}
