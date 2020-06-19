@@ -422,6 +422,10 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
   margin-left: 1rem;
 }
 
+.page-content .article-text ul ul ul {
+  list-style: square outside none;
+}
+
 .page-content .article-text ol {
   margin-bottom: 0.5rem;
   margin-left: 2rem;
