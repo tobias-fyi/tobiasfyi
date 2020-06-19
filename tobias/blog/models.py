@@ -44,6 +44,13 @@ class BlogIndexPage(Page):
     """Index of all individual blog pages."""
 
     intro = RichTextField(blank=True)
+    header_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
     content = StreamField(
         [
             ("richtext_section", blocks.RichTextBlock()),
@@ -87,6 +94,7 @@ class BlogIndexPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("intro", classname="full"),
+        ImageChooserPanel("header_image"),
         StreamFieldPanel("content"),
     ]
 
