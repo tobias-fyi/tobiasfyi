@@ -138,6 +138,9 @@
         list-style: circle outside none;
         margin-bottom: 0;
         margin-left: 1rem;
+        ul {
+          list-style: square outside none;
+        }
       }
     }
 
@@ -181,6 +184,7 @@
         th, td {
           border: 1px solid $dark;
           padding: 0.1rem;
+          text-align: center;
         }
         caption {
           padding: 0.2rem;
