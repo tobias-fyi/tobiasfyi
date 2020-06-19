@@ -30,6 +30,7 @@ from wagtail.search import index
 from utils.blocks import (
     TitleBlock,
     SectionHeaderBlock,
+    FeaturedSectionBlock,
     CodeBlock,
     PlotBlock,
     ImageBlock,
@@ -43,6 +44,13 @@ class BlogIndexPage(Page):
     """Index of all individual blog pages."""
 
     intro = RichTextField(blank=True)
+    header_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
     content = StreamField(
         [
             ("richtext_section", blocks.RichTextBlock()),
@@ -86,6 +94,7 @@ class BlogIndexPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("intro", classname="full"),
+        ImageChooserPanel("header_image"),
         StreamFieldPanel("content"),
     ]
 
@@ -154,21 +163,22 @@ class BlogPage(Page):
     body = StreamField(
         [
             ("richtext", blocks.RichTextBlock()),
-            ("title_block", TitleBlock()),
+            ("title", TitleBlock()),
             ("section_header", SectionHeaderBlock()),
-            ("image_block", ImageBlock()),
-            ("code_block", CodeBlock()),
-            ("link_block", LinkBlock()),
-            ("internal_link_block", InternalLinkBlock()),
+            ("featured_section", FeaturedSectionBlock()),
+            ("image", ImageBlock()),
+            ("code", CodeBlock()),
+            ("link", LinkBlock()),
+            ("internal_link", InternalLinkBlock()),
             ("button", ButtonBlock()),
             ("plot", PlotBlock()),
             ("table", TableBlock()),
             ("dataframe", blocks.RawHTMLBlock()),
             ("blockquote", blocks.BlockQuoteBlock()),
             ("blockquote_small", blocks.BlockQuoteBlock()),
-            ("embed", EmbedBlock()),
+            ("contact_section", blocks.RawHTMLBlock()),
             ("html", blocks.RawHTMLBlock()),
-            ("image", ImageChooserBlock()),
+            ("embed", EmbedBlock()),
         ],
         null=True,
         blank=True,

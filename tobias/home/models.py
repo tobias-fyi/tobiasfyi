@@ -12,6 +12,7 @@ from wagtail.admin.edit_handlers import (
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
+from wagtail.contrib.table_block.blocks import TableBlock
 
 from utils.blocks import (
     TitleBlock,
@@ -32,28 +33,39 @@ class HomePage(Page):
     template = "home/home_page.html"
 
     intro = RichTextField(blank=True)
-
+    header_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
     content = StreamField(
         [
             ("richtext", blocks.RichTextBlock()),
-            ("title_block", TitleBlock()),
+            ("title", TitleBlock()),
             ("section_header", SectionHeaderBlock()),
             ("featured_section", FeaturedSectionBlock()),
-            ("image_block", ImageBlock()),
-            ("linkblock", LinkBlock()),
-            ("internallinkblock", InternalLinkBlock()),
+            ("image", ImageBlock()),
+            ("code", CodeBlock()),
+            ("link", LinkBlock()),
+            ("internal_link", InternalLinkBlock()),
             ("button", ButtonBlock()),
             ("plot", PlotBlock()),
-            ("code", CodeBlock()),
-            ("embed", EmbedBlock()),
+            ("table", TableBlock()),
+            ("dataframe", blocks.RawHTMLBlock()),
+            ("blockquote", blocks.BlockQuoteBlock()),
+            ("blockquote_small", blocks.BlockQuoteBlock()),
+            ("contact_section", blocks.RawHTMLBlock()),
             ("html", blocks.RawHTMLBlock()),
-            ("image", ImageChooserBlock()),
+            ("embed", EmbedBlock()),
         ],
         null=True,
     )
 
     content_panels = Page.content_panels + [
         FieldPanel("intro", classname="full"),
+        ImageChooserPanel("header_image"),
         StreamFieldPanel("content"),
     ]
 
