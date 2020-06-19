@@ -468,6 +468,7 @@ main h1 a:hover, main h2 a:hover, main h3 a:hover {
 .page-content .article-text .table-block table th, .page-content .article-text .table-block table td, .page-content .article-text .dataframe table th, .page-content .article-text .dataframe table td {
   border: 1px solid #131313;
   padding: 0.1rem;
+  text-align: center;
 }
 
 .page-content .article-text .table-block table caption, .page-content .article-text .dataframe table caption {
