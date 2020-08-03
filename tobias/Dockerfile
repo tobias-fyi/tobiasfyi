@@ -2,7 +2,7 @@
 
 # Pull base image
 FROM python:3.8.0-slim-buster
-LABEL maintainer="tobyreaper@gmail.com"
+LABEL maintainer="hi@tobias.fyi"
 
 # Set environment varibles
 ENV PYTHONDONTWRITEBYTECODE 1
