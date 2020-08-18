@@ -9,11 +9,11 @@ pylint = "*"
 pytest = "*"
 
 [packages]
-wagtail = ">=2.8,<2.9"
+wagtail = "*"
 django-extensions = "*"
 psycopg2-binary = "*"
 gunicorn = "*"
-Django = ">=3.0,<3.1"
+Django = "*"
 ipython = "*"
 awscli = "*"
 boto3 = "*"
