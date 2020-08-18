@@ -9,7 +9,7 @@ pylint = "*"
 pytest = "*"
 
 [packages]
-wagtail = ">=2.8,<2.9"
+wagtail = ">=2.8,<2.10"
 django-extensions = "*"
 psycopg2-binary = "*"
 gunicorn = "*"
