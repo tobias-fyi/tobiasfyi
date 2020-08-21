@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  web:
+    image: tobiasfyi/tobiasfyi-web:1.2.1
+    command: gunicorn tobiasfyi.wsgi:application --bind 0.0.0.0:8000 --workers 3
+    volumes:
+      - /home/tobi/volumes/static:/home/app/web/static
+      - /home/tobi/volumes/media:/home/app/web/media
+    expose:
+      - 8000
+    env_file: .env
+
+  nginx:
+    image: tobiasfyi/tobiasfyi-nginx:1.2.1
+    volumes:
+      - /home/tobi/volumes/static:/home/app/web/static
+      - /home/tobi/volumes/media:/home/app/web/media
+    ports:
+      - 8080:80
+    depends_on:
+      - web
+
+volumes:
+  static_volume:
+  media_volume:
